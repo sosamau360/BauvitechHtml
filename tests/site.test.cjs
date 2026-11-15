@@ -64,3 +64,16 @@ test('OmniDate card uses official local SVG, bilingual features and official lin
  assert.ok(!read('img/omnidate-logo.svg').includes('<!DOCTYPE'));
  assert.ok(!html.includes('img/omnidate.jfif'));
 });
+
+test('ParkSoft card uses official local icon and verified bilingual features', () => {
+ const html=read('portfolio.html');
+ const start=html.indexOf('src="img/parksoft-logo.svg"');
+ assert.ok(start>=0);
+ const card=html.slice(start,html.indexOf('</article>',start));
+ assert.ok(card.includes('data-i18n="parksoft.feature3"'));
+ assert.ok(card.includes('href="contacto.html" data-i18n="parksoft.demo"'));
+ assert.ok(card.includes('SQLite'));
+ assert.ok(read('img/parksoft-logo.svg').includes('viewBox="0.00 0.00 744.00 727.00"'));
+ assert.ok(!read('img/parksoft-logo.svg').includes('<!DOCTYPE'));
+ assert.ok(!html.includes('img/logoParkSoft.png'));
+});

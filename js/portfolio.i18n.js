@@ -24,7 +24,7 @@ window.BauViTechTranslations = {
     "project1.title": "Sistema de Licenciamiento y QR para Aplicaciones .NET",
     "project1.desc": "Sistema de licenciamiento para aplicaciones .NET basado en claves, validación de hardware, códigos QR y activación online/offline, integrado con .NET MAUI y Blazor.",
     "project2.title": "ParkSoft / Multiparking — Gestión de estacionamientos",
-    "project2.desc": "Control de entradas y salidas, matrículas, tarifas configurables e impresión de tickets. Solución de gestión desarrollada con .NET MAUI.",
+    "project2.desc": "Controlá tu estacionamiento desde el ingreso hasta el cobro y la salida. ParkSoft registra vehículos por matrícula, calcula automáticamente el importe según las tarifas configuradas y centraliza los tickets e informes de operación.",
     "project3.title": "OmniDate — Agenda y reservas online",
     "project3.desc": "Plataforma de reservas para peluquerías, barberías, centros de estética y otros comercios de servicios. Tus clientes reservan online y vos organizás la agenda, los servicios y los puestos de trabajo, con recordatorios automáticos por WhatsApp y estadísticas desde un solo lugar.",
     "project5.title": "Laserwork Uruguay - Tienda Online",
@@ -73,7 +73,11 @@ window.BauViTechTranslations = {
     "omnidate.feature3": "Módulo deportivo: fútbol, pádel y tenis (consultar disponibilidad)",
     "kineos.feature1": "Jugadores, categorías, asistencias y vencimientos de carnets",
     "kineos.feature2": "Cuotas, pagos, deudas e informes de gestión",
-    "kineos.feature3": "Accesos por roles, avisos a familias y WhatsApp según configuración y condiciones del servicio"
+    "kineos.feature3": "Accesos por roles, avisos a familias y WhatsApp según configuración y condiciones del servicio",
+    "parksoft.feature1": "Tarifas por tipo de vehículo, hora o fracción, día y noche, con topes diarios y horarios de cierre",
+    "parksoft.feature2": "Registro, impresión, escaneo y reimpresión de tickets para agilizar los cobros",
+    "parksoft.feature3": "Usuarios por roles e informes por período y operador, con exportación a Excel",
+    "parksoft.demo": "Solicitar demostración"
   },
   "en": {
     "nav.about": "About",
@@ -100,7 +104,7 @@ window.BauViTechTranslations = {
     "project1.title": "Licensing and QR System for .NET Applications",
     "project1.desc": "Licensing system for .NET applications based on keys, hardware validation, QR codes and online/offline activation, integrated with .NET MAUI and Blazor.",
     "project2.title": "ParkSoft / Multiparking — Parking management",
-    "project2.desc": "Vehicle entry and exit tracking, license plates, configurable rates and ticket printing. Built with .NET MAUI.",
+    "project2.desc": "Manage your parking facility from vehicle entry to payment and exit. ParkSoft registers vehicles by license plate, automatically calculates parking fees according to configured rates, and centralizes tickets and operational reports.",
     "project3.title": "OmniDate — Online booking and scheduling",
     "project3.desc": "Booking platform for hair salons, barbershops, beauty centers and other service businesses. Customers book online while you manage schedules, services and workstations, with automatic WhatsApp reminders and statistics in one place.",
     "project5.title": "Laserwork Uruguay - Online Store",
@@ -149,6 +153,10 @@ window.BauViTechTranslations = {
     "omnidate.feature3": "Sports module: football, padel and tennis (ask about availability)",
     "kineos.feature1": "Players, age groups, attendance and membership card expiry",
     "kineos.feature2": "Fees, payments, outstanding balances and management reports",
-    "kineos.feature3": "Role-based access, family notifications and WhatsApp subject to service settings and conditions"
+    "kineos.feature3": "Role-based access, family notifications and WhatsApp subject to service settings and conditions",
+    "parksoft.feature1": "Rates by vehicle type, hour or fraction, day and night, with daily caps and closing times",
+    "parksoft.feature2": "Ticket registration, printing, scanning and reprinting to streamline payments",
+    "parksoft.feature3": "Role-based users and reports by period and operator, with Excel export",
+    "parksoft.demo": "Request a demo"
   }
 };

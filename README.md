@@ -17,7 +17,6 @@ Servir la raíz con un servidor HTTP estático (por ejemplo Live Server de VS Co
 
 - img/yo.jpeg
 - img/logoLicencias.png
-- img/logoParkSoft.png
 - img/laserwork.png
 - img/mazur.png
 - img/og-image.png
@@ -46,3 +45,7 @@ Revisión de AgendaPro: main ce1e89f1452ee8f0cc04ab2482d519f33e77e21e, release/o
 ### Kineos360 — identidad y descripción comercial
 
 Fuente: AsistanceControl main ade96db51c85f639fb6dbeafc3f5de73772160d6 (versión 2026.11.15.2). La landing pública documenta funciones, aplicación PWA por club, permisos e informes. El encabezado de landing usa logo.png sobre fondo oscuro; views/auth/login.php usa logoB.png sobre una tarjeta blanca. BauViTech selecciona los recursos oficiales https://www.kineos360.uy/assets/img/logo.png y https://www.kineos360.uy/assets/img/logoB.png mediante su controlador de tema existente; fallback textual durante carga/error. No se agregan archivos binarios porque el conector no permite descargarlos. logoB.png pesa 4.76 MB en el repositorio original: recomendable obtener y optimizar copias locales de ambos PNG antes de publicar. Pendiente comprobar HTTP, contraste y cambio de tema en navegador. No se cambian módulos de Kineos360.
+
+### ParkSoft / Multiparking — actualización de portfolio
+
+Fuente: repositorio Multiparking, main 73d75caeb5a4ee6aa0de3670424536fbc999cbb5. ParkSoft.csproj identifica la marca y .NET MAUI 8/SQLite. Views/MainPage.xaml, ViewModels/MainViewModel.cs, Services/TicketService.cs y Services/ParkingFeeCalculator.cs respaldan matrícula, cobros, impresión/escaneo/reimpresión y reglas tarifarias. ViewModels/InformesViewModel.cs confirma informes por usuario/fecha y exportación Excel. El ícono oficial configurado en MauiIcon (Resources/AppIcon/appicon.svg) se copia a img/parksoft-logo.svg sin DOCTYPE externo; se conservan sus trazados y colores. Se elimina la referencia a img/logoParkSoft.png. Se reutilizan los estilos y el fallback de logos ya existentes, ES/EN y enlace de contacto para solicitar demostración; no se inventa sitio público ni disponibilidad por plataforma. Pendiente verificar apariencia y formulario en navegador. No se cambia Multiparking.
