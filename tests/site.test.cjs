@@ -147,6 +147,7 @@ test('landing product grid and image rules retain mobile layout and theme fallba
 test('BVT-05 all pages expose accessible controls and main landmark', () => {
  for(const page of pages) {
   const html=read(page);
+  assert.ok(html.includes('<html lang="es" class="dark">'));
   assert.ok(html.includes('class="skip-link" href="#contenido-principal"'));
   assert.ok(/<main[^>]+id="contenido-principal" tabindex="-1"/.test(html));
   assert.ok(html.includes('data-i18n-aria-label="a11y.nav"'));
