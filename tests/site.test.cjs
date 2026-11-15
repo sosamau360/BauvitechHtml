@@ -91,3 +91,15 @@ test('BauVi.Notify card distinguishes implemented WhatsApp from evolving capabil
  assert.ok(card.includes('href="contacto.html" data-i18n="notify.demo"'));
  assert.ok(!/\bSMS\b|Email|correo electrónico/.test(card));
 });
+
+test('BauVi.Notify uses the approved local banner without cropping', () => {
+ const html=read('portfolio.html');
+ const start=html.indexOf('data-i18n="notify.title"');
+ const card=html.slice(html.lastIndexOf('<article class="project-card">',start),html.indexOf('</article>',start));
+ assert.ok(card.includes('class="project-img notify-banner-cover"'));
+ assert.ok(card.includes('src="img/bauvi-notify-banner.webp" alt="BauVi.Notify" width="960" height="573"'));
+ const css=read('portfolio.css');
+ const image=css.match(/\.notify-banner-cover img\s*\{([^}]+)\}/)[1];
+ assert.ok(image.includes('object-fit: contain') && image.includes('object-position: center'));
+ assert.ok(css.includes('.project-card:hover .notify-banner-cover img { transform: none; }'));
+});
