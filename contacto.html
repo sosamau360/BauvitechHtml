@@ -110,25 +110,25 @@
 
                 <div class="form-row">
                     <div class="form-group" style="margin-bottom:0;">
-                        <label><span data-i18n="field.name">Nombre</span><span class="req">*</span></label>
-                        <input type="text" id="f-name" placeholder="Tu nombre" autocomplete="given-name">
+                        <label for="f-name"><span data-i18n="field.name">Nombre</span><span class="req">*</span></label>
+                        <input type="text" id="f-name" data-i18n="name.placeholder" required aria-describedby="err-name" placeholder="Tu nombre" autocomplete="given-name">
                         <div class="error-msg" id="err-name" data-i18n="err.required">Este campo es obligatorio.</div>
                     </div>
                     <div class="form-group" style="margin-bottom:0;">
-                        <label><span data-i18n="field.email">Email</span><span class="req">*</span></label>
-                        <input type="email" id="f-email" placeholder="tu@email.com" autocomplete="email">
+                        <label for="f-email"><span data-i18n="field.email">Email</span><span class="req">*</span></label>
+                        <input type="email" id="f-email" data-i18n="email.placeholder" required aria-describedby="err-email" placeholder="tu@email.com" autocomplete="email">
                         <div class="error-msg" id="err-email" data-i18n="err.email">Ingresa un email válido.</div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label><span data-i18n="field.phone">Teléfono / WhatsApp</span></label>
+                    <label for="f-phone"><span data-i18n="field.phone">Teléfono / WhatsApp</span></label>
                     <input type="tel" id="f-phone" placeholder="+598 9X XXX XXX" autocomplete="tel">
                 </div>
 
                 <div class="form-group">
-                    <label><span data-i18n="field.type">Tipo de proyecto</span><span class="req">*</span></label>
-                    <select id="f-type">
+                    <label for="f-type"><span data-i18n="field.type">Tipo de proyecto</span><span class="req">*</span></label>
+                    <select id="f-type" required aria-describedby="err-type">
                         <option value="" disabled selected data-i18n="field.type.placeholder">Selecciona una opción</option>
                         <option value="Sistema de gestión" data-i18n="type.1">Sistema de gestión</option>
                         <option value="Aplicación móvil" data-i18n="type.2">Aplicación móvil</option>
@@ -142,19 +142,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label><span data-i18n="field.desc">Descripción del proyecto</span><span class="req">*</span></label>
-                    <textarea id="f-desc" placeholder="Cuéntame qué necesitas, cómo funciona tu negocio, qué problema quieres resolver..."></textarea>
+                    <label for="f-desc"><span data-i18n="field.desc">Descripción del proyecto</span><span class="req">*</span></label>
+                    <textarea id="f-desc" required aria-describedby="err-desc" placeholder="Cuéntame qué necesitas, cómo funciona tu negocio, qué problema quieres resolver..."></textarea>
                     <div class="error-msg" id="err-desc" data-i18n="err.required">Este campo es obligatorio.</div>
                 </div>
 
                 <div class="form-group">
-                    <label data-i18n="field.budget">Presupuesto estimado</label>
-                    <div class="budget-pills">
-                        <div class="budget-pill" data-value="Menos de USD 500" data-i18n="budget.1">Menos de USD 500</div>
-                        <div class="budget-pill" data-value="USD 500 – 1.500" data-i18n="budget.2">USD 500 – 1.500</div>
-                        <div class="budget-pill" data-value="USD 1.500 – 3.000" data-i18n="budget.3">USD 1.500 – 3.000</div>
-                        <div class="budget-pill" data-value="Más de USD 3.000" data-i18n="budget.4">Más de USD 3.000</div>
-                        <div class="budget-pill" data-value="No lo sé aún" data-i18n="budget.5">No lo sé aún</div>
+                    <span id="budget-label" class="budget-label" data-i18n="field.budget">Presupuesto estimado (opcional)</span>
+                    <div class="budget-pills" role="group" aria-labelledby="budget-label">
+                        <button type="button" class="budget-pill" aria-pressed="false" data-i18n="budget.1">Menos de USD 500</button>
+                        <button type="button" class="budget-pill" aria-pressed="false" data-i18n="budget.2">USD 500 – 1.500</button>
+                        <button type="button" class="budget-pill" aria-pressed="false" data-i18n="budget.3">USD 1.500 – 3.000</button>
+                        <button type="button" class="budget-pill" aria-pressed="false" data-i18n="budget.4">Más de USD 3.000</button>
+                        <button type="button" class="budget-pill" aria-pressed="false" data-i18n="budget.5">No lo sé aún</button>
                     </div>
                 </div>
 

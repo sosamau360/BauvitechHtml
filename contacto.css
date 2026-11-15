@@ -240,3 +240,7 @@
             .btn-submit { justify-content: center; }
         }
     
+
+.budget-label { display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-muted); margin-bottom:8px; }
+.budget-pill { font-family:inherit; }
+.budget-pill:focus-visible { outline:2px solid var(--indigo); outline-offset:2px; }

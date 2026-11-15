@@ -37,7 +37,9 @@ window.BauViTechTranslations = {
     "form.note": "Al enviar, se abrirá WhatsApp con tu consulta lista para enviar.",
     "err.required": "Este campo es obligatorio.",
     "err.email": "Ingresa un email válido.",
-    "desc.placeholder": "Cuéntame qué necesitas, cómo funciona tu negocio, qué problema quieres resolver..."
+    "desc.placeholder": "Cuéntame qué necesitas, cómo funciona tu negocio, qué problema quieres resolver...",
+    "name.placeholder": "Tu nombre",
+    "email.placeholder": "tu@email.com"
   },
   "en": {
     "nav.problem": "The problem",
@@ -77,6 +79,8 @@ window.BauViTechTranslations = {
     "form.note": "Clicking send will open WhatsApp with your inquiry ready to go.",
     "err.required": "This field is required.",
     "err.email": "Please enter a valid email.",
-    "desc.placeholder": "Tell me what you need, how your business works, what problem you want to solve..."
+    "desc.placeholder": "Tell me what you need, how your business works, what problem you want to solve...",
+    "name.placeholder": "Your name",
+    "email.placeholder": "you@email.com"
   }
 };

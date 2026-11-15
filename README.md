@@ -34,4 +34,8 @@ Logos/capturas reales de Kineos360, BauVi.Notify y SaliYa pendientes; se usan po
 
 ## Validación
 
-Ejecutar `node --test tests/site.test.cjs` (Node 20+). Pruebas estáticas de estructura, traducciones, sintaxis y enlaces; no sustituyen pruebas de navegador. Validar Chrome/Edge/Firefox/Safari, anchos 320/375/768/850/1024, menú, tema y ES/EN entre páginas, teclado, formulario válido/inválido y WhatsApp con datos ficticios sin enviar mensaje. Revisar imágenes, manifiesto y enlace externo. No hay migraciones, persistencia de datos de clientes ni CI configurado. No publicar ni fusionar sin autorización.
+Ejecutar `node --test tests/*.test.cjs` (Node 20+). Pruebas estáticas de estructura, traducciones, sintaxis y enlaces; no sustituyen pruebas de navegador. Validar Chrome/Edge/Firefox/Safari, anchos 320/375/768/850/1024, menú, tema y ES/EN entre páginas, teclado, formulario válido/inválido y WhatsApp con datos ficticios sin enviar mensaje. Revisar imágenes, manifiesto y enlace externo. No hay migraciones, persistencia de datos de clientes ni CI configurado. No publicar ni fusionar sin autorización.
+
+### Regresión BVT-07
+
+Las pruebas de comportamiento simulan DOM y almacenamiento local; comprueban tema, idioma, menú, validación, foco, selección opcional de presupuesto y composición de WhatsApp. No abren navegador ni envían mensajes. Las etiquetas del formulario están asociadas a los campos, los errores se anuncian con aria-invalid y los botones de presupuesto funcionan con teclado. El menú móvil del portfolio lleva a la misma página de contacto que escritorio.

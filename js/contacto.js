@@ -2,8 +2,10 @@
 
 document.querySelectorAll('.budget-pill').forEach(pill => {
     pill.addEventListener('click', () => {
-        document.querySelectorAll('.budget-pill').forEach(p => p.classList.remove('selected'));
-        pill.classList.add('selected');
+        const selected = !pill.classList.contains('selected');
+        document.querySelectorAll('.budget-pill').forEach(p => { p.classList.remove('selected'); p.setAttribute('aria-pressed','false'); });
+        pill.classList.toggle('selected', selected);
+        pill.setAttribute('aria-pressed', String(selected));
     });
 });
 
@@ -14,27 +16,27 @@ function validate() {
     const name = document.getElementById('f-name');
     const errName = document.getElementById('err-name');
     if (!name.value.trim()) {
-        name.classList.add('error'); errName.classList.add('show'); ok = false;
-    } else { name.classList.remove('error'); errName.classList.remove('show'); }
+        name.classList.add('error'); name.setAttribute('aria-invalid','true'); errName.classList.add('show'); ok = false;
+    } else { name.classList.remove('error'); name.removeAttribute('aria-invalid'); errName.classList.remove('show'); }
 
     const email = document.getElementById('f-email');
     const errEmail = document.getElementById('err-email');
     const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRx.test(email.value.trim())) {
-        email.classList.add('error'); errEmail.classList.add('show'); ok = false;
-    } else { email.classList.remove('error'); errEmail.classList.remove('show'); }
+        email.classList.add('error'); email.setAttribute('aria-invalid','true'); errEmail.classList.add('show'); ok = false;
+    } else { email.classList.remove('error'); email.removeAttribute('aria-invalid'); errEmail.classList.remove('show'); }
 
     const type = document.getElementById('f-type');
     const errType = document.getElementById('err-type');
     if (!type.value) {
-        type.classList.add('error'); errType.classList.add('show'); ok = false;
-    } else { type.classList.remove('error'); errType.classList.remove('show'); }
+        type.classList.add('error'); type.setAttribute('aria-invalid','true'); errType.classList.add('show'); ok = false;
+    } else { type.classList.remove('error'); type.removeAttribute('aria-invalid'); errType.classList.remove('show'); }
 
     const desc = document.getElementById('f-desc');
     const errDesc = document.getElementById('err-desc');
     if (!desc.value.trim()) {
-        desc.classList.add('error'); errDesc.classList.add('show'); ok = false;
-    } else { desc.classList.remove('error'); errDesc.classList.remove('show'); }
+        desc.classList.add('error'); desc.setAttribute('aria-invalid','true'); errDesc.classList.add('show'); ok = false;
+    } else { desc.classList.remove('error'); desc.removeAttribute('aria-invalid'); errDesc.classList.remove('show'); }
 
     return ok;
 }
@@ -42,7 +44,7 @@ function validate() {
 // ── FORM SUBMIT → WHATSAPP ─────────────────────────────────────────
 document.getElementById('budgetForm').addEventListener('submit', e => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate()) { document.querySelector('#budgetForm .error')?.focus(); return; }
 
     const name  = document.getElementById('f-name').value.trim();
     const email = document.getElementById('f-email').value.trim();
@@ -74,6 +76,7 @@ document.getElementById('budgetForm').addEventListener('submit', e => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', () => {
         el.classList.remove('error');
+        el.removeAttribute('aria-invalid');
         const err = document.getElementById('err-' + id.replace('f-',''));
         if (err) err.classList.remove('show');
     });
