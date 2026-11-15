@@ -65,21 +65,17 @@ test('OmniDate card uses official local SVG, bilingual features and official lin
  assert.ok(!html.includes('img/omnidate.jfif'));
 });
 
-test('ParkSoft card restores original portfolio artwork and verified bilingual features', () => {
+test('ParkSoft retains the exact original image configuration and improved product information', () => {
  const html=read('portfolio.html');
  const start=html.indexOf('src="img/logoParkSoft.png"');
  assert.ok(start>=0);
- const card=html.slice(start,html.indexOf('</article>',start));
+ const card=html.slice(html.lastIndexOf('<article class="project-card">',start),html.indexOf('</article>',start));
+ assert.ok(card.includes('<div class="project-img">'));
+ assert.ok(card.includes('<div class="project-img-fallback" style="background: linear-gradient(135deg,#3b82f6,#06b6d4,#14b8a6);">'));
+ assert.ok(card.includes('<img src="img/logoParkSoft.png" alt="ParkSoft" style="width:100%;height:100%;object-fit:cover;">'));
  assert.ok(card.includes('data-i18n="parksoft.feature3"'));
  assert.ok(card.includes('href="contacto.html" data-i18n="parksoft.demo"'));
  assert.ok(card.includes('SQLite'));
- assert.ok(html.includes('project-logo-cover parksoft-original-cover'));
- assert.ok(card.includes('class="project-logo-fallback">ParkSoft'));
- const css=read('portfolio.css');
- const cover=css.match(/\.parksoft-original-cover\s*\{([^}]+)\}/)[1];
- const image=css.match(/\.parksoft-original-cover \.project-logo-image\s*\{([^}]+)\}/)[1];
- assert.ok(cover.includes('display: flex') && cover.includes('align-items: center') && cover.includes('justify-content: center'));
- assert.ok(image.includes('object-fit: contain') && image.includes('object-position: center'));
- assert.ok(image.includes('max-height: 100%') && image.includes('max-width: 100%'));
- assert.ok(!html.includes('img/parksoft-logo.svg'));
+ assert.ok(!card.includes('data-product-logo'));
+ assert.ok(!read('portfolio.css').includes('parksoft-original-cover'));
 });
