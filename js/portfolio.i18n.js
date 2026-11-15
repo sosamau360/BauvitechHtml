@@ -59,8 +59,8 @@ window.BauViTechTranslations = {
     "cases.subtitle": "Soluciones implementadas y capacidades técnicas.",
     "kineos.title": "Kineos360 — Gestión integral de clubes deportivos",
     "kineos.desc": "Centralizá la gestión de tu club y conectá dirigentes, entrenadores, jugadores y familias. Cada institución cuenta con su propia aplicación web instalable, personalizada con su nombre, escudo y colores.",
-    "notify.title": "BauVi.Notify",
-    "notify.desc": "Plataforma de automatización de comunicaciones e integración de notificaciones. Consultá por los canales disponibles y las opciones de integración.",
+    "notify.title": "BauVi.Notify — Plataforma de comunicaciones",
+    "notify.desc": "Centralizá las notificaciones de tus aplicaciones en una sola API. Integrá WhatsApp con tus sistemas para automatizar avisos, recordatorios y confirmaciones, con administración centralizada y seguimiento de los envíos.",
     "saliya.title": "SaliYa",
     "saliya.desc": "Proyecto de reservas gastronómicas y promociones para restaurantes. Actualmente en desarrollo; disponibilidad comercial pendiente de validación.",
     "product.contact": "Consultar por el producto",
@@ -77,7 +77,12 @@ window.BauViTechTranslations = {
     "parksoft.feature1": "Tarifas por tipo de vehículo, hora o fracción, día y noche, con topes diarios y horarios de cierre",
     "parksoft.feature2": "Registro, impresión, escaneo y reimpresión de tickets para agilizar los cobros",
     "parksoft.feature3": "Usuarios por roles e informes por período y operador, con exportación a Excel",
-    "parksoft.demo": "Solicitar demostración"
+    "parksoft.demo": "Solicitar demostración",
+    "notify.feature1": "API REST para integrar aplicaciones y gestionar envíos por WhatsApp",
+    "notify.feature2": "Administración de instancias, límites de envío y selección de conexiones autorizadas",
+    "notify.feature3": "Historial de mensajes, estados de envío y panel de estadísticas",
+    "notify.roadmap": "En evolución: cola persistente, prioridades, vencimiento, reintentos y webhooks de estado; disponibilidad sujeta a validación.",
+    "notify.demo": "Consultar por la integración"
   },
   "en": {
     "nav.about": "About",
@@ -139,8 +144,8 @@ window.BauViTechTranslations = {
     "cases.subtitle": "Implemented solutions and technical expertise.",
     "kineos.title": "Kineos360 — Sports club management",
     "kineos.desc": "Centralize club management and connect directors, coaches, players and families. Each club has its own installable web app with its name, badge and colors.",
-    "notify.title": "BauVi.Notify",
-    "notify.desc": "Communication automation and notification integration platform. Ask about available channels and integration options.",
+    "notify.title": "BauVi.Notify — Communications platform",
+    "notify.desc": "Centralize notifications from your applications through a single API. Connect WhatsApp to your systems to automate alerts, reminders and confirmations, with centralized administration and message tracking.",
     "saliya.title": "SaliYa",
     "saliya.desc": "Restaurant booking and promotion project. In development; commercial availability has not been confirmed.",
     "product.contact": "Ask about this product",
@@ -157,6 +162,11 @@ window.BauViTechTranslations = {
     "parksoft.feature1": "Rates by vehicle type, hour or fraction, day and night, with daily caps and closing times",
     "parksoft.feature2": "Ticket registration, printing, scanning and reprinting to streamline payments",
     "parksoft.feature3": "Role-based users and reports by period and operator, with Excel export",
-    "parksoft.demo": "Request a demo"
+    "parksoft.demo": "Request a demo",
+    "notify.feature1": "REST API to integrate applications and manage WhatsApp messaging",
+    "notify.feature2": "Instance administration, sending limits and authorized connection selection",
+    "notify.feature3": "Message history, delivery status and statistics dashboard",
+    "notify.roadmap": "In development: persistent queue, priorities, expiry, retries and status webhooks; availability subject to validation.",
+    "notify.demo": "Ask about integration"
   }
 };

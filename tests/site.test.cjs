@@ -79,3 +79,15 @@ test('ParkSoft retains the exact original image configuration and improved produ
  assert.ok(!card.includes('data-product-logo'));
  assert.ok(!read('portfolio.css').includes('parksoft-original-cover'));
 });
+
+test('BauVi.Notify card distinguishes implemented WhatsApp from evolving capabilities', () => {
+ const html=read('portfolio.html');
+ const start=html.indexOf('data-i18n="notify.title"');
+ assert.ok(start>=0);
+ const card=html.slice(html.lastIndexOf('<article class="project-card">',start),html.indexOf('</article>',start));
+ assert.ok(card.includes('WhatsApp') && card.includes('REST API'));
+ assert.ok(card.includes('data-i18n="notify.feature3"'));
+ assert.ok(card.includes('data-i18n="notify.roadmap"') && card.includes('disponibilidad sujeta a validación'));
+ assert.ok(card.includes('href="contacto.html" data-i18n="notify.demo"'));
+ assert.ok(!/\bSMS\b|Email|correo electrónico/.test(card));
+});
