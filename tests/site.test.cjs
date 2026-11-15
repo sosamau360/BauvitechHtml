@@ -48,3 +48,17 @@ test('Kineos360 links to its official site and keeps contact action', () => {
  assert.ok(card.includes('href="https://www.kineos360.uy/" data-i18n="kineos.visit"'));
  assert.ok(card.includes('href="contacto.html" data-i18n="product.contact"'));
 });
+
+test('OmniDate card uses official local SVG, bilingual features and official link', () => {
+ const html=read('portfolio.html');
+ const start=html.indexOf('src="img/omnidate-logo.svg"');
+ assert.ok(start>=0);
+ const card=html.slice(start,html.indexOf('</article>',start));
+ assert.ok(card.includes('href="https://omnidate.com.uy/"'));
+ assert.ok(card.includes('href="contacto.html"'));
+ assert.ok(card.includes('consultar disponibilidad'));
+ assert.ok(card.includes('data-i18n="omnidate.feature3"'));
+ assert.ok(read('img/omnidate-logo.svg').includes('viewBox="0 0 8816 4277"'));
+ assert.ok(!read('img/omnidate-logo.svg').includes('<!DOCTYPE'));
+ assert.ok(!html.includes('img/omnidate.jfif'));
+});

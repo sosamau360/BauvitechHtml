@@ -25,8 +25,8 @@ window.BauViTechTranslations = {
     "project1.desc": "Sistema de licenciamiento para aplicaciones .NET basado en claves, validación de hardware, códigos QR y activación online/offline, integrado con .NET MAUI y Blazor.",
     "project2.title": "ParkSoft / Multiparking — Gestión de estacionamientos",
     "project2.desc": "Control de entradas y salidas, matrículas, tarifas configurables e impresión de tickets. Solución de gestión desarrollada con .NET MAUI.",
-    "project3.title": "OmniDate — Reservas y agenda online",
-    "project3.desc": "Agenda y reservas para comercios de servicios y espacios deportivos. Gestiona horarios, servicios y turnos desde una plataforma web.",
+    "project3.title": "OmniDate — Agenda y reservas online",
+    "project3.desc": "Plataforma de reservas para peluquerías, barberías, centros de estética y otros comercios de servicios. Tus clientes reservan online y vos organizás la agenda, los servicios y los puestos de trabajo, con recordatorios automáticos por WhatsApp y estadísticas desde un solo lugar.",
     "project5.title": "Laserwork Uruguay - Tienda Online",
     "project5.desc": "Desarrollo de tienda online con PrestaShop para venta de productos personalizados. Implementación completa, optimización para ventas y adaptación a dispositivos móviles.",
     "project6.title": "Mazur Insumos - Tienda Online",
@@ -67,7 +67,10 @@ window.BauViTechTranslations = {
     "product.visit": "Visitar OmniDate",
     "product.interest": "Consultar novedades",
     "product.development": "En desarrollo",
-    "kineos.visit": "Visitar Kineos360"
+    "kineos.visit": "Visitar Kineos360",
+    "omnidate.feature1": "Reservas 24/7 y gestión de disponibilidad",
+    "omnidate.feature2": "Recordatorios por WhatsApp y aplicación web instalable",
+    "omnidate.feature3": "Módulo deportivo: fútbol, pádel y tenis (consultar disponibilidad)"
   },
   "en": {
     "nav.about": "About",
@@ -96,7 +99,7 @@ window.BauViTechTranslations = {
     "project2.title": "ParkSoft / Multiparking — Parking management",
     "project2.desc": "Vehicle entry and exit tracking, license plates, configurable rates and ticket printing. Built with .NET MAUI.",
     "project3.title": "OmniDate — Online booking and scheduling",
-    "project3.desc": "Scheduling and booking for service businesses and sports venues. Manage schedules, services and appointments from a web platform.",
+    "project3.desc": "Booking platform for hair salons, barbershops, beauty centers and other service businesses. Customers book online while you manage schedules, services and workstations, with automatic WhatsApp reminders and statistics in one place.",
     "project5.title": "Laserwork Uruguay - Online Store",
     "project5.desc": "Online store developed with PrestaShop for selling personalized products. Full implementation, sales optimization, and mobile-friendly adaptation.",
     "project6.title": "Mazur Insumos - Online Store",
@@ -137,6 +140,9 @@ window.BauViTechTranslations = {
     "product.visit": "Visit OmniDate",
     "product.interest": "Ask for updates",
     "product.development": "In development",
-    "kineos.visit": "Visit Kineos360"
+    "kineos.visit": "Visit Kineos360",
+    "omnidate.feature1": "24/7 booking and availability management",
+    "omnidate.feature2": "WhatsApp reminders and installable web app",
+    "omnidate.feature3": "Sports module: football, padel and tennis (ask about availability)"
   }
 };
