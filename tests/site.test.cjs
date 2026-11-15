@@ -75,6 +75,11 @@ test('ParkSoft card restores original portfolio artwork and verified bilingual f
  assert.ok(card.includes('SQLite'));
  assert.ok(html.includes('project-logo-cover parksoft-original-cover'));
  assert.ok(card.includes('class="project-logo-fallback">ParkSoft'));
- assert.ok(read('portfolio.css').includes('.parksoft-original-cover .project-logo-image'));
+ const css=read('portfolio.css');
+ const cover=css.match(/\.parksoft-original-cover\s*\{([^}]+)\}/)[1];
+ const image=css.match(/\.parksoft-original-cover \.project-logo-image\s*\{([^}]+)\}/)[1];
+ assert.ok(cover.includes('display: flex') && cover.includes('align-items: center') && cover.includes('justify-content: center'));
+ assert.ok(image.includes('object-fit: contain') && image.includes('object-position: center'));
+ assert.ok(image.includes('max-height: 100%') && image.includes('max-width: 100%'));
  assert.ok(!html.includes('img/parksoft-logo.svg'));
 });
