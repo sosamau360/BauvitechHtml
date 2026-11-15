@@ -16,6 +16,7 @@ Servir la raíz con un servidor HTTP estático (por ejemplo Live Server de VS Co
 ## Recursos pendientes
 
 - img/yo.jpeg
+- img/logoParkSoft.png
 - img/logoLicencias.png
 - img/laserwork.png
 - img/mazur.png
@@ -48,4 +49,4 @@ Fuente: AsistanceControl main ade96db51c85f639fb6dbeafc3f5de73772160d6 (versión
 
 ### ParkSoft / Multiparking — actualización de portfolio
 
-Fuente: repositorio Multiparking, main 73d75caeb5a4ee6aa0de3670424536fbc999cbb5. ParkSoft.csproj identifica la marca y .NET MAUI 8/SQLite. Views/MainPage.xaml, ViewModels/MainViewModel.cs, Services/TicketService.cs y Services/ParkingFeeCalculator.cs respaldan matrícula, cobros, impresión/escaneo/reimpresión y reglas tarifarias. ViewModels/InformesViewModel.cs confirma informes por usuario/fecha y exportación Excel. El ícono oficial configurado en MauiIcon (Resources/AppIcon/appicon.svg) se copia a img/parksoft-logo.svg sin DOCTYPE externo; se conservan sus trazados y colores. Se elimina la referencia a img/logoParkSoft.png. Se reutilizan los estilos y el fallback de logos ya existentes, ES/EN y enlace de contacto para solicitar demostración; no se inventa sitio público ni disponibilidad por plataforma. Pendiente verificar apariencia y formulario en navegador. No se cambia Multiparking.
+Fuente: repositorio Multiparking, main 73d75caeb5a4ee6aa0de3670424536fbc999cbb5. ParkSoft.csproj identifica la marca y .NET MAUI 8/SQLite. Views/MainPage.xaml, ViewModels/MainViewModel.cs, Services/TicketService.cs y Services/ParkingFeeCalculator.cs respaldan matrícula, cobros, impresión/escaneo/reimpresión y reglas tarifarias. ViewModels/InformesViewModel.cs confirma informes por usuario/fecha y exportación Excel. Por solicitud del Product Owner se conserva la imagen original del portfolio, img/logoParkSoft.png, con portada de ancho completo y fondo original. El PNG no estaba incluido en la descarga de seis archivos ni en GitHub; pendiente recuperar el archivo original antes de publicar. Si falta, se muestra el nombre como respaldo. El SVG incorporado en el commit anterior se retira al quedar sin uso. Se reutilizan los estilos y el fallback de logos ya existentes, ES/EN y enlace de contacto para solicitar demostración; no se inventa sitio público ni disponibilidad por plataforma. Pendiente verificar apariencia y formulario en navegador. No se cambia Multiparking.
