@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BauViTech – Software a Medida para tu Empresa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="index.css">
+    <!-- ── SEO & Open Graph ─────────────────────────────────── -->
+    <meta name="description" content="Software a medida para hacer crecer tu negocio. Sistemas de gestión, apps móviles, tiendas online y automatización. Uruguay y región.">
+    <meta name="author" content="Mauricio Sosa – BauViTech">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bauvitech.com/">
+    <meta property="og:title" content="BauViTech – Software a Medida para tu Empresa">
+    <meta property="og:description" content="Automatiza procesos, ahorra tiempo y aumenta tus ingresos con soluciones digitales diseñadas específicamente para ti. Respuesta rápida · Evaluación sin costo.">
+    <meta property="og:image" content="https://www.bauvitech.com/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_UY">
+    <meta property="og:site_name" content="BauViTech">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.bauvitech.com/">
+    <meta name="twitter:title" content="BauViTech – Software a Medida para tu Empresa">
+    <meta name="twitter:description" content="Automatiza procesos, ahorra tiempo y aumenta tus ingresos con soluciones digitales diseñadas para ti.">
+    <meta name="twitter:image" content="https://www.bauvitech.com/img/og-image.png">
+
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        .problem-list{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+        .problem-list li{display:flex;align-items:flex-start;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:15px;color:var(--text-muted)}
+        .problem-list li .icon{width:32px;height:32px;border-radius:8px;flex-shrink:0;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;font-size:15px}
+        .trust-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+        .trust-badge{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--text-muted)}
+        .trust-badge .check{color:#22c55e}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+        .about-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+        .about-img-wrap{border-radius:20px;overflow:hidden;background:linear-gradient(135deg,var(--indigo),var(--violet));padding:3px;box-shadow:0 16px 48px rgba(79,70,229,.2)}
+        .about-img-wrap img{display:block;width:100%;border-radius:18px}
+        .about-quote{font-size:17px;color:var(--text);line-height:1.75;margin-bottom:20px;font-weight:500;font-style:italic}
+        .about-body{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:12px}
+        .examples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+        .example-card{background:var(--surface);padding:32px 28px;border-right:1px solid var(--border);transition:background .2s}
+        .example-card:last-child{border-right:none}
+        .example-card:hover{background:var(--surface2)}
+        .example-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--blue);margin-bottom:12px}
+        .example-biz{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px}
+        .example-desc{font-size:14px;color:var(--text-muted);line-height:1.6}
+        .final-cta{text-align:center;padding:96px 28px;position:relative;overflow:hidden}
+        .final-cta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.2;mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,black 20%,transparent 100%)}
+        .final-cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+        .final-cta h2{font-size:clamp(32px,5vw,56px);font-weight:800;color:var(--text);margin-bottom:16px}
+        .final-cta p{font-size:17px;color:var(--text-muted);line-height:1.7;margin-bottom:36px}
+        .final-cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+        .final-cta-note{font-size:13px;color:var(--text-dim)}
+        @media(max-width:900px){
+            .two-col,.about-grid-2{grid-template-columns:1fr;gap:40px}
+            .about-img-wrap{max-width:340px;margin:0 auto}
+            .examples-grid{grid-template-columns:1fr}
+            .example-card{border-right:none;border-bottom:1px solid var(--border)}
+            .example-card:last-child{border-bottom:none}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">
+            <div class="logo-hex"><span>B</span></div>
+            <div class="logo-text">
+                <div class="logo-name">Bau<span class="vi">Vi</span>Tech</div>
+                <div class="logo-sub">Software & Solutions</div>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="#problema" data-i18n="nav.problem">El problema</a>
+            <a href="#servicios" data-i18n="nav.services">Servicios</a>
+            <a href="#sobre" data-i18n="nav.about">Sobre mí</a>
+            <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
+            <a href="contacto.html" class="nav-cta" data-i18n="nav.contact">Contacto</a>
+            <div class="nav-controls">
+                <button class="ctrl-btn" id="theme-toggle" title="Tema">
+                    <svg id="icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg id="icon-moon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <div class="lang-pill">
+                    <button id="lang-es" onclick="changeLang('es')" class="active">ES</button>
+                    <button id="lang-en" onclick="changeLang('en')">EN</button>
+                </div>
+            </div>
+        </div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#problema" data-i18n="nav.problem">El problema</a>
+    <a href="#servicios" data-i18n="nav.services">Servicios</a>
+    <a href="#sobre" data-i18n="nav.about">Sobre mí</a>
+    <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
+    <a href="contacto.html" data-i18n="nav.contact">Contacto</a>
+    <div class="mobile-menu-controls">
+        <button class="ctrl-btn" id="theme-toggle-m" title="Tema">
+            <svg id="icon-sun-m" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg id="icon-moon-m" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <div class="lang-pill">
+            <button id="lang-es-m" onclick="changeLang('es')" class="active">ES</button>
+            <button id="lang-en-m" onclick="changeLang('en')">EN</button>
+        </div>
+    </div>
+</div>
+
+<section class="hero">
+    <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+    <div class="hero-badge fade-up"><span class="dot"></span><span data-i18n="hero.badge">Desarrollo a medida · Uruguay &amp; región</span></div>
+    <h1 class="fade-up delay-1">
+        <span data-i18n="hero.h1a">Software a medida para</span><br/>
+        <span class="line2 grad-text" data-i18n="hero.h1b">hacer crecer tu negocio</span>
+    </h1>
+    <p class="hero-sub fade-up delay-2" data-i18n="hero.sub">Automatiza procesos, ahorra tiempo y aumenta tus ingresos con soluciones digitales diseñadas específicamente para ti.</p>
+    <p class="fade-up delay-2" style="font-size:15px;color:var(--text-dim);margin-bottom:40px;position:relative;z-index:1;" data-i18n="hero.extra">Desarrollo sistemas, apps y plataformas que se adaptan a tu negocio, no al revés.</p>
+    <div class="hero-actions fade-up delay-3">
+        <a href="https://wa.me/59891850930?text=Hola%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.124 1.532 5.856L.073 23.927l6.244-1.437A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.507-5.077-1.383l-.362-.214-3.708.853.882-3.602-.235-.375A9.936 9.936 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            <span data-i18n="hero.cta1">Hablar por WhatsApp</span>
+        </a>
+        <a href="contacto.html" class="btn-outline"><span data-i18n="hero.cta2">Solicitar presupuesto sin costo</span></a>
+    </div>
+    <div class="hero-stats fade-up delay-4">
+        <div class="stat-item"><div class="stat-num grad-text">7+</div><div class="stat-label" data-i18n="stats.years">Años de experiencia</div></div>
+        <div class="stat-item"><div class="stat-num grad-text">10+</div><div class="stat-label" data-i18n="stats.projects">Proyectos entregados</div></div>
+        <div class="stat-item"><div class="stat-num grad-text">5+</div><div class="stat-label" data-i18n="stats.clients">Clientes activos</div></div>
+        <div class="stat-item"><div class="stat-num grad-text">100%</div><div class="stat-label" data-i18n="stats.custom">Código a medida</div></div>
+    </div>
+</section>
+
+<section class="section section-alt" id="problema">
+    <div class="container">
+        <div class="two-col">
+            <div>
+                <div class="section-label" data-i18n="prob.label">El problema</div>
+                <h2 class="section-title" data-i18n="prob.title">¿Tu negocio está perdiendo tiempo y dinero?</h2>
+                <p class="section-sub" data-i18n="prob.sub">Muchos negocios trabajan con hojas de cálculo, procesos manuales o sistemas que no se adaptan a su realidad. Esto genera errores, pérdida de tiempo y limita el crecimiento.</p>
+                <ul class="problem-list">
+                    <li><span class="icon">⏰</span><span data-i18n="prob.i1">Procesos manuales que consumen horas todos los días</span></li>
+                    <li><span class="icon">📉</span><span data-i18n="prob.i2">Falta de control sobre ventas, clientes o stock</span></li>
+                    <li><span class="icon">🔧</span><span data-i18n="prob.i3">Sistemas genéricos que no se adaptan a tu forma de trabajar</span></li>
+                    <li><span class="icon">💸</span><span data-i18n="prob.i4">Pérdida de oportunidades por desorganización</span></li>
+                </ul>
+            </div>
+            <div>
+                <div class="section-label" data-i18n="sol.label">La solución</div>
+                <h2 class="section-title" data-i18n="sol.title">Te ayudo a solucionarlo</h2>
+                <p class="section-sub" style="margin-bottom:16px;" data-i18n="sol.sub">Desarrollo software a medida pensado específicamente para tu negocio. No importa si estás empezando o quieres escalar, la solución se adapta a ti.</p>
+                <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:28px;" data-i18n="sol.extra">Sin intermediarios. Sin plantillas. Solo lo que tu negocio realmente necesita.</p>
+                <div class="trust-badges">
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="trust.t1">Atención personalizada</span></div>
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="trust.t2">Desarrollo a medida</span></div>
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="trust.t3">Comunicación directa</span></div>
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="trust.t4">Soluciones reales</span></div>
+                </div>
+                <div style="margin-top:28px;">
+                    <a href="https://wa.me/59891850930?text=Hola%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" class="btn-primary" data-i18n="hero.cta1">Hablar por WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="servicios">
+    <div class="container">
+        <div class="section-label" data-i18n="services.label">Servicios</div>
+        <h2 class="section-title" data-i18n="services.title">¿Qué puedo hacer por ti?</h2>
+        <p class="section-sub" data-i18n="services.sub">Cada solución está diseñada para ahorrar tiempo, reducir errores y ayudarte a crecer.</p>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon">🏢</div><div class="service-title" data-i18n="srv1.title">Sistemas de gestión</div><div class="service-desc" data-i18n="srv1.desc">Controla clientes, ventas, stock y procesos en un solo lugar. Reemplaza las hojas de cálculo con un sistema que funciona para ti.</div><div class="service-tags"><span class="stag">.NET MAUI</span><span class="stag">Blazor</span><span class="stag">MySQL</span></div></div>
+            <div class="service-card"><div class="service-icon">📱</div><div class="service-title" data-i18n="srv2.title">Aplicaciones móviles</div><div class="service-desc" data-i18n="srv2.desc">Lleva tu negocio al celular. Apps rápidas y fáciles de usar para Android y Windows, desde cualquier lugar.</div><div class="service-tags"><span class="stag">.NET MAUI</span><span class="stag">Android</span><span class="stag">Windows</span></div></div>
+            <div class="service-card"><div class="service-icon">🛒</div><div class="service-title" data-i18n="srv3.title">Tiendas online</div><div class="service-desc" data-i18n="srv3.desc">Vende por internet con una tienda profesional lista para crecer. Catálogo, pagos y gestión de pedidos desde el primer día.</div><div class="service-tags"><span class="stag">PrestaShop</span><span class="stag">nopCommerce</span><span class="stag">.NET</span></div></div>
+            <div class="service-card"><div class="service-icon">⚡</div><div class="service-title" data-i18n="srv4.title">Automatización de procesos</div><div class="service-desc" data-i18n="srv4.desc">Reduce tareas manuales y ahorra tiempo todos los días. Automatiza notificaciones, reportes, facturación y más.</div><div class="service-tags"><span class="stag">APIs</span><span class="stag">Workflows</span><span class="stag">Reportes</span></div></div>
+            <div class="service-card"><div class="service-icon">🔗</div><div class="service-title" data-i18n="srv5.title">Integraciones y APIs</div><div class="service-desc" data-i18n="srv5.desc">Conecta los sistemas que ya usas y haz que todo funcione en conjunto. Sin duplicar datos ni trabajo manual.</div><div class="service-tags"><span class="stag">REST API</span><span class="stag">ASP.NET</span><span class="stag">Azure</span></div></div>
+            <div class="service-card"><div class="service-icon">🔐</div><div class="service-title" data-i18n="srv6.title">Seguridad y licenciamiento</div><div class="service-desc" data-i18n="srv6.desc">Protege tu software y tus datos. Activación por hardware, cifrado AES-256 y control de accesos.</div><div class="service-tags"><span class="stag">AES-256</span><span class="stag">JWT</span><span class="stag">QR</span></div></div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-label" data-i18n="examples.label">Ejemplos reales</div>
+        <h2 class="section-title" data-i18n="examples.title">¿En qué te puedo ayudar concretamente?</h2>
+        <p class="section-sub" data-i18n="examples.sub">Así es como el software a medida cambia negocios reales.</p>
+        <div class="examples-grid">
+            <div class="example-card">
+                <div class="example-type" data-i18n="ex1.type">Peluquería / Estética</div>
+                <div class="example-biz" data-i18n="ex1.biz">Sistema de agenda automática</div>
+                <div class="example-desc" data-i18n="ex1.desc">Tus clientes reservan online, tú recibes una notificación. Cero llamadas perdidas, cero confusiones.</div>
+            </div>
+            <div class="example-card">
+                <div class="example-type" data-i18n="ex2.type">Comercio / Tienda</div>
+                <div class="example-biz" data-i18n="ex2.biz">Control de ventas y stock</div>
+                <div class="example-desc" data-i18n="ex2.desc">Sabes exactamente qué tienes, qué vendiste y qué necesitas reponer. Sin hojas de cálculo, sin errores.</div>
+            </div>
+            <div class="example-card">
+                <div class="example-type" data-i18n="ex3.type">Venta online</div>
+                <div class="example-biz" data-i18n="ex3.biz">Tienda + automatización</div>
+                <div class="example-desc" data-i18n="ex3.desc">Tu tienda vende sola, actualiza el stock y avisa cuando hay que despachar. Más ventas, menos trabajo manual.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="sobre">
+    <div class="container">
+        <div class="about-grid-2">
+            <div class="about-img-wrap"><img src="img/yo.jpeg" alt="Mauricio Sosa"></div>
+            <div>
+                <div class="section-label" data-i18n="about.label">Quién está detrás</div>
+                <h2 class="section-title" data-i18n="about.title">Soy Mauricio Sosa</h2>
+                <p class="about-quote" data-i18n="about.quote">"Mi objetivo no es solo programar, sino ayudarte a crecer."</p>
+                <p class="about-body" data-i18n="about.p1">Desarrollador especializado en software a medida con más de 7 años de experiencia. Trabajo directamente con cada cliente para entender su negocio y crear soluciones reales, sin intermediarios.</p>
+                <p class="about-body" data-i18n="about.p2">He desarrollado sistemas de gestión, apps móviles, plataformas web y tiendas online para distintos sectores en Uruguay y la región.</p>
+                <div class="trust-badges">
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="about.b1">Sistemas personalizados</span></div>
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="about.b2">Apps móviles</span></div>
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="about.b3">Plataformas web</span></div>
+                    <div class="trust-badge"><span class="check">✔</span><span data-i18n="about.b4">Soluciones escalables</span></div>
+                </div>
+                <div style="margin-top:28px;"><a href="portfolio.html" class="btn-outline" data-i18n="about.portfolio">Ver mi trabajo →</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt" id="proceso">
+    <div class="container">
+        <div class="section-label" data-i18n="process.label">Proceso</div>
+        <h2 class="section-title" data-i18n="process.title">Cómo trabajamos</h2>
+        <p class="section-sub" data-i18n="process.sub">Un proceso claro y sin sorpresas. Sabes qué pasa en cada etapa.</p>
+        <div class="process-steps">
+            <div class="process-step"><div class="step-num">01</div><div class="step-title" data-i18n="step1.title">Escucho tu negocio</div><div class="step-desc" data-i18n="step1.desc">Entiendo qué necesitas, cómo trabajas y dónde están los cuellos de botella. Sin tecnicismos.</div></div>
+            <div class="process-step"><div class="step-num">02</div><div class="step-title" data-i18n="step2.title">Te hago una propuesta</div><div class="step-desc" data-i18n="step2.desc">Presupuesto claro con alcance, tiempos y tecnologías. Sin letra pequeña. Apruebas antes de comenzar.</div></div>
+            <div class="process-step"><div class="step-num">03</div><div class="step-title" data-i18n="step3.title">Construimos juntos</div><div class="step-desc" data-i18n="step3.desc">Actualizaciones periódicas para que veas el avance y puedas dar retroalimentación en el camino.</div></div>
+            <div class="process-step"><div class="step-num">04</div><div class="step-title" data-i18n="step4.title">Entrega y soporte</div><div class="step-desc" data-i18n="step4.desc">Puesta en marcha, capacitación y soporte post-entrega. El software es tuyo. Seguimos disponibles.</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="final-cta" id="contacto">
+    <div class="final-cta-inner">
+        <div class="section-label" style="justify-content:center;" data-i18n="contact.label">Contacto</div>
+        <h2 data-i18n="contact.title">Hablemos de tu proyecto</h2>
+        <p data-i18n="contact.sub">Cuéntame qué necesitas y te doy una propuesta clara, sin compromiso.</p>
+        <div class="final-cta-actions">
+            <a href="https://wa.me/59891850930?text=Hola%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" class="btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.124 1.532 5.856L.073 23.927l6.244-1.437A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.507-5.077-1.383l-.362-.214-3.708.853.882-3.602-.235-.375A9.936 9.936 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+                <span data-i18n="contact.cta1">Escribirme por WhatsApp</span>
+            </a>
+            <a href="contacto.html" class="btn-outline" data-i18n="contact.cta2">Pedir presupuesto ahora</a>
+        </div>
+        <p class="final-cta-note" data-i18n="contact.note">Respuesta rápida · Evaluación sin costo</p>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner container">
+        <div>
+            <a href="index.html" class="logo"><div class="logo-hex"><span>B</span></div><div class="logo-text"><div class="logo-name">Bau<span class="vi">Vi</span>Tech</div><div class="logo-sub">Software & Solutions</div></div></a>
+            <p class="footer-desc" data-i18n="footer.desc">Software a medida para negocios que quieren crecer. Apps, sistemas, tiendas online. Uruguay.</p>
+        </div>
+        <div>
+            <div class="footer-col-title" data-i18n="footer.col1">Servicios</div>
+            <div class="footer-links">
+                <a href="#servicios" data-i18n="srv1.title">Sistemas de gestión</a>
+                <a href="#servicios" data-i18n="srv2.title">Aplicaciones móviles</a>
+                <a href="#servicios" data-i18n="srv3.title">Tiendas online</a>
+                <a href="#servicios" data-i18n="srv4.title">Automatización</a>
+                <a href="#servicios" data-i18n="srv5.title">Integraciones y APIs</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-col-title" data-i18n="footer.col2">Empresa</div>
+            <div class="footer-links">
+                <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
+                <a href="#proceso" data-i18n="nav.process">Proceso</a>
+                <a href="contacto.html" data-i18n="nav.contact">Contacto</a>
+                <a href="https://github.com/sosamau360" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/mauricio-sosa-97982a245" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom container">
+        <span data-i18n="footer.copy">© 2025 BauViTech. Todos los derechos reservados.</span>
+        <span data-i18n="footer.made">Desarrollado en Uruguay 🇺🇾</span>
+    </div>
+</footer>
+
+<a href="https://wa.me/59891850930?text=Hola%20BauViTech%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" title="WhatsApp" style="position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.6)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45)'">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.124 1.532 5.856L.073 23.927l6.244-1.437A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.507-5.077-1.383l-.362-.214-3.708.853.882-3.602-.235-.375A9.936 9.936 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<script>
+const T = {
+    es: {
+        'nav.problem':'El problema','nav.services':'Servicios','nav.about':'Sobre mí','nav.portfolio':'Portfolio','nav.process':'Proceso','nav.contact':'Contacto',
+        'hero.badge':'Desarrollo a medida · Uruguay & región','hero.h1a':'Software a medida para','hero.h1b':'hacer crecer tu negocio',
+        'hero.sub':'Automatiza procesos, ahorra tiempo y aumenta tus ingresos con soluciones digitales diseñadas específicamente para ti.',
+        'hero.extra':'Desarrollo sistemas, apps y plataformas que se adaptan a tu negocio, no al revés.',
+        'hero.cta1':'Hablar por WhatsApp','hero.cta2':'Solicitar presupuesto sin costo',
+        'stats.years':'Años de experiencia','stats.projects':'Proyectos entregados','stats.clients':'Clientes activos','stats.custom':'Código a medida',
+        'prob.label':'El problema','prob.title':'¿Tu negocio está perdiendo tiempo y dinero?',
+        'prob.sub':'Muchos negocios trabajan con hojas de cálculo, procesos manuales o sistemas que no se adaptan a su realidad. Esto genera errores, pérdida de tiempo y limita el crecimiento.',
+        'prob.i1':'Procesos manuales que consumen horas todos los días','prob.i2':'Falta de control sobre ventas, clientes o stock',
+        'prob.i3':'Sistemas genéricos que no se adaptan a tu forma de trabajar','prob.i4':'Pérdida de oportunidades por desorganización',
+        'sol.label':'La solución','sol.title':'Te ayudo a solucionarlo',
+        'sol.sub':'Desarrollo software a medida pensado específicamente para tu negocio. No importa si estás empezando o quieres escalar, la solución se adapta a ti.',
+        'sol.extra':'Sin intermediarios. Sin plantillas. Solo lo que tu negocio realmente necesita.',
+        'trust.t1':'Atención personalizada','trust.t2':'Desarrollo a medida','trust.t3':'Comunicación directa','trust.t4':'Soluciones reales',
+        'services.label':'Servicios','services.title':'¿Qué puedo hacer por ti?','services.sub':'Cada solución está diseñada para ahorrar tiempo, reducir errores y ayudarte a crecer.',
+        'srv1.title':'Sistemas de gestión','srv1.desc':'Controla clientes, ventas, stock y procesos en un solo lugar. Reemplaza las hojas de cálculo con un sistema que funciona para ti.',
+        'srv2.title':'Aplicaciones móviles','srv2.desc':'Lleva tu negocio al celular. Apps rápidas y fáciles de usar para Android y Windows, desde cualquier lugar.',
+        'srv3.title':'Tiendas online','srv3.desc':'Vende por internet con una tienda profesional lista para crecer. Catálogo, pagos y gestión de pedidos desde el primer día.',
+        'srv4.title':'Automatización de procesos','srv4.desc':'Reduce tareas manuales y ahorra tiempo todos los días. Automatiza notificaciones, reportes, facturación y más.',
+        'srv5.title':'Integraciones y APIs','srv5.desc':'Conecta los sistemas que ya usas y haz que todo funcione en conjunto. Sin duplicar datos ni trabajo manual.',
+        'srv6.title':'Seguridad y licenciamiento','srv6.desc':'Protege tu software y tus datos. Activación por hardware, cifrado AES-256 y control de accesos.',
+        'examples.label':'Ejemplos reales','examples.title':'¿En qué te puedo ayudar concretamente?','examples.sub':'Así es como el software a medida cambia negocios reales.',
+        'ex1.type':'Peluquería / Estética','ex1.biz':'Sistema de agenda automática','ex1.desc':'Tus clientes reservan online, tú recibes una notificación. Cero llamadas perdidas, cero confusiones.',
+        'ex2.type':'Comercio / Tienda','ex2.biz':'Control de ventas y stock','ex2.desc':'Sabes exactamente qué tienes, qué vendiste y qué necesitas reponer. Sin hojas de cálculo, sin errores.',
+        'ex3.type':'Venta online','ex3.biz':'Tienda + automatización','ex3.desc':'Tu tienda vende sola, actualiza el stock y avisa cuando hay que despachar. Más ventas, menos trabajo manual.',
+        'about.label':'Quién está detrás','about.title':'Soy Mauricio Sosa',
+        'about.quote':'"Mi objetivo no es solo programar, sino ayudarte a crecer."',
+        'about.p1':'Desarrollador especializado en software a medida con más de 7 años de experiencia. Trabajo directamente con cada cliente para entender su negocio y crear soluciones reales, sin intermediarios.',
+        'about.p2':'He desarrollado sistemas de gestión, apps móviles, plataformas web y tiendas online para distintos sectores en Uruguay y la región.',
+        'about.b1':'Sistemas personalizados','about.b2':'Apps móviles','about.b3':'Plataformas web','about.b4':'Soluciones escalables','about.portfolio':'Ver mi trabajo →',
+        'process.label':'Proceso','process.title':'Cómo trabajamos','process.sub':'Un proceso claro y sin sorpresas. Sabes qué pasa en cada etapa.',
+        'step1.title':'Escucho tu negocio','step1.desc':'Entiendo qué necesitas, cómo trabajas y dónde están los cuellos de botella. Sin tecnicismos.',
+        'step2.title':'Te hago una propuesta','step2.desc':'Presupuesto claro con alcance, tiempos y tecnologías. Sin letra pequeña. Apruebas antes de comenzar.',
+        'step3.title':'Construimos juntos','step3.desc':'Actualizaciones periódicas para que veas el avance y puedas dar retroalimentación en el camino.',
+        'step4.title':'Entrega y soporte','step4.desc':'Puesta en marcha, capacitación y soporte post-entrega. El software es tuyo. Seguimos disponibles.',
+        'contact.label':'Contacto','contact.title':'Hablemos de tu proyecto','contact.sub':'Cuéntame qué necesitas y te doy una propuesta clara, sin compromiso.',
+        'contact.cta1':'Escribirme por WhatsApp','contact.cta2':'Pedir presupuesto ahora','contact.note':'Respuesta rápida · Evaluación sin costo',
+        'footer.desc':'Software a medida para negocios que quieren crecer. Apps, sistemas, tiendas online. Uruguay.',
+        'footer.col1':'Servicios','footer.col2':'Empresa','footer.copy':'© 2025 BauViTech. Todos los derechos reservados.','footer.made':'Desarrollado en Uruguay 🇺🇾'
+    },
+    en: {
+        'nav.problem':'The problem','nav.services':'Services','nav.about':'About','nav.portfolio':'Portfolio','nav.process':'Process','nav.contact':'Contact',
+        'hero.badge':'Custom development · Uruguay & region','hero.h1a':'Custom software to','hero.h1b':'grow your business',
+        'hero.sub':'Automate processes, save time and increase revenue with digital solutions designed specifically for you.',
+        'hero.extra':'I build systems, apps and platforms that adapt to your business, not the other way around.',
+        'hero.cta1':'Talk on WhatsApp','hero.cta2':'Request a free quote',
+        'stats.years':'Years of experience','stats.projects':'Projects delivered','stats.clients':'Active clients','stats.custom':'Custom code',
+        'prob.label':'The problem','prob.title':'Is your business losing time and money?',
+        'prob.sub':"Many businesses work with spreadsheets, manual processes or systems that don't fit their reality. This leads to errors, wasted time and limited growth.",
+        'prob.i1':'Manual processes that consume hours every day','prob.i2':'Lack of control over sales, customers or inventory',
+        'prob.i3':"Generic systems that don't adapt to your workflow",'prob.i4':'Lost opportunities due to disorganization',
+        'sol.label':'The solution','sol.title':'I help you solve it',
+        'sol.sub':"I build custom software designed specifically for your business. Whether you're starting out or looking to scale, the solution adapts to you.",
+        'sol.extra':'No middlemen. No templates. Just what your business really needs.',
+        'trust.t1':'Personalized attention','trust.t2':'Custom development','trust.t3':'Direct communication','trust.t4':'Real solutions',
+        'services.label':'Services','services.title':'What can I do for you?','services.sub':'Every solution is designed to save time, reduce errors and help you grow.',
+        'srv1.title':'Management systems','srv1.desc':'Control customers, sales, inventory and processes in one place. Replace spreadsheets with a system built for you.',
+        'srv2.title':'Mobile applications','srv2.desc':'Take your business to mobile. Fast, easy-to-use apps for Android and Windows, anywhere.',
+        'srv3.title':'Online stores','srv3.desc':'Sell online with a professional store ready to grow. Catalog, payments and order management from day one.',
+        'srv4.title':'Process automation','srv4.desc':'Reduce manual tasks and save time every day. Automate notifications, reports, billing and more.',
+        'srv5.title':'Integrations & APIs','srv5.desc':'Connect the systems you already use and make everything work together. No duplicate data, no manual work.',
+        'srv6.title':'Security & licensing','srv6.desc':'Protect your software and data. Hardware activation, AES-256 encryption and access control.',
+        'examples.label':'Real examples','examples.title':'How can I help you concretely?','examples.sub':'This is how custom software changes real businesses.',
+        'ex1.type':'Hair salon / Beauty','ex1.biz':'Automatic booking system','ex1.desc':'Your clients book online, you get a notification. Zero missed calls, zero confusion.',
+        'ex2.type':'Retail / Store','ex2.biz':'Sales & inventory control','ex2.desc':'You know exactly what you have, what you sold and what you need to reorder. No spreadsheets, no errors.',
+        'ex3.type':'Online selling','ex3.biz':'Store + automation','ex3.desc':'Your store sells on its own, updates inventory and alerts when you need to ship. More sales, less manual work.',
+        'about.label':"Who's behind this",'about.title':"I'm Mauricio Sosa",
+        'about.quote':'"My goal is not just to write code — it is to help you grow."',
+        'about.p1':'Developer specialized in custom software with 7+ years of experience. I work directly with each client to understand their business and build real solutions, without middlemen.',
+        'about.p2':"I've built management systems, mobile apps, web platforms and online stores for different industries in Uruguay and the region.",
+        'about.b1':'Custom systems','about.b2':'Mobile apps','about.b3':'Web platforms','about.b4':'Scalable solutions','about.portfolio':'View my work →',
+        'process.label':'Process','process.title':'How we work','process.sub':'A clear process with no surprises. You know what happens at each stage.',
+        'step1.title':'I listen to your business','step1.desc':'I understand what you need, how you work and where the bottlenecks are. No technical jargon.',
+        'step2.title':'I give you a proposal','step2.desc':'Clear quote with scope, timeline and technologies. No fine print. You approve before we start.',
+        'step3.title':'We build together','step3.desc':'Regular updates so you can see progress and give feedback along the way.',
+        'step4.title':'Delivery & support','step4.desc':'Go-live, training and post-delivery support. The software is yours. We stay available.',
+        'contact.label':'Contact','contact.title':"Let's talk about your project",'contact.sub':"Tell me what you need and I'll give you a clear proposal, no strings attached.",
+        'contact.cta1':'Write me on WhatsApp','contact.cta2':'Request a quote now','contact.note':'Fast response · Free assessment',
+        'footer.desc':'Custom software for businesses that want to grow. Apps, systems, online stores. Uruguay.',
+        'footer.col1':'Services','footer.col2':'Company','footer.copy':'© 2025 BauViTech. All rights reserved.','footer.made':'Built in Uruguay 🇺🇾'
+    }
+};
+
+let lang = localStorage.getItem('bvt-lang') || 'es';
+function changeLang(l) {
+    lang = l; localStorage.setItem('bvt-lang', l); document.documentElement.lang = l;
+    ['lang-es','lang-en','lang-es-m','lang-en-m'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', id.replace('-m','').endsWith(l));
+    });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (T[l] && T[l][k] !== undefined) el.innerHTML = T[l][k];
+    });
+}
+
+const html = document.documentElement;
+function applyTheme(th) {
+    if (th === 'dark') { html.classList.add('dark'); html.classList.remove('light'); }
+    else { html.classList.add('light'); html.classList.remove('dark'); }
+    ['icon-sun','icon-sun-m'].forEach(id => { const e = document.getElementById(id); if (e) e.style.display = th === 'dark' ? 'none' : 'block'; });
+    ['icon-moon','icon-moon-m'].forEach(id => { const e = document.getElementById(id); if (e) e.style.display = th === 'dark' ? 'block' : 'none'; });
+    localStorage.setItem('bvt-theme', th);
+}
+applyTheme(localStorage.getItem('bvt-theme') || 'dark');
+function toggleTheme() { applyTheme(html.classList.contains('dark') ? 'light' : 'dark'); }
+document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+document.getElementById('theme-toggle-m').addEventListener('click', toggleTheme);
+
+const ham = document.getElementById('hamburger'), mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => mob.classList.toggle('open'));
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+}));
+
+changeLang(lang);
+</script>
+</body>
+</html>
