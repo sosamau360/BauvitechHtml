@@ -87,7 +87,13 @@ window.BauViTechTranslations = {
     "saliya.feature2": "Promociones, menús, horarios y disponibilidad de cupos",
     "saliya.feature3": "Gestión de reservas y sucursales para restaurantes",
     "saliya.availability": "En desarrollo. Lanzamiento y disponibilidad comercial pendientes.",
-    "saliya.interest": "Consultar por SaliYa"
+    "saliya.interest": "Consultar por SaliYa",
+    "a11y.skip": "Ir al contenido principal",
+    "a11y.nav": "Navegación principal",
+    "a11y.mobileNav": "Navegación móvil",
+    "a11y.whatsapp": "Contactar por WhatsApp",
+    "a11y.lightTheme": "Tema claro",
+    "seo.title": "Productos y proyectos de software | BauViTech"
   },
   "en": {
     "nav.about": "About",
@@ -177,6 +183,12 @@ window.BauViTechTranslations = {
     "saliya.feature2": "Offers, menus, schedules and available capacity",
     "saliya.feature3": "Reservation and branch management for restaurants",
     "saliya.availability": "In development. Launch and commercial availability pending.",
-    "saliya.interest": "Ask about SaliYa"
+    "saliya.interest": "Ask about SaliYa",
+    "a11y.skip": "Skip to main content",
+    "a11y.nav": "Main navigation",
+    "a11y.mobileNav": "Mobile navigation",
+    "a11y.whatsapp": "Contact via WhatsApp",
+    "a11y.lightTheme": "Light theme",
+    "seo.title": "Software products and projects | BauViTech"
   }
 };

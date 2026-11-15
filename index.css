@@ -419,3 +419,8 @@ html.light .home-product-actions .product-link { color: var(--blue); }
     .home-products .product-img { height: 190px; flex-basis: 190px; }
     .home-product-actions { align-items: flex-start; flex-direction: column; }
 }
+
+/* BVT-05: resilient service grid and readable focus on light/dark. */
+.services-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.home-products .product-card, .service-card, .two-col > *, .about-grid-2 > * { min-width: 0; }
+.home-products a:focus-visible, .hero a:focus-visible { outline-color: var(--focus-ring); }

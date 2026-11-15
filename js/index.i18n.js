@@ -99,7 +99,13 @@ window.BauViTechTranslations = {
     "home.cases.label": "Portfolio",
     "home.cases.title": "Experiencia aplicada a problemas reales",
     "home.cases.sub": "Conocé nuestros trabajos de licenciamiento y QR, Laserwork Uruguay y Mazur Insumos.",
-    "home.cases.cta": "Ver casos y proyectos"
+    "home.cases.cta": "Ver casos y proyectos",
+    "a11y.skip": "Ir al contenido principal",
+    "a11y.nav": "Navegación principal",
+    "a11y.mobileNav": "Navegación móvil",
+    "a11y.whatsapp": "Contactar por WhatsApp",
+    "a11y.lightTheme": "Tema claro",
+    "seo.title": "BauViTech | Software y soluciones digitales en Uruguay"
   },
   "en": {
     "nav.services": "Services",
@@ -201,6 +207,12 @@ window.BauViTechTranslations = {
     "home.cases.label": "Portfolio",
     "home.cases.title": "Experience applied to real problems",
     "home.cases.sub": "Explore our licensing and QR work, Laserwork Uruguay and Mazur Insumos.",
-    "home.cases.cta": "View cases and projects"
+    "home.cases.cta": "View cases and projects",
+    "a11y.skip": "Skip to main content",
+    "a11y.nav": "Main navigation",
+    "a11y.mobileNav": "Mobile navigation",
+    "a11y.whatsapp": "Contact via WhatsApp",
+    "a11y.lightTheme": "Light theme",
+    "seo.title": "BauViTech | Software and digital solutions in Uruguay"
   }
 };

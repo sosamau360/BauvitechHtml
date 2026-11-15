@@ -94,3 +94,23 @@ test('Kineos360 switches both theme logos, restores persisted theme and retains 
  x.ids['theme-toggle-m'].fire('click');assert.equal(image.getAttribute('src'),image.dataset.logoLight);
  image.complete=true;image.naturalWidth=100;image.fire('load');assert.equal(fallback.hidden,true);
 });
+
+test('theme buttons announce localized state and desktop resizing resets menu',()=>{
+ const x=fixture({'bvt-lang':'en','bvt-theme':'light'},false,false);
+ const media=el(), window={matchMedia:()=>media};
+ new Function('window',read('js/contacto.i18n.js'))(window);
+ const storage={getItem:k=>x.data.get(k),setItem:(k,v)=>x.data.set(k,v)};
+ const nav=el('nav',{i18nAriaLabel:'a11y.nav'}), query=x.doc.querySelectorAll;
+ x.doc.querySelectorAll=s=>s==='[data-i18n-aria-label]'?[nav]:query(s);
+ new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
+ assert.equal(x.ids['theme-toggle'].getAttribute('aria-pressed'),'true');
+ assert.equal(x.ids['theme-toggle'].getAttribute('aria-label'),'Light theme');
+ assert.equal(nav.getAttribute('aria-label'),'Main navigation');
+ assert.equal(x.doc.title,'Contact and software quote | BauViTech');
+ x.es.fire('click');assert.equal(nav.getAttribute('aria-label'),'Navegación principal');
+ x.ids['theme-toggle-m'].fire('click');assert.equal(x.ids['theme-toggle'].getAttribute('aria-pressed'),'false');
+ assert.equal(x.ids['theme-toggle'].getAttribute('aria-label'),'Tema claro');
+ x.ids.hamburger.fire('click');media.fire('change',{matches:true});
+ assert.equal(x.ids.hamburger.getAttribute('aria-expanded'),'false');
+ assert.ok(!x.ids.mobileMenu.classList.contains('open'));
+});

@@ -244,3 +244,18 @@
 .budget-label { display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-muted); margin-bottom:8px; }
 .budget-pill { font-family:inherit; }
 .budget-pill:focus-visible { outline:2px solid var(--indigo); outline-offset:2px; }
+
+/* BVT-05: mobile form, accessible text and error/focus contrast. */
+.page-inner > *, .form-row > * { min-width: 0; }
+.contact-direct a { overflow-wrap: anywhere; }
+input, select, textarea { font-size: 16px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible, .budget-pill:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+.budget-pill { min-height: 44px; }
+.budget-pill.selected { color: #a5b4fc; }
+html.light .budget-pill.selected { color: #3730a3; }
+.btn-submit { background: #16803c; }
+.btn-submit:hover { background: #166534; }
+.error-msg { color: #fca5a5; }
+html.light .error-msg { color: #b91c1c; }
+.page-tag { color: var(--link-readable); }
+@media (max-width: 480px) { .page-wrap { padding: 100px 16px 88px; } .form-card { padding: 24px 16px; } .btn-submit { width: 100%; } }

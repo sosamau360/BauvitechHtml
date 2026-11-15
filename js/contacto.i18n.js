@@ -39,7 +39,14 @@ window.BauViTechTranslations = {
     "err.email": "Ingresa un email válido.",
     "desc.placeholder": "Cuéntame qué necesitas, cómo funciona tu negocio, qué problema quieres resolver...",
     "name.placeholder": "Tu nombre",
-    "email.placeholder": "tu@email.com"
+    "email.placeholder": "tu@email.com",
+    "a11y.skip": "Ir al contenido principal",
+    "a11y.nav": "Navegación principal",
+    "a11y.mobileNav": "Navegación móvil",
+    "a11y.whatsapp": "Contactar por WhatsApp",
+    "a11y.lightTheme": "Tema claro",
+    "seo.title": "Contacto y presupuesto de software | BauViTech",
+    "nav.products": "Productos"
   },
   "en": {
     "nav.problem": "The problem",
@@ -81,6 +88,13 @@ window.BauViTechTranslations = {
     "err.email": "Please enter a valid email.",
     "desc.placeholder": "Tell me what you need, how your business works, what problem you want to solve...",
     "name.placeholder": "Your name",
-    "email.placeholder": "you@email.com"
+    "email.placeholder": "you@email.com",
+    "a11y.skip": "Skip to main content",
+    "a11y.nav": "Main navigation",
+    "a11y.mobileNav": "Mobile navigation",
+    "a11y.whatsapp": "Contact via WhatsApp",
+    "a11y.lightTheme": "Light theme",
+    "seo.title": "Contact and software quote | BauViTech",
+    "nav.products": "Products"
   }
 };

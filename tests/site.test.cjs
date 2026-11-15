@@ -143,3 +143,49 @@ test('landing product grid and image rules retain mobile layout and theme fallba
  assert.ok(css.includes('.home-products .project-logo-cover [hidden] { display: none !important; }'));
  assert.ok(css.includes('.home-products .notify-banner-cover img { object-fit: contain; object-position: center; }'));
 });
+
+test('BVT-05 all pages expose accessible controls and main landmark', () => {
+ for(const page of pages) {
+  const html=read(page);
+  assert.ok(html.includes('class="skip-link" href="#contenido-principal"'));
+  assert.ok(/<main[^>]+id="contenido-principal" tabindex="-1"/.test(html));
+  assert.ok(html.includes('data-i18n-aria-label="a11y.nav"'));
+  assert.ok(html.includes('data-i18n-aria-label="a11y.mobileNav"'));
+  assert.equal((html.match(/class="floating-whatsapp"/g)||[]).length,1);
+  assert.ok(html.includes('aria-label="Contactar por WhatsApp"'));
+  assert.ok(!/onmouseover=|onmouseout=/.test(html));
+  assert.equal((html.match(/id="theme-toggle(?:-m)?" title="Tema claro" aria-label="Tema claro" aria-pressed="false"/g)||[]).length,2);
+  const w={};new Function('window',read('js/'+page.replace('.html','')+'.i18n.js'))(w);
+  for(const m of html.matchAll(/data-i18n-aria-label="([^"]+)"/g))for(const lang of ['es','en']) assert.ok(Object.hasOwn(w.BauViTechTranslations[lang],m[1]));
+ }
+ assert.ok(!read('portfolio.html').includes('cdn.tailwindcss.com'));
+ assert.ok(read('shared.css').includes('min-width: 1024px'));
+ assert.ok(read('shared.css').includes('animation-iteration-count: 1 !important'));
+ assert.ok(read('contacto.css').includes('font-size: 16px'));
+});
+test('BVT-06 each public page has unique canonical SEO metadata and valid JSON-LD', () => {
+ const urls=['https://www.bauvitech.com/','https://www.bauvitech.com/portfolio.html','https://www.bauvitech.com/contacto.html'];
+ const titles=new Set(), descriptions=new Set();
+ pages.forEach((page,i)=>{
+  const h=read(page), url=urls[i];
+  const title=h.match(/<title>([^<]+)<\/title>/)[1];
+  const desc=h.match(/<meta name="description" content="([^"]+)"/)[1];
+  titles.add(title);descriptions.add(desc);
+  assert.equal((h.match(/rel="canonical"/g)||[]).length,1);
+  assert.ok(h.includes('rel="canonical" href="'+url+'"'));
+  assert.ok(h.includes('property="og:url" content="'+url+'"'));
+  assert.ok(h.includes('property="og:title" content="'+title+'"'));
+  assert.ok(h.includes('property="og:description" content="'+desc+'"'));
+  assert.ok(h.includes('name="robots" content="index, follow"'));
+  assert.ok(h.includes('name="twitter:card" content="summary_large_image"'));
+  const ld=JSON.parse(h.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  assert.equal(ld['@context'],'https://schema.org');
+  assert.ok(ld['@graph'].some(x=>x['@type']==='WebPage' && x.url===url));
+  assert.ok(!h.includes('hreflang='));
+ });
+ assert.equal(titles.size,3);assert.equal(descriptions.size,3);
+ const sitemap=read('sitemap.xml');
+ assert.equal((sitemap.match(/<loc>/g)||[]).length,3);
+ for(const url of urls)assert.ok(sitemap.includes('<loc>'+url+'</loc>'));
+ assert.ok(read('robots.txt').includes('Sitemap: https://www.bauvitech.com/sitemap.xml'));
+});
