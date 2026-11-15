@@ -57,8 +57,8 @@ window.BauViTechTranslations = {
     "upcoming.title": "En desarrollo",
     "cases.title": "Proyectos y experiencia",
     "cases.subtitle": "Soluciones implementadas y capacidades técnicas.",
-    "kineos.title": "Kineos360",
-    "kineos.desc": "Gestión de clubes deportivos: socios y familias, cuotas, asistencia, carnets y comunicaciones desde una plataforma web instalable.",
+    "kineos.title": "Kineos360 — Gestión integral de clubes deportivos",
+    "kineos.desc": "Centralizá la gestión de tu club y conectá dirigentes, entrenadores, jugadores y familias. Cada institución cuenta con su propia aplicación web instalable, personalizada con su nombre, escudo y colores.",
     "notify.title": "BauVi.Notify",
     "notify.desc": "Plataforma de automatización de comunicaciones e integración de notificaciones. Consultá por los canales disponibles y las opciones de integración.",
     "saliya.title": "SaliYa",
@@ -70,7 +70,10 @@ window.BauViTechTranslations = {
     "kineos.visit": "Visitar Kineos360",
     "omnidate.feature1": "Reservas 24/7 y gestión de disponibilidad",
     "omnidate.feature2": "Recordatorios por WhatsApp y aplicación web instalable",
-    "omnidate.feature3": "Módulo deportivo: fútbol, pádel y tenis (consultar disponibilidad)"
+    "omnidate.feature3": "Módulo deportivo: fútbol, pádel y tenis (consultar disponibilidad)",
+    "kineos.feature1": "Jugadores, categorías, asistencias y vencimientos de carnets",
+    "kineos.feature2": "Cuotas, pagos, deudas e informes de gestión",
+    "kineos.feature3": "Accesos por roles, avisos a familias y WhatsApp según configuración y condiciones del servicio"
   },
   "en": {
     "nav.about": "About",
@@ -130,8 +133,8 @@ window.BauViTechTranslations = {
     "upcoming.title": "In development",
     "cases.title": "Projects and experience",
     "cases.subtitle": "Implemented solutions and technical expertise.",
-    "kineos.title": "Kineos360",
-    "kineos.desc": "Sports club management: members and families, fees, attendance, membership cards and communications from an installable web platform.",
+    "kineos.title": "Kineos360 — Sports club management",
+    "kineos.desc": "Centralize club management and connect directors, coaches, players and families. Each club has its own installable web app with its name, badge and colors.",
     "notify.title": "BauVi.Notify",
     "notify.desc": "Communication automation and notification integration platform. Ask about available channels and integration options.",
     "saliya.title": "SaliYa",
@@ -143,6 +146,9 @@ window.BauViTechTranslations = {
     "kineos.visit": "Visit Kineos360",
     "omnidate.feature1": "24/7 booking and availability management",
     "omnidate.feature2": "WhatsApp reminders and installable web app",
-    "omnidate.feature3": "Sports module: football, padel and tennis (ask about availability)"
+    "omnidate.feature3": "Sports module: football, padel and tennis (ask about availability)",
+    "kineos.feature1": "Players, age groups, attendance and membership card expiry",
+    "kineos.feature2": "Fees, payments, outstanding balances and management reports",
+    "kineos.feature3": "Role-based access, family notifications and WhatsApp subject to service settings and conditions"
   }
 };

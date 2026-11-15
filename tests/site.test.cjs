@@ -37,7 +37,9 @@ test('approved product catalogue and both languages', () => {
 
 test('Kineos360 uses official logo with text fallback', () => {
  const html = read('portfolio.html');
- assert.ok(html.includes('src="https://www.kineos360.uy/assets/img/logo.png" alt="Kineos360"'));
+ assert.ok(html.includes('data-logo-dark="https://www.kineos360.uy/assets/img/logo.png"'));
+ assert.ok(html.includes('data-logo-light="https://www.kineos360.uy/assets/img/logoB.png"'));
+ assert.ok(html.includes('data-i18n="kineos.feature3"'));
  assert.ok(html.includes('class="project-logo-fallback">Kineos360'));
  assert.ok(read('js/shared.js').includes("image.addEventListener('error'"));
 });

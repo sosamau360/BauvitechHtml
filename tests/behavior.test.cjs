@@ -12,7 +12,7 @@ function el(tag='div',dataset={}) {
  addEventListener:(k,fn)=>{if(!events.has(k))events.set(k,[]);events.get(k).push(fn);},
  fire(k,e={}){for(const fn of events.get(k)||[])fn({preventDefault(){},...e});},querySelectorAll:()=>[]};
 }
-function fixture(initial={},blocked=false) {
+function fixture(initial={},blocked=false,initialize=true) {
  const ids=Object.fromEntries(['hamburger','mobileMenu','theme-toggle','theme-toggle-m','icon-sun','icon-sun-m','icon-moon','icon-moon-m','budgetForm','err-name','err-email','err-type','err-desc'].map(id=>[id,el()]));
  ids['f-name']=el('input',{i18n:'name.placeholder'});ids['f-email']=el('input',{i18n:'email.placeholder'});
  ids['f-phone']=el('input');ids['f-type']=el('select');ids['f-desc']=el('textarea');
@@ -28,7 +28,7 @@ function fixture(initial={},blocked=false) {
  const storage={getItem(k){if(blocked)throw Error('blocked');return data.get(k);},setItem(k,v){if(blocked)throw Error('blocked');data.set(k,v);}};
  const window={open(...args){opened.push(args);}};
  new Function('window',read('js/contacto.i18n.js'))(window);
- new Function('window','document','localStorage',read('js/shared.js'))(window,doc,storage);
+ if(initialize) new Function('window','document','localStorage',read('js/shared.js'))(window,doc,storage);
  new Function('window','document',read('js/contacto.js'))(window,doc);
  return {ids,doc,html,es,en,budget,anchor,data,opened,option};
 }
@@ -73,6 +73,24 @@ test('official logo fallback remains visible if load fails and hides on success'
  const storage={getItem:()=>null,setItem:()=>{}};
  new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
  assert.equal(image.hidden,true); assert.equal(fallback.hidden,false);
- image.fire('load'); assert.equal(image.hidden,false); assert.equal(fallback.hidden,true);
+ image.naturalWidth=100; image.fire('load'); assert.equal(image.hidden,false); assert.equal(fallback.hidden,true);
  image.fire('error'); assert.equal(image.hidden,true); assert.equal(fallback.hidden,false);
+});
+
+test('Kineos360 switches both theme logos, restores persisted theme and retains fallback',()=>{
+ const image=el('img',{logoDark:'https://www.kineos360.uy/assets/img/logo.png',logoLight:'https://www.kineos360.uy/assets/img/logoB.png'}), fallback=el('span');
+ image.complete=true; image.naturalWidth=100; image.setAttribute('src',image.dataset.logoDark);
+ const set=image.setAttribute; image.setAttribute=(k,v)=>{set(k,v);if(k==='src'){image.complete=false;image.naturalWidth=0;}};
+ const cover=el();cover.querySelector=s=>s==='img'?image:fallback;
+ const x=fixture({'bvt-theme':'light'},false,false); const query=x.doc.querySelectorAll;
+ x.doc.querySelectorAll=s=>s==='[data-product-logo]'?[cover]:query(s);
+ const window={};new Function('window',read('js/contacto.i18n.js'))(window);
+ const storage={getItem:k=>x.data.get(k),setItem:(k,v)=>x.data.set(k,v)};
+ new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
+ assert.equal(image.getAttribute('src'),image.dataset.logoLight);assert.equal(image.hidden,true);assert.equal(fallback.hidden,false);
+ image.complete=true;image.naturalWidth=100;image.fire('load');assert.equal(image.hidden,false);assert.equal(fallback.hidden,true);
+ x.ids['theme-toggle'].fire('click');assert.equal(image.getAttribute('src'),image.dataset.logoDark);assert.equal(x.data.get('bvt-theme'),'dark');assert.equal(fallback.hidden,false);
+ image.fire('error');assert.equal(fallback.hidden,false);assert.equal(image.hidden,true);
+ x.ids['theme-toggle-m'].fire('click');assert.equal(image.getAttribute('src'),image.dataset.logoLight);
+ image.complete=true;image.naturalWidth=100;image.fire('load');assert.equal(fallback.hidden,true);
 });
