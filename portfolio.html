@@ -45,12 +45,12 @@
                         <svg id="icon-moon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </button>
                     <div class="lang-pill">
-                        <button id="lang-es" onclick="changeLang('es')" class="active">ES</button>
-                        <button id="lang-en" onclick="changeLang('en')">EN</button>
+                        <button id="lang-es" data-lang="es" class="active">ES</button>
+                        <button id="lang-en" data-lang="en">EN</button>
                     </div>
                 </div>
             </div>
-            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            <button type="button" class="hamburger" id="hamburger" aria-label="Menú" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -67,8 +67,8 @@
                 <svg id="icon-moon-m" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             </button>
             <div class="lang-pill">
-                <button id="lang-es-m" onclick="changeLang('es')" class="active">ES</button>
-                <button id="lang-en-m" onclick="changeLang('en')">EN</button>
+                <button id="lang-es-m" data-lang="es" class="active">ES</button>
+                <button id="lang-en-m" data-lang="en">EN</button>
             </div>
         </div>
     </div>
@@ -93,13 +93,13 @@
                 <a href="#projects" class="btn-outline" data-i18n="hero.cta2">Ver Proyectos</a>
             </div>
             <div class="social-links fade-in delay-4">
-                <a href="https://github.com/sosamau360" target="_blank" class="social-link" aria-label="GitHub">
+                <a href="https://github.com/sosamau360" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
-                <a href="https://www.linkedin.com/in/mauricio-sosa-97982a245" target="_blank" class="social-link" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/mauricio-sosa-97982a245" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
-                <a href="/cdn-cgi/l/email-protection#99eaf6eaf8f4f8ecaaafa9d9fef4f8f0f5b7faf6f4" class="social-link" aria-label="Email">
+                <a href="mailto:sosamau360@gmail.com" class="social-link" aria-label="Email">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </a>
             </div>
@@ -169,9 +169,52 @@
             <p style="color: var(--text-muted); margin-bottom: 48px;" data-i18n="projects.subtitle">Soluciones reales, impacto real</p>
             <div class="section-divider"></div>
 
-            <div class="projects-grid">
-                <!-- P1 -->
-                <div class="project-card">
+<div id="productos" class="portfolio-group"><h3 class="portfolio-group-title" data-i18n="products.title">Productos BauViTech</h3><p class="section-sub" data-i18n="products.subtitle">Soluciones propias para empresas, comercios e instituciones.</p><div class="projects-grid">
+<article class="project-card">
+<div class="project-img project-text-cover"><span>Kineos360</span></div>
+<div class="project-body"><h3 class="project-title" data-i18n="kineos.title">Kineos360</h3><p class="project-desc" data-i18n="kineos.desc">Gestión de clubes deportivos: socios y familias, cuotas, asistencia, carnets y comunicaciones desde una plataforma web instalable.</p><div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">PWA</span></div><a class="product-action" href="contacto.html" data-i18n="product.contact">Consultar por el producto</a></div></article>
+<div class="project-card">
+                    <div class="project-img">
+                        <div class="project-img-fallback" style="background: linear-gradient(135deg,#22c55e,#10b981,#84cc16);">
+                            <img src="img/omnidate.jfif" alt="OmniDate" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title" data-i18n="project3.title">OmniDate — Reservas y agenda online</h3>
+                        <p class="project-desc" data-i18n="project3.desc">Agenda y reservas para comercios de servicios y espacios deportivos. Gestiona horarios, servicios y turnos desde una plataforma web.</p>
+                        <div class="tags">
+                            <span class="tag" style="background:color-mix(in srgb,#22c55e 12%,transparent);color:#22c55e;">Blazor</span>
+                            <span class="tag" style="background:color-mix(in srgb,#10b981 12%,transparent);color:#10b981;">.NET API</span>
+                            <span class="tag" style="background:color-mix(in srgb,#84cc16 12%,transparent);color:#84cc16;">MySQL</span>
+                        </div>
+                    <a class="product-action" href="https://omnidate.com.uy" data-i18n="product.visit">Visitar OmniDate</a>
+                    </div>
+                </div>
+<div class="project-card">
+                    <div class="project-img">
+                        <div class="project-img-fallback" style="background: linear-gradient(135deg,#3b82f6,#06b6d4,#14b8a6);">
+                            <img src="img/logoParkSoft.png" alt="ParkSoft" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title" data-i18n="project2.title">ParkSoft / Multiparking — Gestión de estacionamientos</h3>
+                        <p class="project-desc" data-i18n="project2.desc">Control de entradas y salidas, matrículas, tarifas configurables e impresión de tickets. Solución de gestión desarrollada con .NET MAUI.</p>
+                        <div class="tags">
+                            <span class="tag" style="background:color-mix(in srgb,#3b82f6 12%,transparent);color:#3b82f6;">XAML</span>
+                            <span class="tag" style="background:color-mix(in srgb,#06b6d4 12%,transparent);color:#06b6d4;">MVVM</span>
+                        </div>
+                    <a class="product-action" href="contacto.html" data-i18n="product.contact">Consultar por el producto</a>
+                    </div>
+                </div>
+<article class="project-card">
+<div class="project-img project-text-cover"><span>BauVi.Notify</span></div>
+<div class="project-body"><h3 class="project-title" data-i18n="notify.title">BauVi.Notify</h3><p class="project-desc" data-i18n="notify.desc">Plataforma de automatización de comunicaciones e integración de notificaciones. Consultá por los canales disponibles y las opciones de integración.</p><div class="tags"><span class="tag">API</span><span class="tag">Automatización</span></div><a class="product-action" href="contacto.html" data-i18n="product.contact">Consultar por el producto</a></div></article>
+</div></div><div id="en-desarrollo" class="portfolio-group"><h3 class="portfolio-group-title" data-i18n="upcoming.title">En desarrollo</h3><div class="projects-grid">
+<article class="project-card">
+<div class="project-img project-text-cover"><span>SaliYa</span></div>
+<div class="project-body"><p class="product-status" data-i18n="product.development">En desarrollo</p><h3 class="project-title" data-i18n="saliya.title">SaliYa</h3><p class="project-desc" data-i18n="saliya.desc">Proyecto de reservas gastronómicas y promociones para restaurantes. Actualmente en desarrollo; disponibilidad comercial pendiente de validación.</p><div class="tags"><span class="tag">.NET</span><span class="tag">Blazor</span></div><a class="product-action" href="contacto.html" data-i18n="product.interest">Consultar novedades</a></div></article>
+</div></div><div id="casos" class="portfolio-group"><h3 class="portfolio-group-title" data-i18n="cases.title">Proyectos y experiencia</h3><p class="section-sub" data-i18n="cases.subtitle">Soluciones implementadas y capacidades técnicas.</p><div class="projects-grid">
+<div class="project-card">
                     <div class="project-img">
                         <div class="project-img-fallback" style="background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);">
                             <img src="img/logoLicencias.png" alt="Licencias" style="width:100%;height:100%;object-fit:cover;">
@@ -180,123 +223,36 @@
                     <div class="project-body">
                         <h3 class="project-title" data-i18n="project1.title">Sistema de Licenciamiento y QR para Aplicaciones .NET</h3>
                         <p class="project-desc" data-i18n="project1.desc">Sistema de licenciamiento para aplicaciones .NET basado en claves, validación de hardware, códigos QR y activación online/offline, integrado con .NET MAUI y Blazor.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><div class="metric-val" style="color:#4f46e5;">95%</div><div class="metric-label" data-i18n="project1.security">Seguridad</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#7c3aed;">5x</div><div class="metric-label" data-i18n="project1.faster">Más Rápido</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#ec4899;">100%</div><div class="metric-label">Cross-Platform</div></div>
-                        </div>
                         <div class="tags">
                             <span class="tag" style="background:color-mix(in srgb,#4f46e5 12%,transparent);color:#4f46e5;">.NET MAUI</span>
                             <span class="tag" style="background:color-mix(in srgb,#7c3aed 12%,transparent);color:#7c3aed;">AES-256</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- P2 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <div class="project-img-fallback" style="background: linear-gradient(135deg,#3b82f6,#06b6d4,#14b8a6);">
-                            <img src="img/logoParkSoft.png" alt="ParkSoft" style="width:100%;height:100%;object-fit:cover;">
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <h3 class="project-title" data-i18n="project2.title">Sistema de Gestión de Estacionamientos MULTIPARKING</h3>
-                        <p class="project-desc" data-i18n="project2.desc">Aplicación de gestión de estacionamientos desarrollada en .NET MAUI, con impresión de tickets, manejo de matrículas, tarifas configurables por tipo de vehículo, licenciamiento y uso de SQLite/MySQL.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><div class="metric-val" style="color:#3b82f6;">50+</div><div class="metric-label" data-i18n="project2.components">Componentes</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#06b6d4;">70%</div><div class="metric-label" data-i18n="project2.saved">Tiempo Ahorrado</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#14b8a6;">15+</div><div class="metric-label" data-i18n="project2.companies">Empresas</div></div>
-                        </div>
-                        <div class="tags">
-                            <span class="tag" style="background:color-mix(in srgb,#3b82f6 12%,transparent);color:#3b82f6;">XAML</span>
-                            <span class="tag" style="background:color-mix(in srgb,#06b6d4 12%,transparent);color:#06b6d4;">MVVM</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- P3 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <div class="project-img-fallback" style="background: linear-gradient(135deg,#22c55e,#10b981,#84cc16);">
-                            <img src="img/omnidate.jfif" alt="OmniDate" style="width:100%;height:100%;object-fit:cover;">
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <h3 class="project-title" data-i18n="project3.title">Omnidate - Sistema de Gestión de Turnos</h3>
-                        <p class="project-desc" data-i18n="project3.desc">Plataforma de reservas y gestión de horarios para comercios, desarrollada con Blazor WebAssembly, API .NET y base de datos MySQL. Incluye agenda, servicios, usuarios, reportes y sincronización con app móvil.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><div class="metric-val" style="color:#22c55e;">100%</div><div class="metric-label">Web + Mobile</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#10b981;">Multi</div><div class="metric-label">Comercios</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#84cc16;">API</div><div class="metric-label">Integrada</div></div>
-                        </div>
-                        <div class="tags">
-                            <span class="tag" style="background:color-mix(in srgb,#22c55e 12%,transparent);color:#22c55e;">Blazor</span>
-                            <span class="tag" style="background:color-mix(in srgb,#10b981 12%,transparent);color:#10b981;">.NET API</span>
-                            <span class="tag" style="background:color-mix(in srgb,#84cc16 12%,transparent);color:#84cc16;">MySQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- P4 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <div class="project-img-fallback" style="background: linear-gradient(135deg,#14b8a6,#0ea5e9,#4f46e5);">
-                            <img src="img/logomedicsync.png" alt="Health Apps" style="width:100%;height:100%;object-fit:cover;">
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <h3 class="project-title" data-i18n="project4.title">Apps de Salud y Hábitos (HydrateMe2 & Tu Farmacólogo)</h3>
-                        <p class="project-desc" data-i18n="project4.desc">Conjunto de aplicaciones enfocadas en salud: un registrador de consumo de agua diario en .NET MAUI y una app para análisis de interacciones de medicamentos, integrando base de datos propia y API de IA para soporte a la toma de decisiones.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><div class="metric-val" style="color:#14b8a6;">MAUI</div><div class="metric-label" data-i18n="project4.feature1">Mobile</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#0ea5e9;">API</div><div class="metric-label" data-i18n="project4.feature2">Integrada</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#4f46e5;">IA</div><div class="metric-label" data-i18n="project4.feature3">Asistencia</div></div>
-                        </div>
-                        <div class="tags">
-                            <span class="tag" style="background:color-mix(in srgb,#14b8a6 12%,transparent);color:#14b8a6;">.NET MAUI</span>
-                            <span class="tag" style="background:color-mix(in srgb,#0ea5e9 12%,transparent);color:#0ea5e9;">SQLite</span>
-                            <span class="tag" style="background:color-mix(in srgb,#4f46e5 12%,transparent);color:#4f46e5;">API IA</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- P5 -->
-                <div class="project-card">
+<div class="project-card">
                     <div class="project-img">
                         <div class="project-img-fallback" style="background: linear-gradient(135deg,#f97316,#ef4444,#eab308);">
                             <img src="img/laserwork.png" alt="Laserwork" style="width:100%;height:100%;object-fit:cover;">
                         </div>
                     </div>
                     <div class="project-body">
-                        <h3 class="project-title"><a href="https://www.laserworkuruguay.com" target="_blank" data-i18n="project5.title">Laserwork Uruguay - Tienda Online</a></h3>
+                        <h3 class="project-title"><a href="https://www.laserworkuruguay.com" target="_blank" rel="noopener noreferrer" data-i18n="project5.title">Laserwork Uruguay - Tienda Online</a></h3>
                         <p class="project-desc" data-i18n="project5.desc">Desarrollo de tienda online con PrestaShop para venta de productos personalizados. Implementación completa, optimización para ventas y adaptación a dispositivos móviles.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><div class="metric-val" style="color:#f97316;">100%</div><div class="metric-label" data-i18n="project5.feature1">Responsive</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#ef4444;">Web</div><div class="metric-label" data-i18n="project5.feature2">Multiplataforma</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#eab308;">E-com</div><div class="metric-label" data-i18n="project5.feature3">Ventas online</div></div>
-                        </div>
                         <div class="tags">
                             <span class="tag" style="background:color-mix(in srgb,#f97316 12%,transparent);color:#f97316;">PrestaShop</span>
                             <span class="tag" style="background:color-mix(in srgb,#3b82f6 12%,transparent);color:#3b82f6;">PHP</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- P6 -->
-                <div class="project-card">
+<div class="project-card">
                     <div class="project-img">
                         <div class="project-img-fallback" style="background: linear-gradient(135deg,#f97316,#ef4444,#eab308);">
                             <img src="img/mazur.png" alt="Mazur" style="width:100%;height:100%;object-fit:cover;">
                         </div>
                     </div>
                     <div class="project-body">
-                        <h3 class="project-title"><a href="https://www.mazurinsumos.com.uy" target="_blank" data-i18n="project6.title">Mazur Insumos - Tienda Online</a></h3>
+                        <h3 class="project-title"><a href="https://www.mazurinsumos.com.uy" target="_blank" rel="noopener noreferrer" data-i18n="project6.title">Mazur Insumos - Tienda Online</a></h3>
                         <p class="project-desc" data-i18n="project6.desc">Desarrollo de tienda online para venta de insumos, implementada con nopCommerce. Configuración completa del sistema, catálogo de productos y adaptación a dispositivos móviles.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><div class="metric-val" style="color:#f97316;">100%</div><div class="metric-label" data-i18n="project6.feature1">Responsive</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#ef4444;">Web</div><div class="metric-label" data-i18n="project6.feature2">Multiplataforma</div></div>
-                            <div class="metric"><div class="metric-val" style="color:#eab308;">E-com</div><div class="metric-label" data-i18n="project6.feature3">Ventas online</div></div>
-                        </div>
                         <div class="tags">
                             <span class="tag" style="background:color-mix(in srgb,#f97316 12%,transparent);color:#f97316;">nopCommerce</span>
                             <span class="tag" style="background:color-mix(in srgb,#3b82f6 12%,transparent);color:#3b82f6;">.NET</span>
@@ -304,7 +260,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+</div></div>
         </div>
     </section>
 
@@ -419,23 +375,23 @@
             <h2 class="contact-title" data-i18n="contact.title">Trabajemos Juntos</h2>
             <p class="contact-sub" data-i18n="contact.subtitle">¿Tienes un proyecto en mente? Estoy disponible para trabajo freelance y consultoría.</p>
             <div class="contact-grid">
-                <a href="/cdn-cgi/l/email-protection#e1928e92808c8094d2d7d1a1868c80888dcf828e8c" class="contact-card">
+                <a href="mailto:sosamau360@gmail.com" class="contact-card">
                     <div class="contact-card-icon">✉️</div>
                     <div class="contact-card-title">Email</div>
-                    <div class="contact-card-sub"><span class="__cf_email__" data-cfemail="b4c7dbc7d5d9d5c1878284f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</span></div>
+                    <div class="contact-card-sub">sosamau360@gmail.com</div>
                 </a>
-                <a href="https://www.linkedin.com/in/mauricio-sosa-97982a245" target="_blank" class="contact-card">
+                <a href="https://www.linkedin.com/in/mauricio-sosa-97982a245" target="_blank" rel="noopener noreferrer" class="contact-card">
                     <div class="contact-card-icon">💼</div>
                     <div class="contact-card-title">LinkedIn</div>
                     <div class="contact-card-sub" data-i18n="contact.connect">Conecta conmigo</div>
                 </a>
-                <a href="https://github.com/sosamau360" target="_blank" class="contact-card">
+                <a href="https://github.com/sosamau360" target="_blank" rel="noopener noreferrer" class="contact-card">
                     <div class="contact-card-icon">💻</div>
                     <div class="contact-card-title">GitHub</div>
                     <div class="contact-card-sub" data-i18n="contact.code">Ver mi código</div>
                 </a>
             </div>
-            <a href="https://wa.me/59891850930" target="_blank" class="btn-primary" data-i18n="contact.cta" style="display:inline-flex;align-items:center;gap:10px;">
+            <a href="https://wa.me/59891850930" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 <span data-i18n="contact.cta">Contáctame</span>
             </a>
@@ -449,153 +405,11 @@
         <p class="footer-copy" data-i18n="footer.copyright">© 2025 Mauricio Sosa. Todos los derechos reservados.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── TRANSLATIONS ──────────────────────────────────────────────
-    const translations = {
-        es: {
-            'nav.about':'Sobre Mí','nav.projects':'Proyectos','nav.skills':'Habilidades','nav.contact':'Contacto',
-            'hero.available':'Disponible para proyectos','hero.greeting':'Hola, soy',
-            'hero.title':'Desarrollador .NET MAUI & Blazor Full-Stack',
-            'hero.description':'Desarrollo aplicaciones modernas y funcionales con .NET MAUI, Blazor y Web APIs. Me especializo en crear soluciones a medida, optimizadas para Android y Windows, integrando bases de datos, seguridad y arquitecturas limpias.',
-            'hero.cta1':'Hablemos','hero.cta2':'Ver Proyectos',
-            'tech.title':'Tecnologías con las que trabajo',
-            'about.label':'Perfil','about.title':'Sobre Mí',
-            'about.p1':'Soy un apasionado Desarrollador .NET MAUI & Blazor Full-Stack con más de 7 años de experiencia construyendo aplicaciones cross-platform robustas y escalables. Mi experiencia radica en crear experiencias de usuario perfectas que funcionan sin problemas en todas las plataformas principales.',
-            'about.p2':'Trabajo con arquitecturas limpias (MVVM, DI, SOLID), Entity Framework, MySQL y SQLite. También desarrollo sistemas de licenciamiento y seguridad para aplicaciones, incluyendo manejo de claves, cifrado básico y validación de hardware. Me gusta crear componentes reutilizables y estructuras escalables para acelerar futuros desarrollos.',
-            'about.years':'Años de Experiencia','about.projects':'Proyectos Entregados','about.clients':'Clientes Felices',
-            'projects.label':'Trabajo','projects.title':'Proyectos Destacados','projects.subtitle':'Soluciones reales, impacto real',
-            'project1.title':'Sistema de Licenciamiento y QR para Aplicaciones .NET',
-            'project1.desc':'Sistema de licenciamiento para aplicaciones .NET basado en claves, validación de hardware, códigos QR y activación online/offline, integrado con .NET MAUI y Blazor.',
-            'project1.security':'Seguridad','project1.faster':'Más Rápido',
-            'project2.title':'Sistema de Gestión de Estacionamientos MULTIPARKING',
-            'project2.desc':'Aplicación de gestión de estacionamientos desarrollada en .NET MAUI, con impresión de tickets, manejo de matrículas, tarifas configurables por tipo de vehículo, licenciamiento y uso de SQLite/MySQL.',
-            'project2.components':'Componentes','project2.saved':'Tiempo Ahorrado','project2.companies':'Empresas',
-            'project3.title':'Omnidate - Sistema de Gestión de Turnos',
-            'project3.desc':'Plataforma de reservas y gestión de horarios para comercios, desarrollada con Blazor WebAssembly, API .NET y base de datos MySQL. Incluye agenda, servicios, usuarios, reportes y sincronización con app móvil.',
-            'project4.title':'Apps de Salud y Hábitos (HydrateMe2 & Tu Farmacólogo)',
-            'project4.desc':'Conjunto de aplicaciones enfocadas en salud: un registrador de consumo de agua diario en .NET MAUI y una app para análisis de interacciones de medicamentos, integrando base de datos propia y API de IA para soporte a la toma de decisiones.',
-            'project4.feature1':'Mobile','project4.feature2':'Integrada','project4.feature3':'Asistencia',
-            'project5.title':'Laserwork Uruguay - Tienda Online',
-            'project5.desc':'Desarrollo de tienda online con PrestaShop para venta de productos personalizados. Implementación completa, optimización para ventas y adaptación a dispositivos móviles.',
-            'project5.feature1':'Responsive','project5.feature2':'Multiplataforma','project5.feature3':'Ventas online',
-            'project6.title':'Mazur Insumos - Tienda Online',
-            'project6.desc':'Desarrollo de tienda online para venta de insumos, implementada con nopCommerce. Configuración completa del sistema, catálogo de productos y adaptación a dispositivos móviles.',
-            'project6.feature1':'Responsive','project6.feature2':'Multiplataforma','project6.feature3':'Ventas online',
-            'skills.label':'Expertise','skills.title':'Experiencia Técnica','skills.subtitle':'Tecnologías y herramientas que domino',
-            'skills.expert':'Especialización','skills.frontend':'Frontend y UI','skills.backend':'Backend y Servicios',
-            'skills.security':'Seguridad y Arquitectura','skills.devops':'Herramientas y Flujo de trabajo','skills.databases':'Bases de Datos',
-            'skills.level.expert':'Experto','skills.level.advanced':'Avanzado','skills.level.intermediate':'Intermedio',
-            'contact.label':'Contacto','contact.title':'Trabajemos Juntos',
-            'contact.subtitle':'¿Tienes un proyecto en mente? Estoy disponible para trabajo freelance y consultoría.',
-            'contact.connect':'Conecta conmigo','contact.code':'Ver mi código','contact.cta':'Contáctame',
-            'footer.tagline':'Desarrollador .NET MAUI & Blazor Full-Stack | Experto Cross-Platform',
-            'footer.copyright':'© 2025 Mauricio Sosa. Todos los derechos reservados.',
-            'settings.theme':'Modo claro / oscuro'
-        },
-        en: {
-            'nav.about':'About','nav.projects':'Projects','nav.skills':'Skills','nav.contact':'Contact',
-            'hero.available':'Available for hire','hero.greeting':'Hi, I\'m',
-            'hero.title':'.NET MAUI & Blazor Full-Stack Developer',
-            'hero.description':'I build modern, functional applications using .NET MAUI, Blazor, and Web APIs. I focus on tailor-made solutions optimized for Android and Windows, integrating databases, security, and clean architectures.',
-            'hero.cta1':'Let\'s Talk','hero.cta2':'View Projects',
-            'tech.title':'Technologies I Work With',
-            'about.label':'Profile','about.title':'About Me',
-            'about.p1':'I\'m a passionate .NET MAUI & Blazor Full-Stack Developer with over 7 years of experience building robust and scalable cross-platform applications. My expertise lies in crafting seamless user experiences that work flawlessly across all major platforms.',
-            'about.p2':'I work with clean architectures (MVVM, DI, SOLID), Entity Framework, MySQL and SQLite. I also develop licensing and security systems for applications, including key handling, basic encryption, and hardware validation. I enjoy creating reusable components and scalable structures to speed up future development.',
-            'about.years':'Years Experience','about.projects':'Projects Delivered','about.clients':'Happy Clients',
-            'projects.label':'Work','projects.title':'Featured Projects','projects.subtitle':'Real solutions, real impact',
-            'project1.title':'Licensing and QR System for .NET Applications',
-            'project1.desc':'Licensing system for .NET applications based on keys, hardware validation, QR codes and online/offline activation, integrated with .NET MAUI and Blazor.',
-            'project1.security':'Security','project1.faster':'Faster',
-            'project2.title':'MULTIPARKING Parking Management System',
-            'project2.desc':'Parking management application built with .NET MAUI, including ticket printing, license plate handling, configurable pricing per vehicle type, licensing, and SQLite/MySQL persistence.',
-            'project2.components':'Components','project2.saved':'Time Saved','project2.companies':'Companies',
-            'project3.title':'Omnidate - Appointment Management System',
-            'project3.desc':'Reservation and scheduling platform for businesses, built with Blazor WebAssembly, .NET API and MySQL. Includes appointments, services, users, reports and mobile sync.',
-            'project4.title':'Health & Habit Apps (HydrateMe2 & Tu Farmacólogo)',
-            'project4.desc':'A set of health-focused applications: a daily water intake tracker built with .NET MAUI and an app for drug interaction analysis, integrating its own database and an AI API to support decision-making.',
-            'project4.feature1':'Mobile','project4.feature2':'Integrated','project4.feature3':'Assistance',
-            'project5.title':'Laserwork Uruguay - Online Store',
-            'project5.desc':'Online store developed with PrestaShop for selling personalized products. Full implementation, sales optimization, and mobile-friendly adaptation.',
-            'project5.feature1':'Responsive','project5.feature2':'Cross-platform','project5.feature3':'Online sales',
-            'project6.title':'Mazur Insumos - Online Store',
-            'project6.desc':'Online store developed for selling supplies, implemented with nopCommerce. Full system setup, product catalog, and mobile-friendly adaptation.',
-            'project6.feature1':'Responsive','project6.feature2':'Cross-platform','project6.feature3':'Online sales',
-            'skills.label':'Expertise','skills.title':'Technical Experience','skills.subtitle':'Technologies and tools I master',
-            'skills.expert':'Specialization','skills.frontend':'Frontend & UI','skills.backend':'Backend & Services',
-            'skills.security':'Security & Architecture','skills.devops':'Tools & Workflow','skills.databases':'Databases',
-            'skills.level.expert':'Expert','skills.level.advanced':'Advanced','skills.level.intermediate':'Intermediate',
-            'contact.label':'Contact','contact.title':'Let\'s Work Together',
-            'contact.subtitle':'Have a project in mind? I\'m available for freelance work and consulting.',
-            'contact.connect':'Connect with me','contact.code':'View my code','contact.cta':'Get In Touch',
-            'footer.tagline':'Senior .NET MAUI & Blazor Full-Stack Developer | Cross-Platform Expert',
-            'footer.copyright':'© 2025 Mauricio Sosa. All rights reserved.',
-            'settings.theme':'Light / Dark mode'
-        }
-    };
-
-    // ── IDIOMA ───────────────────────────────────────────────────
-    const html = document.documentElement;
-    let currentLang = localStorage.getItem('bvt-lang') || 'es';
-
-    function changeLang(lang) {
-        currentLang = lang;
-        document.documentElement.lang = lang;
-        localStorage.setItem('bvt-lang', lang);
-        ['lang-es','lang-en','lang-es-m','lang-en-m'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.classList.toggle('active', id.replace('-m','').endsWith(lang));
-        });
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang]?.[key]) el.textContent = translations[lang][key];
-        });
-    }
-
-    changeLang(currentLang);
-
-    // ── TEMA ─────────────────────────────────────────────────────
-    function applyTheme(th) {
-        if (th === 'dark') {
-            html.classList.add('dark');
-            html.classList.remove('light');
-        } else {
-            html.classList.add('light');
-            html.classList.remove('dark');
-        }
-        const isDark = th === 'dark';
-        ['icon-sun','icon-sun-m'].forEach(id => { const e=document.getElementById(id); if(e) e.style.display = isDark ? 'none' : 'block'; });
-        ['icon-moon','icon-moon-m'].forEach(id => { const e=document.getElementById(id); if(e) e.style.display = isDark ? 'block' : 'none'; });
-        localStorage.setItem('bvt-theme', th);
-    }
-
-    applyTheme(localStorage.getItem('bvt-theme') || 'light');
-
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-        applyTheme(html.classList.contains('dark') ? 'light' : 'dark');
-    });
-    document.getElementById('theme-toggle-m').addEventListener('click', () => {
-        applyTheme(html.classList.contains('dark') ? 'light' : 'dark');
-    });
-
-    // ── MOBILE MENU ──────────────────────────────────────────────
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
-
-    // ── SMOOTH SCROLL ─────────────────────────────────────────────
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
-            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        });
-    });
-
-</script>
+    <script src="js/portfolio.i18n.js"></script>
+<script src="js/shared.js"></script>
 
     <!-- WhatsApp flotante -->
-    <a href="https://wa.me/59891850930?text=Hola%20BauViTech%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" id="wa-btn" title="WhatsApp" style="
+    <a href="https://wa.me/59891850930?text=Hola%20BauViTech%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer" id="wa-btn" title="WhatsApp" style="
         position:fixed; bottom:28px; right:28px; z-index:999;
         width:56px; height:56px; border-radius:50%;
         background:#25d366;

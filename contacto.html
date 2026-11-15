@@ -6,246 +6,7 @@
     <title>Solicitar presupuesto – BauViTech</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared.css">
-    <style>
-        /* ── PAGE LAYOUT ─────────────────────────────────────────── */
-        .page-wrap {
-            min-height: 100vh;
-            padding: 120px 28px 80px;
-        }
-
-        .page-inner {
-            max-width: 960px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.6fr;
-            gap: 64px;
-            align-items: start;
-        }
-
-        /* ── LEFT PANEL ──────────────────────────────────────────── */
-        .left-panel { position: sticky; top: 100px; }
-
-        .back-link {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 13px; font-weight: 600; color: var(--text-muted);
-            margin-bottom: 32px; transition: color .2s;
-        }
-        .back-link:hover { color: var(--text); }
-
-        .page-tag {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
-            text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
-        }
-        .page-tag::before { content:''; display:block; width:20px; height:1px; background:var(--blue); }
-
-        .page-title {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: clamp(28px, 3.5vw, 42px);
-            font-weight: 800; color: var(--text);
-            line-height: 1.1; margin-bottom: 16px;
-        }
-
-        .page-sub {
-            font-size: 15px; color: var(--text-muted);
-            line-height: 1.75; margin-bottom: 32px;
-        }
-
-        .promise-list {
-            display: flex; flex-direction: column; gap: 12px;
-            margin-bottom: 32px;
-        }
-        .promise-item {
-            display: flex; align-items: center; gap: 10px;
-            font-size: 14px; color: var(--text-muted);
-        }
-        .promise-item .dot {
-            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
-            background: rgba(34,197,94,.12);
-            border: 1px solid rgba(34,197,94,.3);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 11px;
-        }
-
-        .contact-direct {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-        }
-        .contact-direct-label {
-            font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 12px;
-        }
-        .contact-direct a {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 12px; border-radius: 8px;
-            font-size: 14px; font-weight: 600; color: var(--text);
-            transition: background .2s;
-        }
-        .contact-direct a:hover { background: var(--surface2); }
-        .contact-direct a span { color: var(--text-muted); font-weight: 400; }
-
-        /* ── FORM ────────────────────────────────────────────────── */
-        .form-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .form-card::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--cyan), var(--blue), var(--indigo));
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        .form-row {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 16px; margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 12px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1.2px;
-            color: var(--text-muted); margin-bottom: 8px;
-        }
-        label .req { color: var(--indigo); margin-left: 2px; }
-
-        input, select, textarea {
-            width: 100%;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 16px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 15px;
-            color: var(--text);
-            transition: border-color .2s, box-shadow .2s;
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        input::placeholder, textarea::placeholder {
-            color: var(--text-dim);
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--indigo);
-            box-shadow: 0 0 0 3px rgba(79,70,229,.12);
-        }
-
-        select {
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a8ba8' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 40px;
-        }
-
-        select option {
-            background: var(--surface);
-            color: var(--text);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-            line-height: 1.6;
-        }
-
-        /* Budget pills */
-        .budget-pills {
-            display: flex; flex-wrap: wrap; gap: 8px;
-            margin-top: 4px;
-        }
-        .budget-pill {
-            padding: 8px 14px; border-radius: 8px;
-            font-size: 13px; font-weight: 600;
-            background: var(--bg); border: 1px solid var(--border);
-            color: var(--text-muted); cursor: pointer;
-            transition: all .2s; user-select: none;
-        }
-        .budget-pill:hover { border-color: var(--indigo); color: var(--text); }
-        .budget-pill.selected {
-            background: rgba(79,70,229,.12);
-            border-color: var(--indigo);
-            color: var(--indigo);
-        }
-        html.light .budget-pill.selected { color: #3730a3; }
-
-        /* Submit */
-        .form-footer {
-            display: flex; align-items: center; gap: 16px;
-            margin-top: 28px; flex-wrap: wrap;
-        }
-
-        .btn-submit {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: #25d366; color: #fff;
-            padding: 14px 28px; border-radius: 10px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 700; font-size: 15px;
-            border: none; cursor: pointer;
-            transition: background .2s, transform .2s, box-shadow .2s;
-            text-decoration: none;
-        }
-        .btn-submit:hover {
-            background: #1db954;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(37,211,102,.35);
-        }
-
-        .form-note {
-            font-size: 12px; color: var(--text-dim); line-height: 1.5;
-        }
-
-        /* Success state */
-        .form-success {
-            display: none;
-            text-align: center; padding: 40px 20px;
-        }
-        .form-success.show { display: block; }
-        .form-success .success-icon {
-            font-size: 48px; margin-bottom: 16px;
-        }
-        .form-success h3 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 22px; font-weight: 800;
-            color: var(--text); margin-bottom: 8px;
-        }
-        .form-success p { font-size: 15px; color: var(--text-muted); }
-
-        /* Error highlight */
-        input.error, select.error, textarea.error {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 3px rgba(239,68,68,.1);
-        }
-        .error-msg {
-            font-size: 12px; color: #ef4444;
-            margin-top: 4px; display: none;
-        }
-        .error-msg.show { display: block; }
-
-        /* ── RESPONSIVE ──────────────────────────────────────────── */
-        @media (max-width: 860px) {
-            .page-inner { grid-template-columns: 1fr; gap: 40px; }
-            .left-panel { position: static; }
-            .form-card { padding: 28px 20px; }
-            .form-row { grid-template-columns: 1fr; gap: 0; }
-        }
-
-        @media (max-width: 480px) {
-            .budget-pills { gap: 6px; }
-            .budget-pill { font-size: 12px; padding: 7px 11px; }
-            .form-footer { flex-direction: column; align-items: stretch; }
-            .btn-submit { justify-content: center; }
-        }
-    </style>
+    <link rel="stylesheet" href="contacto.css">
     <link rel="icon" href="img/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
@@ -278,12 +39,12 @@
                     <svg id="icon-moon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 </button>
                 <div class="lang-pill">
-                    <button id="lang-es" onclick="changeLang('es')" class="active">ES</button>
-                    <button id="lang-en" onclick="changeLang('en')">EN</button>
+                    <button id="lang-es" data-lang="es" class="active">ES</button>
+                    <button id="lang-en" data-lang="en">EN</button>
                 </div>
             </div>
         </div>
-        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <button type="button" class="hamburger" id="hamburger" aria-label="Menú" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 </nav>
 
@@ -300,8 +61,8 @@
             <svg id="icon-moon-m" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
         <div class="lang-pill">
-            <button id="lang-es-m" onclick="changeLang('es')" class="active">ES</button>
-            <button id="lang-en-m" onclick="changeLang('en')">EN</button>
+            <button id="lang-es-m" data-lang="es" class="active">ES</button>
+            <button id="lang-en-m" data-lang="en">EN</button>
         </div>
     </div>
 </div>
@@ -330,13 +91,13 @@
 
             <div class="contact-direct">
                 <div class="contact-direct-label" data-i18n="page.or">O contáctame directo</div>
-                <a href="https://wa.me/59891850930" target="_blank">
+                <a href="https://wa.me/59891850930" target="_blank" rel="noopener noreferrer">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.124 1.532 5.856L.073 23.927l6.244-1.437A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.507-5.077-1.383l-.362-.214-3.708.853.882-3.602-.235-.375A9.936 9.936 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
                     <div><strong>WhatsApp</strong> <span>+598 91 850 930</span></div>
                 </a>
-                <a href="/cdn-cgi/l/email-protection#89fae6fae8e4e8fcbabfb9c9eee4e8e0e5a7eae6e4">
+                <a href="mailto:sosamau360@gmail.com">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    <div><strong>Email</strong> <span><span class="__cf_email__" data-cfemail="6c1f031f0d010d195f5a5c2c0b010d0500420f0301">[email&#160;protected]</span></span></div>
+                    <div><strong>Email</strong> <span>sosamau360@gmail.com</span></div>
                 </a>
             </div>
         </div>
@@ -412,204 +173,12 @@
 </div><!-- /page-wrap -->
 
 <!-- WhatsApp flotante -->
-<a href="https://wa.me/59891850930?text=Hola%20BauViTech%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" title="WhatsApp" style="position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.6)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45)'">
+<a href="https://wa.me/59891850930?text=Hola%20BauViTech%2C%20me%20interesa%20hablar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer" title="WhatsApp" style="position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.6)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45)'">
     <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.124 1.532 5.856L.073 23.927l6.244-1.437A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.507-5.077-1.383l-.362-.214-3.708.853.882-3.602-.235-.375A9.936 9.936 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── TRANSLATIONS ──────────────────────────────────────────────────
-const T = {
-    es: {
-        'nav.problem':'El problema','nav.services':'Servicios','nav.about':'Sobre mí',
-        'nav.portfolio':'Portfolio','nav.contact':'Contacto',
-        'page.back':'Volver al inicio','page.tag':'Presupuesto',
-        'page.title':'Cuéntame sobre tu proyecto',
-        'page.sub':'Completa el formulario y te envío una propuesta clara por WhatsApp, sin compromiso y sin costo.',
-        'page.or':'O contáctame directo',
-        'promise.p1':'Respuesta el mismo día','promise.p2':'Evaluación sin costo',
-        'promise.p3':'Sin intermediarios','promise.p4':'Propuesta a medida',
-        'field.name':'Nombre','field.email':'Email',
-        'field.phone':'Teléfono / WhatsApp',
-        'field.type':'Tipo de proyecto',
-        'field.type.placeholder':'Selecciona una opción',
-        'type.1':'Sistema de gestión','type.2':'Aplicación móvil',
-        'type.3':'Tienda online','type.4':'Automatización de procesos',
-        'type.5':'Integración / API','type.6':'Plataforma web','type.7':'Otro',
-        'field.desc':'Descripción del proyecto',
-        'field.budget':'Presupuesto estimado (opcional)',
-        'budget.1':'Menos de USD 500','budget.2':'USD 500 – 1.500',
-        'budget.3':'USD 1.500 – 3.000','budget.4':'Más de USD 3.000',
-        'budget.5':'No lo sé aún',
-        'form.submit':'Enviar por WhatsApp',
-        'form.note':'Al enviar, se abrirá WhatsApp con tu consulta lista para enviar.',
-        'err.required':'Este campo es obligatorio.',
-        'err.email':'Ingresa un email válido.',
-        'desc.placeholder':'Cuéntame qué necesitas, cómo funciona tu negocio, qué problema quieres resolver...'
-    },
-    en: {
-        'nav.problem':'The problem','nav.services':'Services','nav.about':'About',
-        'nav.portfolio':'Portfolio','nav.contact':'Contact',
-        'page.back':'Back to home','page.tag':'Quote',
-        'page.title':'Tell me about your project',
-        'page.sub':'Fill out the form and I\'ll send you a clear proposal via WhatsApp, no commitment, no cost.',
-        'page.or':'Or contact me directly',
-        'promise.p1':'Same-day response','promise.p2':'Free assessment',
-        'promise.p3':'No middlemen','promise.p4':'Tailored proposal',
-        'field.name':'Name','field.email':'Email',
-        'field.phone':'Phone / WhatsApp',
-        'field.type':'Project type',
-        'field.type.placeholder':'Select an option',
-        'type.1':'Management system','type.2':'Mobile app',
-        'type.3':'Online store','type.4':'Process automation',
-        'type.5':'Integration / API','type.6':'Web platform','type.7':'Other',
-        'field.desc':'Project description',
-        'field.budget':'Estimated budget (optional)',
-        'budget.1':'Less than USD 500','budget.2':'USD 500 – 1,500',
-        'budget.3':'USD 1,500 – 3,000','budget.4':'More than USD 3,000',
-        'budget.5':'Not sure yet',
-        'form.submit':'Send via WhatsApp',
-        'form.note':'Clicking send will open WhatsApp with your inquiry ready to go.',
-        'err.required':'This field is required.',
-        'err.email':'Please enter a valid email.',
-        'desc.placeholder':'Tell me what you need, how your business works, what problem you want to solve...'
-    }
-};
-
-// ── LANGUAGE ──────────────────────────────────────────────────────
-let lang = localStorage.getItem('bvt-lang') || 'es';
-
-function changeLang(l) {
-    lang = l;
-    localStorage.setItem('bvt-lang', l);
-    document.documentElement.lang = l;
-    ['lang-es','lang-en','lang-es-m','lang-en-m'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle('active', id.replace('-m','').endsWith(l));
-    });
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const k = el.getAttribute('data-i18n');
-        if (T[l] && T[l][k] !== undefined) {
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                el.placeholder = T[l][k];
-            } else if (el.tagName === 'OPTION') {
-                el.textContent = T[l][k];
-            } else {
-                el.innerHTML = T[l][k];
-            }
-        }
-    });
-    // Update textarea placeholder separately
-    const desc = document.getElementById('f-desc');
-    if (desc) desc.placeholder = T[l]['desc.placeholder'];
-    const typeSelect = document.getElementById('f-type');
-    if (typeSelect) typeSelect.options[0].textContent = T[l]['field.type.placeholder'];
-}
-
-// ── THEME ─────────────────────────────────────────────────────────
-const html = document.documentElement;
-
-function applyTheme(th) {
-    if (th === 'dark') { html.classList.add('dark'); html.classList.remove('light'); }
-    else { html.classList.add('light'); html.classList.remove('dark'); }
-    ['icon-sun','icon-sun-m'].forEach(id => { const e=document.getElementById(id); if(e) e.style.display=th==='dark'?'none':'block'; });
-    ['icon-moon','icon-moon-m'].forEach(id => { const e=document.getElementById(id); if(e) e.style.display=th==='dark'?'block':'none'; });
-    localStorage.setItem('bvt-theme', th);
-}
-
-applyTheme(localStorage.getItem('bvt-theme') || 'dark');
-function toggleTheme() { applyTheme(html.classList.contains('dark') ? 'light' : 'dark'); }
-document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-document.getElementById('theme-toggle-m').addEventListener('click', toggleTheme);
-
-// ── MOBILE MENU ───────────────────────────────────────────────────
-const ham = document.getElementById('hamburger'), mob = document.getElementById('mobileMenu');
-ham.addEventListener('click', () => mob.classList.toggle('open'));
-mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
-
-// ── BUDGET PILLS ──────────────────────────────────────────────────
-let selectedBudget = '';
-document.querySelectorAll('.budget-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-        document.querySelectorAll('.budget-pill').forEach(p => p.classList.remove('selected'));
-        pill.classList.add('selected');
-        selectedBudget = pill.dataset.value;
-    });
-});
-
-// ── VALIDATION ────────────────────────────────────────────────────
-function validate() {
-    let ok = true;
-
-    const name = document.getElementById('f-name');
-    const errName = document.getElementById('err-name');
-    if (!name.value.trim()) {
-        name.classList.add('error'); errName.classList.add('show'); ok = false;
-    } else { name.classList.remove('error'); errName.classList.remove('show'); }
-
-    const email = document.getElementById('f-email');
-    const errEmail = document.getElementById('err-email');
-    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRx.test(email.value.trim())) {
-        email.classList.add('error'); errEmail.classList.add('show'); ok = false;
-    } else { email.classList.remove('error'); errEmail.classList.remove('show'); }
-
-    const type = document.getElementById('f-type');
-    const errType = document.getElementById('err-type');
-    if (!type.value) {
-        type.classList.add('error'); errType.classList.add('show'); ok = false;
-    } else { type.classList.remove('error'); errType.classList.remove('show'); }
-
-    const desc = document.getElementById('f-desc');
-    const errDesc = document.getElementById('err-desc');
-    if (!desc.value.trim()) {
-        desc.classList.add('error'); errDesc.classList.add('show'); ok = false;
-    } else { desc.classList.remove('error'); errDesc.classList.remove('show'); }
-
-    return ok;
-}
-
-// ── FORM SUBMIT → WHATSAPP ─────────────────────────────────────────
-document.getElementById('budgetForm').addEventListener('submit', e => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    const name  = document.getElementById('f-name').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const phone = document.getElementById('f-phone').value.trim();
-    const type  = document.getElementById('f-type').value;
-    const desc  = document.getElementById('f-desc').value.trim();
-    const budget = selectedBudget;
-
-    const isEs = lang === 'es';
-    const lines = [
-        `${isEs ? '¡Hola! Quiero solicitar un presupuesto.' : 'Hi! I\'d like to request a quote.'}`,
-        ``,
-        `👤 ${isEs ? 'Nombre' : 'Name'}: ${name}`,
-        `📧 Email: ${email}`,
-        phone ? `📱 ${isEs ? 'Teléfono' : 'Phone'}: ${phone}` : null,
-        `🛠️ ${isEs ? 'Tipo de proyecto' : 'Project type'}: ${type}`,
-        budget ? `💰 ${isEs ? 'Presupuesto' : 'Budget'}: ${budget}` : null,
-        ``,
-        `📝 ${isEs ? 'Descripción' : 'Description'}:`,
-        desc
-    ].filter(l => l !== null).join('\n');
-
-    const url = `https://wa.me/59891850930?text=${encodeURIComponent(lines)}`;
-    window.open(url, '_blank');
-});
-
-// Clear error on input
-['f-name','f-email','f-type','f-desc'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', () => {
-        el.classList.remove('error');
-        const err = document.getElementById('err-' + id.replace('f-',''));
-        if (err) err.classList.remove('show');
-    });
-});
-
-// Init
-changeLang(lang);
-</script>
+<script src="js/contacto.i18n.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/contacto.js"></script>
 </body>
 </html>

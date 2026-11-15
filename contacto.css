@@ -1,0 +1,242 @@
+
+/* Page-specific styles moved from HTML. */
+
+        /* ── PAGE LAYOUT ─────────────────────────────────────────── */
+        .page-wrap {
+            min-height: 100vh;
+            padding: 120px 28px 80px;
+        }
+
+        .page-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        /* ── LEFT PANEL ──────────────────────────────────────────── */
+        .left-panel { position: sticky; top: 100px; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 13px; font-weight: 600; color: var(--text-muted);
+            margin-bottom: 32px; transition: color .2s;
+        }
+        .back-link:hover { color: var(--text); }
+
+        .page-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+        }
+        .page-tag::before { content:''; display:block; width:20px; height:1px; background:var(--blue); }
+
+        .page-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 800; color: var(--text);
+            line-height: 1.1; margin-bottom: 16px;
+        }
+
+        .page-sub {
+            font-size: 15px; color: var(--text-muted);
+            line-height: 1.75; margin-bottom: 32px;
+        }
+
+        .promise-list {
+            display: flex; flex-direction: column; gap: 12px;
+            margin-bottom: 32px;
+        }
+        .promise-item {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 14px; color: var(--text-muted);
+        }
+        .promise-item .dot {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(34,197,94,.12);
+            border: 1px solid rgba(34,197,94,.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px;
+        }
+
+        .contact-direct {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .contact-direct-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 12px;
+        }
+        .contact-direct a {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 12px; border-radius: 8px;
+            font-size: 14px; font-weight: 600; color: var(--text);
+            transition: background .2s;
+        }
+        .contact-direct a:hover { background: var(--surface2); }
+        .contact-direct a span { color: var(--text-muted); font-weight: 400; }
+
+        /* ── FORM ────────────────────────────────────────────────── */
+        .form-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .form-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--blue), var(--indigo));
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px; margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.2px;
+            color: var(--text-muted); margin-bottom: 8px;
+        }
+        label .req { color: var(--indigo); margin-left: 2px; }
+
+        input, select, textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            color: var(--text);
+            transition: border-color .2s, box-shadow .2s;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: var(--text-dim);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--indigo);
+            box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+        }
+
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a8ba8' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        select option {
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        /* Budget pills */
+        .budget-pills {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 4px;
+        }
+        .budget-pill {
+            padding: 8px 14px; border-radius: 8px;
+            font-size: 13px; font-weight: 600;
+            background: var(--bg); border: 1px solid var(--border);
+            color: var(--text-muted); cursor: pointer;
+            transition: all .2s; user-select: none;
+        }
+        .budget-pill:hover { border-color: var(--indigo); color: var(--text); }
+        .budget-pill.selected {
+            background: rgba(79,70,229,.12);
+            border-color: var(--indigo);
+            color: var(--indigo);
+        }
+        html.light .budget-pill.selected { color: #3730a3; }
+
+        /* Submit */
+        .form-footer {
+            display: flex; align-items: center; gap: 16px;
+            margin-top: 28px; flex-wrap: wrap;
+        }
+
+        .btn-submit {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #25d366; color: #fff;
+            padding: 14px 28px; border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700; font-size: 15px;
+            border: none; cursor: pointer;
+            transition: background .2s, transform .2s, box-shadow .2s;
+            text-decoration: none;
+        }
+        .btn-submit:hover {
+            background: #1db954;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(37,211,102,.35);
+        }
+
+        .form-note {
+            font-size: 12px; color: var(--text-dim); line-height: 1.5;
+        }
+
+        /* Success state */
+        .form-success {
+            display: none;
+            text-align: center; padding: 40px 20px;
+        }
+        .form-success.show { display: block; }
+        .form-success .success-icon {
+            font-size: 48px; margin-bottom: 16px;
+        }
+        .form-success h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 22px; font-weight: 800;
+            color: var(--text); margin-bottom: 8px;
+        }
+        .form-success p { font-size: 15px; color: var(--text-muted); }
+
+        /* Error highlight */
+        input.error, select.error, textarea.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239,68,68,.1);
+        }
+        .error-msg {
+            font-size: 12px; color: #ef4444;
+            margin-top: 4px; display: none;
+        }
+        .error-msg.show { display: block; }
+
+        /* ── RESPONSIVE ──────────────────────────────────────────── */
+        @media (max-width: 860px) {
+            .page-inner { grid-template-columns: 1fr; gap: 40px; }
+            .left-panel { position: static; }
+            .form-card { padding: 28px 20px; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .budget-pills { gap: 6px; }
+            .budget-pill { font-size: 12px; padding: 7px 11px; }
+            .form-footer { flex-direction: column; align-items: stretch; }
+            .btn-submit { justify-content: center; }
+        }
+    
