@@ -115,3 +115,31 @@ test('SaliYa stays in development with provisional logo and bilingual capabiliti
  assert.ok(card.includes('href="contacto.html" data-i18n="saliya.interest"'));
  assert.ok(read('img/saliya-logo.svg').includes('logotipo provisional'));
 });
+
+test('commercial landing presents approved products first and preserves direct links and assets', () => {
+ const html=read('index.html'), portfolio=read('portfolio.html');
+ const start=html.indexOf('id="productos"'), end=html.indexOf('id="servicios"');
+ assert.ok(start>html.indexOf('id="inicio"') && end>start);
+ const section=html.slice(start,end);
+ assert.equal((section.match(/class="product-card(?: home-upcoming-card)?"/g)||[]).length,5);
+ for(const id of ['kineos360','omnidate','parksoft','bauvi-notify','saliya']) {
+  assert.ok(section.includes('href="portfolio.html#'+id+'"'));
+  assert.ok(portfolio.includes('id="'+id+'"'));
+ }
+ for(const value of ['https://www.kineos360.uy/','https://omnidate.com.uy/','img/omnidate-logo.svg','img/logoParkSoft.png','img/bauvi-notify-banner.webp','img/saliya-logo.svg']) assert.ok(section.includes(value),value);
+ assert.ok(section.includes('data-logo-dark="https://www.kineos360.uy/assets/img/logo.png"'));
+ assert.ok(section.includes('data-logo-light="https://www.kineos360.uy/assets/img/logoB.png"'));
+ assert.ok(section.includes('style="width:100%;height:100%;object-fit:cover;"'));
+ assert.ok(section.includes('En desarrollo') && section.includes('Lanzamiento y disponibilidad comercial pendientes'));
+ assert.ok(html.includes('href="#productos" class="btn-primary" data-i18n="hero.products"'));
+ assert.ok(html.includes('href="contacto.html" class="btn-outline" data-i18n="hero.talk"'));
+ assert.ok(!html.includes('class="hero-stats'));
+ for(const anchor of ['problema','servicios','sobre','proceso','contacto']) assert.ok(html.includes('id="'+anchor+'"'));
+});
+test('landing product grid and image rules retain mobile layout and theme fallback', () => {
+ const css=read('index.css');
+ assert.ok(css.includes('.home-products .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr))'));
+ assert.ok(css.includes('.home-products .products-grid, .home-products .home-upcoming-card { grid-template-columns: minmax(0, 1fr)'));
+ assert.ok(css.includes('.home-products .project-logo-cover [hidden] { display: none !important; }'));
+ assert.ok(css.includes('.home-products .notify-banner-cover img { object-fit: contain; object-position: center; }'));
+});
