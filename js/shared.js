@@ -39,6 +39,15 @@
   ham?.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
   menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu?.classList.contains('open')) { setMenu(false); ham?.focus(); } });
+  document.querySelectorAll('[data-product-logo]').forEach(cover => {
+    const image = cover.querySelector('img');
+    const fallback = cover.querySelector('.project-logo-fallback');
+    if (!image || !fallback) return;
+    const show = loaded => { image.hidden = !loaded; fallback.hidden = loaded; };
+    image.addEventListener('load', () => show(true));
+    image.addEventListener('error', () => show(false));
+    if (image.complete) show(image.naturalWidth > 0);
+  });
   applyTheme(get('bvt-theme', 'dark'));
   changeLang(get('bvt-lang', 'es'));
 })();

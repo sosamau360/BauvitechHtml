@@ -34,3 +34,10 @@ test('approved product catalogue and both languages', () => {
   for(const m of read(page).matchAll(/data-i18n="([^"]+)"/g)) for(const lang of ['es','en']) assert.ok(Object.hasOwn(d[lang],m[1]),page+': '+lang+': '+m[1]);
  }
 });
+
+test('Kineos360 uses official logo with text fallback', () => {
+ const html = read('portfolio.html');
+ assert.ok(html.includes('src="https://www.kineos360.uy/assets/img/logo.png" alt="Kineos360"'));
+ assert.ok(html.includes('class="project-logo-fallback">Kineos360'));
+ assert.ok(read('js/shared.js').includes("image.addEventListener('error'"));
+});

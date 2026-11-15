@@ -486,3 +486,10 @@ footer {
 .product-action { display: inline-block; margin-top: 20px; color: var(--primary); font-weight: 700; text-decoration: underline; }
 .product-status { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
 .project-card .tag { background: var(--surface2); color: var(--text); }
+
+/* Official product logo: preserve proportions and retain text if unavailable. */
+.project-logo-cover { display: grid; place-items: center; background: var(--surface2); padding: 28px; }
+.project-logo-cover .project-logo-image { width: 100%; height: 100%; max-width: 360px; max-height: 164px; object-fit: contain; }
+.project-logo-cover [hidden] { display: none !important; }
+.project-logo-fallback { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(24px,4vw,40px); color: var(--text); }
+.project-card:hover .project-logo-cover img { transform: none; }

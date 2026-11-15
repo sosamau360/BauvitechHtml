@@ -63,3 +63,16 @@ test('valid quote preserves translated selection and encoded text, budget option
  assert.equal(x.opened[0][2],'noopener,noreferrer');
  x.budget[1].fire('click');x.ids.budgetForm.fire('submit');assert.ok(!decodeURIComponent(x.opened[1][0]).includes('Budget:'),'budget deselected');
 });
+
+test('official logo fallback remains visible if load fails and hides on success',()=>{
+ const image=el('img'), fallback=el('span'); image.complete=true; image.naturalWidth=0; image.hidden=true; fallback.hidden=false;
+ const cover=el(); cover.querySelector=s=>s==='img'?image:fallback;
+ const x=fixture(); const query=x.doc.querySelectorAll;
+ x.doc.querySelectorAll=s=>s==='[data-product-logo]'?[cover]:query(s);
+ const window={}; new Function('window',read('js/contacto.i18n.js'))(window);
+ const storage={getItem:()=>null,setItem:()=>{}};
+ new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
+ assert.equal(image.hidden,true); assert.equal(fallback.hidden,false);
+ image.fire('load'); assert.equal(image.hidden,false); assert.equal(fallback.hidden,true);
+ image.fire('error'); assert.equal(image.hidden,true); assert.equal(fallback.hidden,false);
+});
