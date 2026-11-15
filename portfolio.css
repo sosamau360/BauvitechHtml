@@ -493,3 +493,6 @@ footer {
 .project-logo-cover [hidden] { display: none !important; }
 .project-logo-fallback { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(24px,4vw,40px); color: var(--text); }
 .project-card:hover .project-logo-cover img { transform: none; }
+
+.product-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: 20px; }
+.product-actions .product-action { margin-top: 0; }

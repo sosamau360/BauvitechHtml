@@ -30,7 +30,7 @@ Servir la raíz con un servidor HTTP estático (por ejemplo Live Server de VS Co
 - img/favicon-512.png
 - site.webmanifest
 
-Kineos360 usa su logo original publicado en https://www.kineos360.uy/assets/img/logo.png (origen: assets/img/logo.png del repositorio AsistanceControl). Se mantiene texto de respaldo si no carga. Pendiente comprobar HTTP y apariencia en navegador, y guardar una copia local del PNG cuando esté disponible para eliminar la dependencia externa. Logos/capturas reales de BauVi.Notify y SaliYa pendientes; se usan portadas de texto, sin imágenes falsas. Confirmar rutas públicas, madurez y funciones de BauVi.Notify y SaliYa antes de publicar. Verificar permisos de uso de imágenes y ausencia de datos personales en capturas.
+La tarjeta de Kineos360 enlaza al sitio oficial https://www.kineos360.uy/ y conserva el enlace de consulta. Kineos360 usa su logo original publicado en https://www.kineos360.uy/assets/img/logo.png (origen: assets/img/logo.png del repositorio AsistanceControl). Se mantiene texto de respaldo si no carga. Pendiente comprobar HTTP y apariencia en navegador, y guardar una copia local del PNG cuando esté disponible para eliminar la dependencia externa. Logos/capturas reales de BauVi.Notify y SaliYa pendientes; se usan portadas de texto, sin imágenes falsas. Confirmar rutas públicas, madurez y funciones de BauVi.Notify y SaliYa antes de publicar. Verificar permisos de uso de imágenes y ausencia de datos personales en capturas.
 
 ## Validación
 

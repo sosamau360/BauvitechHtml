@@ -41,3 +41,10 @@ test('Kineos360 uses official logo with text fallback', () => {
  assert.ok(html.includes('class="project-logo-fallback">Kineos360'));
  assert.ok(read('js/shared.js').includes("image.addEventListener('error'"));
 });
+
+test('Kineos360 links to its official site and keeps contact action', () => {
+ const html=read('portfolio.html');
+ const card=html.slice(html.indexOf('data-product-logo'),html.indexOf('</article>',html.indexOf('data-product-logo')));
+ assert.ok(card.includes('href="https://www.kineos360.uy/" data-i18n="kineos.visit"'));
+ assert.ok(card.includes('href="contacto.html" data-i18n="product.contact"'));
+});

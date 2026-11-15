@@ -66,7 +66,8 @@ window.BauViTechTranslations = {
     "product.contact": "Consultar por el producto",
     "product.visit": "Visitar OmniDate",
     "product.interest": "Consultar novedades",
-    "product.development": "En desarrollo"
+    "product.development": "En desarrollo",
+    "kineos.visit": "Visitar Kineos360"
   },
   "en": {
     "nav.about": "About",
@@ -135,6 +136,7 @@ window.BauViTechTranslations = {
     "product.contact": "Ask about this product",
     "product.visit": "Visit OmniDate",
     "product.interest": "Ask for updates",
-    "product.development": "In development"
+    "product.development": "In development",
+    "kineos.visit": "Visit Kineos360"
   }
 };
