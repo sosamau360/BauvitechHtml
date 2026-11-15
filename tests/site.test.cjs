@@ -103,3 +103,15 @@ test('BauVi.Notify uses the approved local banner without cropping', () => {
  assert.ok(image.includes('object-fit: contain') && image.includes('object-position: center'));
  assert.ok(css.includes('.project-card:hover .notify-banner-cover img { transform: none; }'));
 });
+
+test('SaliYa stays in development with provisional logo and bilingual capabilities', () => {
+ const html=read('portfolio.html');
+ const start=html.indexOf('data-i18n="saliya.title"');
+ const card=html.slice(html.lastIndexOf('<article class="project-card">',start),html.indexOf('</article>',start));
+ assert.ok(start>html.indexOf('id="en-desarrollo"') && start<html.indexOf('id="casos"'));
+ assert.ok(card.includes('data-i18n="product.development"') && card.includes('data-i18n="saliya.availability"'));
+ assert.ok(card.includes('src="img/saliya-logo.svg"'));
+ assert.ok(card.includes('data-i18n="saliya.feature3"'));
+ assert.ok(card.includes('href="contacto.html" data-i18n="saliya.interest"'));
+ assert.ok(read('img/saliya-logo.svg').includes('logotipo provisional'));
+});

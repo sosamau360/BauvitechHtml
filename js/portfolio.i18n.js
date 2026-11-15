@@ -61,8 +61,8 @@ window.BauViTechTranslations = {
     "kineos.desc": "Centralizá la gestión de tu club y conectá dirigentes, entrenadores, jugadores y familias. Cada institución cuenta con su propia aplicación web instalable, personalizada con su nombre, escudo y colores.",
     "notify.title": "BauVi.Notify — Plataforma de comunicaciones",
     "notify.desc": "Centralizá las notificaciones de tus aplicaciones en una sola API. Integrá WhatsApp con tus sistemas para automatizar avisos, recordatorios y confirmaciones, con administración centralizada y seguimiento de los envíos.",
-    "saliya.title": "SaliYa",
-    "saliya.desc": "Proyecto de reservas gastronómicas y promociones para restaurantes. Actualmente en desarrollo; disponibilidad comercial pendiente de validación.",
+    "saliya.title": "SaliYa — Reservas gastronómicas con promociones",
+    "saliya.desc": "Una plataforma para descubrir restaurantes, elegir cuándo salir y reservar con beneficios gastronómicos. Los restaurantes podrán gestionar sus promociones, sucursales y cupos para atraer más clientes.",
     "product.contact": "Consultar por el producto",
     "product.visit": "Visitar OmniDate",
     "product.interest": "Consultar novedades",
@@ -82,7 +82,12 @@ window.BauViTechTranslations = {
     "notify.feature2": "Administración de instancias, límites de envío y selección de conexiones autorizadas",
     "notify.feature3": "Historial de mensajes, estados de envío y panel de estadísticas",
     "notify.roadmap": "En evolución: cola persistente, prioridades, vencimiento, reintentos y webhooks de estado; disponibilidad sujeta a validación.",
-    "notify.demo": "Consultar por la integración"
+    "notify.demo": "Consultar por la integración",
+    "saliya.feature1": "Búsqueda de restaurantes por zona, fecha y cantidad de comensales",
+    "saliya.feature2": "Promociones, menús, horarios y disponibilidad de cupos",
+    "saliya.feature3": "Gestión de reservas y sucursales para restaurantes",
+    "saliya.availability": "En desarrollo. Lanzamiento y disponibilidad comercial pendientes.",
+    "saliya.interest": "Consultar por SaliYa"
   },
   "en": {
     "nav.about": "About",
@@ -146,8 +151,8 @@ window.BauViTechTranslations = {
     "kineos.desc": "Centralize club management and connect directors, coaches, players and families. Each club has its own installable web app with its name, badge and colors.",
     "notify.title": "BauVi.Notify — Communications platform",
     "notify.desc": "Centralize notifications from your applications through a single API. Connect WhatsApp to your systems to automate alerts, reminders and confirmations, with centralized administration and message tracking.",
-    "saliya.title": "SaliYa",
-    "saliya.desc": "Restaurant booking and promotion project. In development; commercial availability has not been confirmed.",
+    "saliya.title": "SaliYa — Restaurant bookings and offers",
+    "saliya.desc": "A platform to discover restaurants, choose when to dine out and book with dining offers. Restaurants will be able to manage promotions, branches and capacity to attract more customers.",
     "product.contact": "Ask about this product",
     "product.visit": "Visit OmniDate",
     "product.interest": "Ask for updates",
@@ -167,6 +172,11 @@ window.BauViTechTranslations = {
     "notify.feature2": "Instance administration, sending limits and authorized connection selection",
     "notify.feature3": "Message history, delivery status and statistics dashboard",
     "notify.roadmap": "In development: persistent queue, priorities, expiry, retries and status webhooks; availability subject to validation.",
-    "notify.demo": "Ask about integration"
+    "notify.demo": "Ask about integration",
+    "saliya.feature1": "Find restaurants by location, date and party size",
+    "saliya.feature2": "Offers, menus, schedules and available capacity",
+    "saliya.feature3": "Reservation and branch management for restaurants",
+    "saliya.availability": "In development. Launch and commercial availability pending.",
+    "saliya.interest": "Ask about SaliYa"
   }
 };
