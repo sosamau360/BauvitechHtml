@@ -114,12 +114,12 @@
                 <span data-i18n="page.back">Volver al inicio</span>
             </a>
 
-            <div class="page-tag" data-i18n="page.tag">Presupuesto</div>
-            <h1 class="page-title" data-i18n="page.title">Cuéntame sobre tu proyecto</h1>
-            <p class="page-sub" data-i18n="page.sub">Completa el formulario y te envío una propuesta clara por WhatsApp, sin compromiso y sin costo.</p>
+            <div class="page-tag" data-i18n="page.tag">Contacto comercial</div>
+            <h1 class="page-title" data-i18n="page.title">¿En qué podemos ayudarte?</h1>
+            <p class="page-sub" data-i18n="page.sub">Elegí un producto, consultá por una colaboración .NET o contame qué software necesitás. También podés solicitar un presupuesto detallado.</p>
 
             <div class="promise-list">
-                <div class="promise-item"><div class="dot">✓</div><span data-i18n="promise.p1">Respuesta el mismo día</span></div>
+                <div class="promise-item"><div class="dot">✓</div><span data-i18n="promise.p1">Comunicación directa</span></div>
                 <div class="promise-item"><div class="dot">✓</div><span data-i18n="promise.p2">Evaluación sin costo</span></div>
                 <div class="promise-item"><div class="dot">✓</div><span data-i18n="promise.p3">Sin intermediarios</span></div>
                 <div class="promise-item"><div class="dot">✓</div><span data-i18n="promise.p4">Propuesta a medida</span></div>
@@ -139,8 +139,49 @@
         </div>
 
         <!-- RIGHT: FORM -->
-        <div class="form-card">
-
+        <div class="contact-forms">
+        <section class="form-card quick-card" id="consulta-rapida" aria-labelledby="quick-title">
+    <h2 id="quick-title" class="quick-heading" data-i18n="quick.title">Consulta rápida</h2>
+    <p class="quick-intro" data-i18n="quick.intro">Elegí tu interés y prepará un mensaje. No necesitás completar un presupuesto para conversar.</p>
+    <form id="quickInquiry" hidden>
+        <fieldset class="quick-fieldset">
+            <legend data-i18n="quick.intent">¿Qué necesitás?</legend>
+            <div class="quick-choices">
+                <label class="quick-choice" for="quick-intent-developer"><input type="radio" id="quick-intent-developer" name="quick-intent" value="developer"><span data-i18n="quick.developer">Contratar un desarrollador .NET</span></label>
+                <label class="quick-choice" for="quick-intent-product"><input type="radio" id="quick-intent-product" name="quick-intent" value="product"><span data-i18n="quick.product">Consultar por un producto</span></label>
+                <label class="quick-choice" for="quick-intent-custom"><input type="radio" id="quick-intent-custom" name="quick-intent" value="custom" checked><span data-i18n="quick.custom">Desarrollar software a medida</span></label>
+            </div>
+        </fieldset>
+        <div class="form-group" id="quick-product-group" hidden>
+            <label for="quick-product" data-i18n="quick.product.label">¿Qué producto te interesa?</label>
+            <select id="quick-product">
+                <option value="kineos360">Kineos360</option>
+                <option value="omnidate">OmniDate</option>
+                <option value="parksoft">ParkSoft / Multiparking</option>
+                <option value="bauvi-notify">BauVi.Notify</option>
+                <option value="saliya" data-i18n="quick.saliya">SaliYa — En desarrollo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quick-name" data-i18n="quick.name">Tu nombre o empresa (opcional)</label>
+            <input type="text" id="quick-name" maxlength="100" autocomplete="name" data-i18n="quick.name.placeholder" placeholder="Nombre o empresa">
+        </div>
+        <div class="form-group">
+            <label for="quick-message" data-i18n="quick.message">¿Qué te gustaría consultar? (opcional)</label>
+            <textarea id="quick-message" maxlength="1000" rows="3" data-i18n="quick.message.placeholder" placeholder="Contame brevemente qué necesitás…"></textarea>
+        </div>
+        <div class="quick-preview">
+            <h3 id="quick-preview-label" data-i18n="quick.preview">Vista previa del mensaje</h3>
+            <p id="quick-preview" aria-labelledby="quick-preview-label"></p>
+        </div>
+        <div class="form-footer"><button type="submit" class="btn-submit"><span data-i18n="quick.send">Consultar por WhatsApp</span></button><p class="form-note" data-i18n="quick.note">WhatsApp se abrirá con tu mensaje preparado. Vos decidís si lo enviás.</p></div>
+    </form>
+    <noscript><p><a href="https://wa.me/59891850930" target="_blank" rel="noopener noreferrer">WhatsApp</a></p></noscript>
+    <a href="#presupuesto" class="quick-quote-link" data-i18n="quick.quote.link">Prefiero solicitar un presupuesto detallado</a>
+</section>
+        <div class="form-card" id="presupuesto" aria-labelledby="quote-title">
+            <h2 id="quote-title" class="quick-heading" data-i18n="quick.quote.title">Presupuesto detallado</h2>
+            <p class="quick-intro" data-i18n="quick.quote.sub">Para proyectos con un alcance más definido, completá los datos del presupuesto.</p>
             <!-- Form -->
             <form id="budgetForm" novalidate>
 
@@ -205,6 +246,7 @@
             </form>
 
         </div><!-- /form-card -->
+        </div><!-- /contact-forms -->
     </div><!-- /page-inner -->
 </main><!-- /page-wrap -->
 
@@ -216,5 +258,6 @@
 <script src="js/contacto.i18n.js"></script>
 <script src="js/shared.js"></script>
 <script src="js/contacto.js"></script>
+<script src="js/consulta.js"></script>
 </body>
 </html>

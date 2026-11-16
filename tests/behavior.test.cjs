@@ -127,3 +127,51 @@ test('professional links follow language, fixed profile locale overrides prefere
  new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
  assert.equal(x.html.lang,'en');assert.equal(x.doc.title,'Remote .NET Developer | Mauricio Sosa · BauViTech');
 });
+
+function quickFixture(search='',lang='es'){
+ const x=fixture({},false,false);
+ for(const id of ['quickInquiry','quick-intent-developer','quick-intent-product','quick-intent-custom','quick-product','quick-product-group','quick-name','quick-message','quick-preview'])x.ids[id]=el();
+ const window={location:{search},open(...args){x.opened.push(args);}};
+ new Function('window',read('js/contacto.i18n.js'))(window);
+ const storage={getItem:k=>k==='bvt-lang'?lang:null,setItem:()=>{}};
+ new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
+ new Function('window','document',read('js/consulta.js'))(window,x.doc);
+ return x;
+}
+test('BVT-11 all product links preselect product and generate bilingual contextual messages',()=>{
+ for(const [id,name] of [['kineos360','Kineos360'],['omnidate','OmniDate'],['parksoft','ParkSoft'],['bauvi-notify','BauVi.Notify'],['saliya','SaliYa']]){
+  for(const lang of ['es','en']){
+   const x=quickFixture('?interes='+id+'&origen=portfolio',lang);
+   assert.equal(x.ids['quick-product'].value,id);
+   assert.equal(x.ids['quick-product-group'].hidden,false);
+   assert.ok(x.ids['quick-preview'].textContent.includes(name));
+   assert.equal(x.opened.length,0);
+   x.ids.quickInquiry.fire('submit');
+   const text=new URLSearchParams(x.opened[0][0].split('?')[1]).get('text');
+   assert.equal(text,x.ids['quick-preview'].textContent);
+   assert.ok(text.includes(lang==='es'?'Origen: Portfolio de BauViTech':'Source: BauViTech portfolio'));
+   assert.equal(x.opened[0][2],'noopener,noreferrer');
+  }
+ }
+});
+test('BVT-11 language override, intent switching, bounded text and invalid query fallback',()=>{
+ const x=quickFixture('?interes=developer&origen=perfil&lang=en','es');
+ assert.equal(x.html.lang,'en');assert.ok(x.ids['quick-preview'].textContent.includes('.NET development collaboration'));
+ assert.equal(x.ids['quick-product-group'].hidden,true);
+ x.ids['quick-name'].value='Test & Co';x.ids['quick-message'].value='¿Presupuesto? #1 / 漢字';
+ x.ids['quick-message'].fire('input');x.ids.quickInquiry.fire('submit');
+ let text=new URLSearchParams(x.opened[0][0].split('?')[1]).get('text');
+ assert.ok(text.includes('Test & Co')&&text.includes('¿Presupuesto? #1 / 漢字'));
+ x.es.fire('click');assert.ok(x.ids['quick-preview'].textContent.includes('colaboración de desarrollo .NET'));
+ x.ids['quick-intent-developer'].checked=false;x.ids['quick-intent-product'].checked=true;
+ x.ids['quick-product'].value='parksoft';x.ids['quick-intent-product'].fire('change');
+ assert.equal(x.ids['quick-product-group'].hidden,false);assert.ok(x.ids['quick-preview'].textContent.includes('ParkSoft'));
+ const invalid=quickFixture('?interes=__proto__&origen=evil&lang=xx');
+ assert.ok(invalid.ids['quick-preview'].textContent.includes('software a medida'));
+ assert.ok(invalid.ids['quick-preview'].textContent.includes('Contacto de BauViTech'));
+ assert.ok(!invalid.ids['quick-preview'].textContent.includes('evil'));
+ invalid.ids['quick-name'].value='a'.repeat(120);invalid.ids['quick-message'].value='b'.repeat(1200);
+ invalid.ids.quickInquiry.fire('submit');text=new URLSearchParams(invalid.opened[0][0].split('?')[1]).get('text');
+ assert.ok(text.includes('a'.repeat(100))&&!text.includes('a'.repeat(101)));
+ assert.ok(text.includes('b'.repeat(1000))&&!text.includes('b'.repeat(1001)));
+});

@@ -83,5 +83,6 @@
     });
   }
   applyTheme(get('bvt-theme', 'dark'));
-  changeLang(html.dataset.pageLang || get('bvt-lang', 'es'));
+  const contactLang = document.getElementById('quickInquiry') ? new URLSearchParams(window.location?.search || '').get('lang') : null;
+  changeLang(html.dataset.pageLang || (contactLang === 'es' || contactLang === 'en' ? contactLang : get('bvt-lang', 'es')));
 })();

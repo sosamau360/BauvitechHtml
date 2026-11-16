@@ -127,7 +127,8 @@ window.BauViTechTranslations = {
     "v2.more.notify": "API de comunicaciones · Consultar integración",
     "v2.more.saliya": "Reservas gastronómicas · En desarrollo",
     "v2.problem": "Software para tu forma de trabajar",
-    "v2.problem.desc": "Reemplazá tareas manuales, conectá sistemas y mejorá el control de tu operación."
+    "v2.problem.desc": "Reemplazá tareas manuales, conectá sistemas y mejorá el control de tu operación.",
+    "home.quick.contact": "Consultar"
   },
   "en": {
     "nav.services": "Services",
@@ -257,6 +258,7 @@ window.BauViTechTranslations = {
     "v2.more.notify": "Communications API · Ask about integration",
     "v2.more.saliya": "Restaurant reservations · In development",
     "v2.problem": "Software for the way you work",
-    "v2.problem.desc": "Replace manual tasks, connect systems and improve operational control."
+    "v2.problem.desc": "Replace manual tasks, connect systems and improve operational control.",
+    "home.quick.contact": "Ask about this product"
   }
 };

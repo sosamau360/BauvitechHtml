@@ -5,7 +5,7 @@ const test = require('node:test');
 const root = path.resolve(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 const pages = ['index.html','portfolio.html','contacto.html'];
-const scripts = ['js/developer.i18n.js','js/shared.js','js/index.i18n.js','js/portfolio.i18n.js','js/contacto.i18n.js','js/contacto.js'];
+const scripts = ['js/developer.i18n.js','js/shared.js','js/index.i18n.js','js/portfolio.i18n.js','js/contacto.i18n.js','js/contacto.js','js/consulta.js'];
 test('all JavaScript parses', () => { for (const name of scripts) assert.doesNotThrow(() => new Function(read(name)), name); });
 test('pages have unique IDs, shared scripts and valid local HTML/CSS/JS links', () => {
  for (const name of pages) {
@@ -15,7 +15,7 @@ test('pages have unique IDs, shared scripts and valid local HTML/CSS/JS links', 
   assert.ok(html.includes('src="js/shared.js"'), name);
   for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
    const value=m[1]; if (/^(?:https?:|mailto:|data:)/.test(value)) continue;
-   const [file,fragment]=value.split('#');
+   const [address,fragment]=value.split('#'); const file=address.split('?')[0];
    if (!file && fragment) assert.ok(ids.includes(fragment), name+': '+value);
    if (file && /\.(?:html|css|js)$/.test(file)) {
     const target=read(file); if(fragment) assert.ok(target.includes('id="'+fragment+'"'),value);
@@ -48,7 +48,7 @@ test('Kineos360 links to its official site and keeps contact action', () => {
  const html=read('portfolio.html');
  const card=html.slice(html.indexOf('data-product-logo'),html.indexOf('</article>',html.indexOf('data-product-logo')));
  assert.ok(card.includes('href="https://www.kineos360.uy/" data-i18n="kineos.visit"'));
- assert.ok(card.includes('href="contacto.html" data-i18n="product.contact"'));
+ assert.ok(card.includes('href="contacto.html?interes=kineos360&amp;origen=portfolio#consulta-rapida" data-i18n="product.contact"'));
 });
 
 test('OmniDate card uses official local SVG, bilingual features and official link', () => {
@@ -57,7 +57,7 @@ test('OmniDate card uses official local SVG, bilingual features and official lin
  assert.ok(start>=0);
  const card=html.slice(start,html.indexOf('</article>',start));
  assert.ok(card.includes('href="https://omnidate.com.uy/"'));
- assert.ok(card.includes('href="contacto.html"'));
+ assert.ok(card.includes('href="contacto.html?interes=omnidate&amp;origen=portfolio#consulta-rapida"'));
  assert.ok(card.includes('consultar disponibilidad'));
  assert.ok(card.includes('data-i18n="omnidate.feature3"'));
  assert.ok(read('img/omnidate-logo.svg').includes('viewBox="0 0 8816 4277"'));
@@ -74,7 +74,7 @@ test('ParkSoft retains the exact original image configuration and improved produ
  assert.ok(card.includes('<div class="project-img-fallback" style="background: linear-gradient(135deg,#3b82f6,#06b6d4,#14b8a6);">'));
  assert.ok(card.includes('<img src="img/logoParkSoft.png" alt="ParkSoft" style="width:100%;height:100%;object-fit:cover;">'));
  assert.ok(card.includes('data-i18n="parksoft.feature3"'));
- assert.ok(card.includes('href="contacto.html" data-i18n="parksoft.demo"'));
+ assert.ok(card.includes('href="contacto.html?interes=parksoft&amp;origen=portfolio#consulta-rapida" data-i18n="parksoft.demo"'));
  assert.ok(card.includes('SQLite'));
  assert.ok(!card.includes('data-product-logo'));
  assert.ok(!read('portfolio.css').includes('parksoft-original-cover'));
@@ -88,7 +88,7 @@ test('BauVi.Notify card distinguishes implemented WhatsApp from evolving capabil
  assert.ok(card.includes('WhatsApp') && card.includes('REST API'));
  assert.ok(card.includes('data-i18n="notify.feature3"'));
  assert.ok(card.includes('data-i18n="notify.roadmap"') && card.includes('disponibilidad sujeta a validación'));
- assert.ok(card.includes('href="contacto.html" data-i18n="notify.demo"'));
+ assert.ok(card.includes('href="contacto.html?interes=bauvi-notify&amp;origen=portfolio#consulta-rapida" data-i18n="notify.demo"'));
  assert.ok(!/\bSMS\b|Email|correo electrónico/.test(card));
 });
 
@@ -112,7 +112,7 @@ test('SaliYa stays in development with provisional logo and bilingual capabiliti
  assert.ok(card.includes('data-i18n="product.development"') && card.includes('data-i18n="saliya.availability"'));
  assert.ok(card.includes('src="img/saliya-logo.svg"'));
  assert.ok(card.includes('data-i18n="saliya.feature3"'));
- assert.ok(card.includes('href="contacto.html" data-i18n="saliya.interest"'));
+ assert.ok(card.includes('href="contacto.html?interes=saliya&amp;origen=portfolio#consulta-rapida" data-i18n="saliya.interest"'));
  assert.ok(read('img/saliya-logo.svg').includes('logotipo provisional'));
 });
 
@@ -205,7 +205,7 @@ test('BVT-10 static bilingual profile, reciprocal hreflang and valid local links
   assert.ok(h.includes('href="mailto:sosamau360@gmail.com"')&&h.includes('https://wa.me/59891850930?text='));
   assert.ok(h.includes(i?'A .NET developer for your team':'Desarrollador .NET para tu equipo'));
   const ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
-  for(const m of h.matchAll(/(?:href|src)="([^"]+)"/g)){const v=m[1];if(/^(https?:|mailto:|data:)/.test(v))continue;const [p,frag]=v.split('#');if(!p&&frag)assert.ok(ids.includes(frag));if(p&&/\.(html|css|js)$/.test(p)){const c=read(p);if(frag)assert.ok(c.includes('id="'+frag+'"'));}}
+  for(const m of h.matchAll(/(?:href|src)="([^"]+)"/g)){const v=m[1];if(/^(https?:|mailto:|data:)/.test(v))continue;const [address,frag]=v.split('#');const p=address.split('?')[0];if(!p&&frag)assert.ok(ids.includes(frag));if(p&&/\.(html|css|js)$/.test(p)){const c=read(p);if(frag)assert.ok(c.includes('id="'+frag+'"'));}}
   const ld=JSON.parse(h.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);assert.equal(ld.inLanguage,lang);assert.equal(ld.url,url);
   assert.ok(read('sitemap.xml').includes('<loc>'+url+'</loc>'));
  });
@@ -217,4 +217,23 @@ test('commercial navigation replaces the legacy about link without adding menu w
   assert.equal((nav.match(/data-profile-link/g)||[]).length,2);
   assert.ok(!nav.includes('data-i18n="nav.about"'));
  }
+});
+
+test('BVT-11 contextual inquiry links, accessible quick form and preserved quote',()=>{
+ const contact=read('contacto.html'),home=read('index.html'),portfolio=read('portfolio.html');
+ assert.ok(contact.includes('id="consulta-rapida"')&&contact.includes('id="quickInquiry" hidden')&&contact.includes('id="presupuesto"'));
+ assert.ok(contact.includes('<form id="budgetForm" novalidate>'));
+ assert.ok(contact.includes('id="f-email" data-i18n="email.placeholder" required'));
+ assert.ok(contact.includes('id="quick-name" maxlength="100"')&&contact.includes('id="quick-message" maxlength="1000"'));
+ assert.ok(contact.includes('src="js/consulta.js"'));
+ for(const p of ['kineos360','omnidate','parksoft','bauvi-notify','saliya']){
+  assert.ok(contact.includes('value="'+p+'"'));
+  assert.ok(home.includes('contacto.html?interes='+p+'&amp;origen=inicio#consulta-rapida'));
+  assert.ok(portfolio.includes('contacto.html?interes='+p+'&amp;origen=portfolio#consulta-rapida'));
+ }
+ assert.ok(home.includes('contacto.html?interes=custom&amp;origen=inicio#consulta-rapida'));
+ for(const [file,lang] of [['desarrollador.html','es'],['developer.html','en']])assert.ok(read(file).includes('contacto.html?interes=developer&amp;origen=perfil&amp;lang='+lang+'#consulta-rapida'));
+ const w={};new Function('window',read('js/contacto.i18n.js'))(w);
+ for(const lang of ['es','en'])for(const k of ['developer','custom','kineos360','omnidate','parksoft','bauvi-notify','saliya'])assert.ok(w.BauViTechTranslations[lang]['quick.greeting.'+k]);
+ assert.ok(!read('js/consulta.js').includes('innerHTML'));
 });
