@@ -65,3 +65,11 @@ test('link click uses only declared categorical attributes and tag failure does 
  assert.ok(x.commands().some(c=>c[1]==='whatsapp_contact_click'));assert.ok(!JSON.stringify(x.commands()).includes('PERSONAL'));
  x.scripts[0].fire('error');assert.equal(x.track('email_contact_click','developer','perfil','email'),false);
 });
+
+test('cross-tab reaccept requires fresh document after revocation',()=>{
+ const x=fixture({stored:'accepted'});
+ x.data.set('bvt-analytics-consent-v1','rejected');x.events.get('storage')({key:'bvt-analytics-consent-v1'});
+ x.data.set('bvt-analytics-consent-v1','accepted');x.events.get('storage')({key:'bvt-analytics-consent-v1'});
+ assert.equal(x.track('developer_interest','developer','perfil','profile'),false);
+ x.ids['analytics-accept'].fire('click');assert.equal(x.window.location.reloaded,true);
+});

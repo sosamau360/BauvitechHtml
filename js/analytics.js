@@ -37,7 +37,7 @@
     const consentKey = 'bvt-analytics-consent-v1';
     let consent = '', loaded = false, pageViewSent = false, script = null;
     const lastEvents = new Map();
-    let tag = null;
+    let tag = null, ownedQueue = null;
     const readConsent = () => { try { const value = window.localStorage.getItem(consentKey); return ['accepted','rejected'].includes(value) ? value : ''; } catch { return ''; } };
     const writeConsent = value => { try { window.localStorage.setItem(consentKey, value); } catch { /* Current-page consent still applies. */ } };
     // Never forward location.search, document.referrer, link href, form inputs or user text.
@@ -75,6 +75,7 @@
             if (window.gtag || window.dataLayer) return;
             window['ga-disable-' + id] = false;
             const queue = [];
+            ownedQueue = queue;
             window.dataLayer = queue;
             tag = window.gtag = function() { queue.push(arguments); };
             tag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
@@ -103,7 +104,7 @@
         script?.remove();
         script = null;
         // Clear queued commands and remove only this site's analytics cookies (best effort).
-        if (Array.isArray(window.dataLayer)) window.dataLayer.length = 0;
+        if (ownedQueue) ownedQueue.length = 0;
         try {
             for (const part of document.cookie.split(';')) {
                 const name = part.split('=')[0].trim();
@@ -142,11 +143,10 @@
     }
     function show(open) { panel.hidden = !open; settings.setAttribute('aria-expanded',String(open)); }
     function choose(value) {
-        const previous = consent;
         consent = value;
         writeConsent(value);
         if (value === 'rejected') stop();
-        else if (previous === 'rejected' && window.gtag) {
+        else if (ownedQueue && !loaded) {
             // Reload only on explicit re-accept after a tag was previously loaded and revoked.
             // A fresh document avoids reusing Google's already initialized tag or duplicated views.
             window.location.reload();
@@ -169,7 +169,7 @@
         if (next===consent) return;
         consent=next;
         if (consent !== 'accepted') stop();
-        // A grant in another tab is applied on next navigation; never start a new tag silently here.
+        // A grant in another tab is applied on next navigation or explicit acceptance here.
         render();show(!consent);
     });
     document.addEventListener('click',event => {

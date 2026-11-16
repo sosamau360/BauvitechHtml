@@ -30,7 +30,7 @@ function fixture(initial={},blocked=false,initialize=true) {
  new Function('window',read('js/contacto.i18n.js'))(window);
  if(initialize) new Function('window','document','localStorage',read('js/shared.js'))(window,doc,storage);
  new Function('window','document',read('js/contacto.js'))(window,doc);
- return {ids,doc,html,es,en,budget,anchor,data,opened,option};
+ return {ids,doc,html,es,en,budget,anchor,data,opened,option,window};
 }
 test('language and theme persistence, menu and Escape',()=>{
  const x=fixture({'bvt-lang':'en','bvt-theme':'light'});
@@ -136,6 +136,7 @@ function quickFixture(search='',lang='es'){
  const storage={getItem:k=>k==='bvt-lang'?lang:null,setItem:()=>{}};
  new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
  new Function('window','document',read('js/consulta.js'))(window,x.doc);
+ x.window=window;
  return x;
 }
 test('BVT-11 all product links preselect product and generate bilingual contextual messages',()=>{
@@ -174,4 +175,26 @@ test('BVT-11 language override, intent switching, bounded text and invalid query
  invalid.ids.quickInquiry.fire('submit');text=new URLSearchParams(invalid.opened[0][0].split('?')[1]).get('text');
  assert.ok(text.includes('a'.repeat(100))&&!text.includes('a'.repeat(101)));
  assert.ok(text.includes('b'.repeat(1000))&&!text.includes('b'.repeat(1001)));
+});
+
+test('BVT-12 quote tracks only valid intent and never passes form data',()=>{
+ const x=fixture(), calls=[];x.window.BauViTechAnalytics={track(...args){calls.push(args);return true;}};
+ x.ids.budgetForm.fire('submit');assert.equal(calls.length,0);
+ x.ids['f-name'].value='PRIVATE NAME';x.ids['f-email'].value='private@example.com';x.ids['f-type'].value='Sistema de gestión';x.ids['f-desc'].value='PRIVATE MESSAGE';
+ x.ids.budgetForm.fire('submit');
+ assert.equal(calls.length,1);assert.equal(JSON.stringify(calls[0]),JSON.stringify(['quote_request_click','custom','contacto','quote']));
+ assert.equal(x.opened.length,1);
+});
+test('BVT-12 quick inquiry tracks one start per interest and only categorical WhatsApp data',()=>{
+ const x=quickFixture('?interes=kineos360&origen=portfolio'),calls=[];
+ x.window.BauViTechAnalytics={track(...args){calls.push(args);return true;}};
+ x.ids['quick-name'].value='PRIVATE NAME';x.ids['quick-name'].fire('input');
+ x.ids['quick-message'].value='PRIVATE MESSAGE';x.ids['quick-message'].fire('input');
+ x.ids.quickInquiry.fire('submit');
+ assert.equal(calls.length,2);
+ assert.equal(JSON.stringify(calls[0]),JSON.stringify(['inquiry_start','kineos360','portfolio','form']));
+ assert.equal(JSON.stringify(calls[1]),JSON.stringify(['whatsapp_contact_click','kineos360','portfolio','whatsapp']));
+ assert.equal(x.opened.length,1);
+ x.ids['quick-product'].value='omnidate';x.ids['quick-product'].fire('change');
+ assert.equal(JSON.stringify(calls[2]),JSON.stringify(['inquiry_start','omnidate','portfolio','form']));
 });
