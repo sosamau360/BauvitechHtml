@@ -190,3 +190,10 @@ test('BVT-06 each public page has unique canonical SEO metadata and valid JSON-L
  for(const url of urls)assert.ok(sitemap.includes('<loc>'+url+'</loc>'));
  assert.ok(read('robots.txt').includes('Sitemap: https://www.bauvitech.com/sitemap.xml'));
 });
+
+test('IIS default document resolves index.html without clearing inherited documents or enabling directory browsing', () => {
+ const config=read('web.config');
+ assert.ok(read('index.html').includes('<!DOCTYPE html>'));
+ assert.ok(/<defaultDocument\s+enabled="true">\s*<files>\s*<remove value="index\.html"\s*\/>\s*<add value="index\.html"\s*\/>\s*<\/files>\s*<\/defaultDocument>/.test(config));
+ assert.ok(!/<clear\b|<directoryBrowse\b|<rewrite\b/.test(config));
+});
