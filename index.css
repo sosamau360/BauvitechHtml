@@ -424,3 +424,41 @@ html.light .home-product-actions .product-link { color: var(--blue); }
 .services-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
 .home-products .product-card, .service-card, .two-col > *, .about-grid-2 > * { min-width: 0; }
 .home-products a:focus-visible, .hero a:focus-visible { outline-color: var(--focus-ring); }
+
+/* BVT-09/10: commercial landing and professional profile. */
+.commercial-hero { text-align:left; padding:128px 28px 76px; }
+.commercial-hero-grid { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:48px; align-items:center; width:100%; }
+.commercial-hero-copy { min-width:0; }
+.commercial-hero h1 { font-size:clamp(36px,4.8vw,68px); line-height:1.08; overflow-wrap:break-word; }
+.commercial-hero .hero-actions,.developer-hero .hero-actions { justify-content:flex-start; }
+.commercial-stack { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:24px; color:var(--text-muted); font-size:13px; font-weight:600; }
+.commercial-proof { padding:28px; background:var(--surface); border:1px solid var(--border2); border-radius:20px; box-shadow:0 18px 40px rgba(0,0,0,.12); min-width:0; }
+.commercial-proof h2 { font-size:23px; margin-bottom:8px; }
+.commercial-muted { color:var(--text-muted); font-size:14px; }
+.commercial-proof-grid,.commercial-more-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:20px; }
+.commercial-proof-grid>a,.commercial-more-grid>a { display:flex; flex-direction:column; gap:6px; padding:16px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; min-width:0; overflow-wrap:anywhere; }
+.commercial-proof-grid>a:hover,.commercial-more-grid>a:hover { border-color:var(--link-readable); }
+.commercial-proof-grid strong,.commercial-more-grid strong { color:var(--link-readable); font-size:17px; }
+.commercial-proof-grid span,.commercial-more-grid span { color:var(--text-muted); font-size:13px; }
+.commercial-offers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:32px; }
+.commercial-offer { display:flex; flex-direction:column; gap:14px; align-items:flex-start; padding:28px; background:var(--surface); border:1px solid var(--border); border-radius:16px; min-width:0; }
+.commercial-offer h3 { font-size:22px; }
+.commercial-offer p,.commercial-problem p { color:var(--text-dim); font-size:15px; }
+.commercial-offer .service-icon { margin-bottom:0; }
+.commercial-link { color:var(--link-readable); font-weight:700; text-decoration:underline; text-underline-offset:4px; margin-top:auto; }
+.commercial-problem { margin-top:28px; padding:24px; border-left:3px solid var(--link-readable); background:var(--bg2); border-radius:8px; }
+.commercial-problem h3,.commercial-more h3 { margin-bottom:10px; }
+.commercial-more { margin-top:32px; }
+.commercial-more-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.developer-hero { padding-top:128px; }
+.developer-hero-grid { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:56px; align-items:center; }
+.developer-hero h1 { font-size:clamp(36px,5vw,65px); margin-bottom:20px; }
+.developer-hero .hero-actions { margin-top:28px; }
+.developer-hero .about-img-wrap { width:100%; max-width:360px; justify-self:center; }
+.developer-social { display:flex; flex-wrap:wrap; gap:18px; margin-top:24px; color:var(--link-readable); }
+.developer-social a { text-decoration:underline; text-underline-offset:3px; }
+.profile-language a { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; padding:0 10px; color:var(--text-muted); font-size:12px; font-weight:700; border:0; }
+.profile-language a.active { background:var(--indigo); color:white; }
+@media(max-width:900px){.commercial-hero-grid,.developer-hero-grid{grid-template-columns:minmax(0,1fr);gap:32px}.commercial-offers{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){.commercial-more-grid,.commercial-proof-grid.developer-projects{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:480px){.commercial-hero{padding:104px 20px 48px}.commercial-proof{padding:18px}.commercial-proof-grid{grid-template-columns:minmax(0,1fr)}.commercial-offer{padding:22px}.developer-hero{padding-top:104px}}

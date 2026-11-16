@@ -46,7 +46,8 @@ window.BauViTechTranslations = {
     "a11y.whatsapp": "Contactar por WhatsApp",
     "a11y.lightTheme": "Tema claro",
     "seo.title": "Contacto y presupuesto de software | BauViTech",
-    "nav.products": "Productos"
+    "nav.products": "Productos",
+    "v2.nav.profile": "Perfil profesional"
   },
   "en": {
     "nav.problem": "The problem",
@@ -95,6 +96,7 @@ window.BauViTechTranslations = {
     "a11y.whatsapp": "Contact via WhatsApp",
     "a11y.lightTheme": "Light theme",
     "seo.title": "Contact and software quote | BauViTech",
-    "nav.products": "Products"
+    "nav.products": "Products",
+    "v2.nav.profile": "Developer profile"
   }
 };

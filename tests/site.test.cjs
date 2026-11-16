@@ -5,7 +5,7 @@ const test = require('node:test');
 const root = path.resolve(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 const pages = ['index.html','portfolio.html','contacto.html'];
-const scripts = ['js/shared.js','js/index.i18n.js','js/portfolio.i18n.js','js/contacto.i18n.js','js/contacto.js'];
+const scripts = ['js/developer.i18n.js','js/shared.js','js/index.i18n.js','js/portfolio.i18n.js','js/contacto.i18n.js','js/contacto.js'];
 test('all JavaScript parses', () => { for (const name of scripts) assert.doesNotThrow(() => new Function(read(name)), name); });
 test('pages have unique IDs, shared scripts and valid local HTML/CSS/JS links', () => {
  for (const name of pages) {
@@ -116,25 +116,19 @@ test('SaliYa stays in development with provisional logo and bilingual capabiliti
  assert.ok(read('img/saliya-logo.svg').includes('logotipo provisional'));
 });
 
-test('commercial landing presents approved products first and preserves direct links and assets', () => {
- const html=read('index.html'), portfolio=read('portfolio.html');
- const start=html.indexOf('id="productos"'), end=html.indexOf('id="servicios"');
- assert.ok(start>html.indexOf('id="inicio"') && end>start);
- const section=html.slice(start,end);
- assert.equal((section.match(/class="product-card(?: home-upcoming-card)?"/g)||[]).length,5);
- for(const id of ['kineos360','omnidate','parksoft','bauvi-notify','saliya']) {
-  assert.ok(section.includes('href="portfolio.html#'+id+'"'));
-  assert.ok(portfolio.includes('id="'+id+'"'));
- }
- for(const value of ['https://www.kineos360.uy/','https://omnidate.com.uy/','img/omnidate-logo.svg','img/logoParkSoft.png','img/bauvi-notify-banner.webp','img/saliya-logo.svg']) assert.ok(section.includes(value),value);
- assert.ok(section.includes('data-logo-dark="https://www.kineos360.uy/assets/img/logo.png"'));
- assert.ok(section.includes('data-logo-light="https://www.kineos360.uy/assets/img/logoB.png"'));
- assert.ok(section.includes('style="width:100%;height:100%;object-fit:cover;"'));
- assert.ok(section.includes('En desarrollo') && section.includes('Lanzamiento y disponibilidad comercial pendientes'));
- assert.ok(html.includes('href="#productos" class="btn-primary" data-i18n="hero.products"'));
- assert.ok(html.includes('href="contacto.html" class="btn-outline" data-i18n="hero.talk"'));
- assert.ok(!html.includes('class="hero-stats'));
- for(const anchor of ['problema','servicios','sobre','proceso','contacto']) assert.ok(html.includes('id="'+anchor+'"'));
+test('commercial v2 prioritizes developer services and preserves catalog',()=>{
+ const h=read('index.html'),p=read('portfolio.html');
+ assert.ok(h.indexOf('id="inicio"')<h.indexOf('id="servicios"')&&h.indexOf('id="servicios"')<h.indexOf('id="productos"'));
+ assert.ok(h.includes('href="desarrollador.html" class="btn-primary" data-profile-link data-i18n="hero.talk"'));
+ assert.ok(h.includes('href="#productos" class="btn-outline" data-i18n="hero.products"'));
+ const s=h.slice(h.indexOf('id="productos"'),h.indexOf('id="sobre"'));
+ assert.equal((s.match(/class="product-card"/g)||[]).length,2);
+ for(const id of ['kineos360','omnidate','parksoft','bauvi-notify','saliya']){assert.ok(s.includes('href="portfolio.html#'+id+'"'));assert.ok(p.includes('id="'+id+'"'));}
+ for(const asset of ['img/logoParkSoft.png','img/bauvi-notify-banner.webp','img/saliya-logo.svg'])assert.ok(p.includes(asset));
+ assert.ok(s.includes('img/omnidate-logo.svg')&&s.includes('data-logo-light='));
+ assert.ok(s.includes('https://www.kineos360.uy/')&&s.includes('https://omnidate.com.uy/'));
+ assert.ok(s.includes('En desarrollo'));
+ for(const id of ['problema','servicios','sobre','proceso','contacto'])assert.ok(h.includes('id="'+id+'"'));
 });
 test('landing product grid and image rules retain mobile layout and theme fallback', () => {
  const css=read('index.css');
@@ -186,7 +180,7 @@ test('BVT-06 each public page has unique canonical SEO metadata and valid JSON-L
  });
  assert.equal(titles.size,3);assert.equal(descriptions.size,3);
  const sitemap=read('sitemap.xml');
- assert.equal((sitemap.match(/<loc>/g)||[]).length,3);
+ assert.equal((sitemap.match(/<loc>/g)||[]).length,5);
  for(const url of urls)assert.ok(sitemap.includes('<loc>'+url+'</loc>'));
  assert.ok(read('robots.txt').includes('Sitemap: https://www.bauvitech.com/sitemap.xml'));
 });
@@ -196,4 +190,23 @@ test('IIS default document resolves index.html without clearing inherited docume
  assert.ok(read('index.html').includes('<!DOCTYPE html>'));
  assert.ok(/<defaultDocument\s+enabled="true">\s*<files>\s*<remove value="index\.html"\s*\/>\s*<add value="index\.html"\s*\/>\s*<\/files>\s*<\/defaultDocument>/.test(config));
  assert.ok(!/<clear\b|<directoryBrowse\b|<rewrite\b/.test(config));
+});
+
+test('BVT-10 static bilingual profile, reciprocal hreflang and valid local links',()=>{
+ ['desarrollador.html','developer.html'].forEach((file,i)=>{
+  const h=read(file),lang=i?'en':'es',url='https://www.bauvitech.com/'+file;
+  assert.ok(h.includes('<html lang="'+lang+'" class="dark" data-page-lang="'+lang+'">'));
+  assert.ok(h.includes('rel="canonical" href="'+url+'"'));
+  assert.ok(h.includes('hreflang="es" href="https://www.bauvitech.com/desarrollador.html"'));
+  assert.ok(h.includes('hreflang="en" href="https://www.bauvitech.com/developer.html"'));
+  assert.ok(h.includes('href="desarrollador.html" lang="es" hreflang="es"'));
+  assert.ok(h.includes('href="developer.html" lang="en" hreflang="en"'));
+  assert.ok(h.includes('id="contenido-principal"')&&h.includes('src="js/shared.js"'));
+  assert.ok(h.includes('href="mailto:sosamau360@gmail.com"')&&h.includes('https://wa.me/59891850930?text='));
+  assert.ok(h.includes(i?'A .NET developer for your team':'Desarrollador .NET para tu equipo'));
+  const ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
+  for(const m of h.matchAll(/(?:href|src)="([^"]+)"/g)){const v=m[1];if(/^(https?:|mailto:|data:)/.test(v))continue;const [p,frag]=v.split('#');if(!p&&frag)assert.ok(ids.includes(frag));if(p&&/\.(html|css|js)$/.test(p)){const c=read(p);if(frag)assert.ok(c.includes('id="'+frag+'"'));}}
+  const ld=JSON.parse(h.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);assert.equal(ld.inLanguage,lang);assert.equal(ld.url,url);
+  assert.ok(read('sitemap.xml').includes('<loc>'+url+'</loc>'));
+ });
 });

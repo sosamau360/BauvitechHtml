@@ -93,7 +93,8 @@ window.BauViTechTranslations = {
     "a11y.mobileNav": "Navegación móvil",
     "a11y.whatsapp": "Contactar por WhatsApp",
     "a11y.lightTheme": "Tema claro",
-    "seo.title": "Productos y proyectos de software | BauViTech"
+    "seo.title": "Productos y proyectos de software | BauViTech",
+    "v2.nav.profile": "Perfil profesional"
   },
   "en": {
     "nav.about": "About",
@@ -189,6 +190,7 @@ window.BauViTechTranslations = {
     "a11y.mobileNav": "Mobile navigation",
     "a11y.whatsapp": "Contact via WhatsApp",
     "a11y.lightTheme": "Light theme",
-    "seo.title": "Software products and projects | BauViTech"
+    "seo.title": "Software products and projects | BauViTech",
+    "v2.nav.profile": "Developer profile"
   }
 };

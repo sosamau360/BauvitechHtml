@@ -114,3 +114,16 @@ test('theme buttons announce localized state and desktop resizing resets menu',(
  assert.equal(x.ids.hamburger.getAttribute('aria-expanded'),'false');
  assert.ok(!x.ids.mobileMenu.classList.contains('open'));
 });
+
+test('professional links follow language, fixed profile locale overrides preference',()=>{
+ const x=fixture({'bvt-lang':'en'},false,false),link=el('a');
+ const query=x.doc.querySelectorAll;x.doc.querySelectorAll=s=>s==='[data-profile-link]'?[link]:query(s);
+ const window={};new Function('window',read('js/developer.i18n.js'))(window);
+ const storage={getItem:k=>x.data.get(k),setItem:(k,v)=>x.data.set(k,v)};
+ new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
+ assert.equal(link.getAttribute('href'),'developer.html');
+ x.es.fire('click');assert.equal(link.getAttribute('href'),'desarrollador.html');
+ x.html.dataset.pageLang='en';x.data.set('bvt-lang','es');
+ new Function('window','document','localStorage',read('js/shared.js'))(window,x.doc,storage);
+ assert.equal(x.html.lang,'en');assert.equal(x.doc.title,'Remote .NET Developer | Mauricio Sosa · BauViTech');
+});

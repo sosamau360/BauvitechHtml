@@ -13,6 +13,7 @@
       el.classList.toggle('active', active);
       el.setAttribute('aria-pressed', String(active));
     });
+    document.querySelectorAll('[data-profile-link]').forEach(el => el.setAttribute('href', lang === 'en' ? 'developer.html' : 'desarrollador.html'));
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const text = T[lang][el.dataset.i18n];
       if (text === undefined) return;
@@ -82,5 +83,5 @@
     });
   }
   applyTheme(get('bvt-theme', 'dark'));
-  changeLang(get('bvt-lang', 'es'));
+  changeLang(html.dataset.pageLang || get('bvt-lang', 'es'));
 })();
