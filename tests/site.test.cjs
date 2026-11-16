@@ -210,3 +210,11 @@ test('BVT-10 static bilingual profile, reciprocal hreflang and valid local links
   assert.ok(read('sitemap.xml').includes('<loc>'+url+'</loc>'));
  });
 });
+
+test('commercial navigation replaces the legacy about link without adding menu width',()=>{
+ for(const file of ['index.html','portfolio.html','contacto.html']){
+  const h=read(file), nav=h.slice(h.indexOf('<nav'),h.indexOf('<main'));
+  assert.equal((nav.match(/data-profile-link/g)||[]).length,2);
+  assert.ok(!nav.includes('data-i18n="nav.about"'));
+ }
+});
