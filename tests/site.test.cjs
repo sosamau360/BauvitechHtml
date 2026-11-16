@@ -5,7 +5,7 @@ const test = require('node:test');
 const root = path.resolve(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 const pages = ['index.html','portfolio.html','contacto.html'];
-const scripts = ['js/developer.i18n.js','js/shared.js','js/index.i18n.js','js/portfolio.i18n.js','js/contacto.i18n.js','js/contacto.js','js/consulta.js'];
+const scripts = ['js/developer.i18n.js','js/shared.js','js/index.i18n.js','js/portfolio.i18n.js','js/contacto.i18n.js','js/contacto.js','js/consulta.js','js/analytics-config.js','js/analytics.js'];
 test('all JavaScript parses', () => { for (const name of scripts) assert.doesNotThrow(() => new Function(read(name)), name); });
 test('pages have unique IDs, shared scripts and valid local HTML/CSS/JS links', () => {
  for (const name of pages) {
@@ -246,4 +246,18 @@ test('secondary product inquiry actions retain distinct labels and card styling'
   for(const lang of ['es','en'])assert.ok(w.BauViTechTranslations[lang]['home.quick.'+id]);
  }
  assert.ok(read('index.css').includes('.commercial-more-item { display: flex;'));
+});
+
+test('BVT-12 optional analytics is configured off and all pages use the shared controller',()=>{
+ const cfg={};new Function('window',read('js/analytics-config.js'))(cfg);
+ assert.equal(cfg.BauViTechAnalyticsConfig.enabled,false);assert.equal(cfg.BauViTechAnalyticsConfig.measurementId,'');
+ for(const page of ['index.html','portfolio.html','contacto.html','desarrollador.html','developer.html']){
+  const h=read(page);
+  assert.ok(h.includes('id="analytics-preferences" class="analytics-preferences" hidden'));
+  assert.ok(h.includes('id="analytics-panel" class="analytics-panel" aria-labelledby="analytics-title" hidden'));
+  assert.ok(h.includes('src="js/analytics-config.js"')&&h.includes('src="js/analytics.js"'));
+  assert.ok(!h.includes('googletagmanager.com/gtag/js'));
+ }
+ assert.ok(read('js/consulta.js').includes("track('whatsapp_contact_click', currentInterest(), source, 'whatsapp')"));
+ assert.ok(read('js/contacto.js').includes("track('quote_request_click', 'custom', 'contacto', 'quote')"));
 });

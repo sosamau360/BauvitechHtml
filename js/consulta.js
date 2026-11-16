@@ -21,11 +21,18 @@
     product.value = products.includes(requested) ? requested : products[0];
     const bounded = (value, limit) => Array.from(value.trim()).slice(0, limit).join('');
     function currentIntent() { return intents.find(key => radios[key].checked) || 'custom'; }
+    function currentInterest() {
+        return currentIntent() === 'product' ? (products.includes(product.value) ? product.value : products[0]) : currentIntent();
+    }
+    const started = new Set();
+    function startInquiry() {
+        const key = currentInterest();
+        if (!started.has(key) && window.BauViTechAnalytics?.track('inquiry_start', key, source, 'form')) started.add(key);
+    }
     function buildMessage() {
         const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
         const t = translations[lang];
-        const intent = currentIntent();
-        const key = intent === 'product' ? (products.includes(product.value) ? product.value : products[0]) : intent;
+        const key = currentInterest();
         const displayName = bounded(name.value, 100);
         const details = bounded(message.value, 1000);
         return [t['quick.greeting.' + key], displayName ? t['quick.message.name'] + ': ' + displayName : '', details, t['quick.message.source'] + ': ' + t['quick.source.' + source]].filter(Boolean).join('\n');
@@ -36,13 +43,16 @@
         product.disabled = !isProduct;
         preview.textContent = buildMessage();
     }
-    Object.values(radios).forEach(radio => radio.addEventListener('change', refresh));
-    product.addEventListener('change', refresh);
-    name.addEventListener('input', refresh);
-    message.addEventListener('input', refresh);
+    function interact() { refresh(); startInquiry(); }
+    Object.values(radios).forEach(radio => radio.addEventListener('change', interact));
+    product.addEventListener('change', interact);
+    name.addEventListener('input', interact);
+    message.addEventListener('input', interact);
     document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', refresh));
     form.addEventListener('submit', event => {
         event.preventDefault();
+        startInquiry();
+        window.BauViTechAnalytics?.track('whatsapp_contact_click', currentInterest(), source, 'whatsapp');
         const query = new URLSearchParams({text: buildMessage()});
         window.open('https://wa.me/59891850930?' + query.toString(), '_blank', 'noopener,noreferrer');
     });

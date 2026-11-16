@@ -67,6 +67,7 @@ document.getElementById('budgetForm').addEventListener('submit', e => {
         desc
     ].filter(l => l !== null).join('\n');
 
+    window.BauViTechAnalytics?.track('quote_request_click', 'custom', 'contacto', 'quote');
     const url = `https://wa.me/59891850930?text=${encodeURIComponent(lines)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
 });
