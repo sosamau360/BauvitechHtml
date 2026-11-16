@@ -250,7 +250,7 @@ test('secondary product inquiry actions retain distinct labels and card styling'
 
 test('BVT-12 optional analytics is configured off and all pages use the shared controller',()=>{
  const cfg={};new Function('window',read('js/analytics-config.js'))(cfg);
- assert.equal(cfg.BauViTechAnalyticsConfig.enabled,false);assert.equal(cfg.BauViTechAnalyticsConfig.measurementId,'');
+ assert.equal(cfg.BauViTechAnalyticsConfig.enabled,false);assert.equal(cfg.BauViTechAnalyticsConfig.measurementId,'G-5J67NML7BB');
  for(const page of ['index.html','portfolio.html','contacto.html','desarrollador.html','developer.html']){
   const h=read(page);
   assert.ok(h.includes('id="analytics-preferences" class="analytics-preferences" hidden'));
