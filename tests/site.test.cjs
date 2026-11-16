@@ -261,3 +261,21 @@ test('paused product is absent from current marketing and commercial events',()=
  assert.ok(portfolio.includes('id="casos"')&&portfolio.includes('id="omnidate"'));
  assert.ok(read('img/saliya-logo.svg').includes('logotipo provisional'),'reversible asset retained');
 });
+
+test('profile photo remains bounded on home and both profile languages',()=>{
+ const css=read('index.css');
+ for(const selector of ['.about-grid-2 > .about-img-wrap', '.developer-hero-grid > .about-img-wrap']) assert.ok(css.includes(selector),selector);
+ assert.ok(css.includes('width: min(100%, 280px);'));
+ assert.ok(css.includes('max-width: 280px;'));
+ assert.ok(css.includes('aspect-ratio: 4 / 5;'));
+ assert.ok(css.includes('max-height: min(350px, 52svh);'));
+ assert.ok(css.includes('object-fit: cover;'));
+ assert.ok(css.includes('object-position: center 24%;'));
+ assert.ok(css.includes('@media (max-width: 600px)'));
+ assert.ok(css.includes('width: min(62vw, 210px);'));
+ assert.ok(css.includes('max-height: min(263px, 42svh);'));
+ for(const page of ['index.html','desarrollador.html','developer.html']){
+  const h=read(page);
+  assert.ok(h.includes('class="about-img-wrap"><img src="img/yo.jpeg"'),page);
+ }
+});

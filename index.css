@@ -468,3 +468,37 @@ html.light .home-product-actions .product-link { color: var(--blue); }
 .commercial-more-item > a:first-child { display: flex; flex-direction: column; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
 .commercial-more-item > .commercial-link { font-size: 14px; align-self: flex-start; }
 .commercial-more-item:hover { border-color: var(--link-readable); }
+
+/* BVT-HOTFIX: bounded portrait used by home About and both professional profiles.
+   Fixed frame + cover crop prevents a tall source image from determining page height. */
+.about-grid-2 > .about-img-wrap,
+.developer-hero-grid > .about-img-wrap {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 280px);
+    max-width: 280px;
+    min-width: 0;
+    aspect-ratio: 4 / 5;
+    max-height: min(350px, 52svh);
+    overflow: hidden;
+}
+.about-grid-2 > .about-img-wrap img,
+.developer-hero-grid > .about-img-wrap img {
+    position: absolute;
+    inset: 3px;
+    display: block;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center 24%;
+}
+@media (max-width: 600px) {
+    .about-grid-2 > .about-img-wrap,
+    .developer-hero-grid > .about-img-wrap {
+        width: min(62vw, 210px);
+        max-width: 210px;
+        max-height: min(263px, 42svh);
+    }
+}
