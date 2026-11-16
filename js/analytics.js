@@ -16,7 +16,7 @@
     const page = Object.hasOwn(pages, location.pathname) ? pages[location.pathname] : null;
     const eligible = config.enabled === true && /^G-[A-Z0-9]{6,20}$/.test(id)
         && location.protocol === 'https:' && ['bauvitech.com', 'www.bauvitech.com'].includes(location.hostname) && !!page;
-    const products = ['kineos360', 'omnidate', 'parksoft', 'bauvi-notify', 'saliya'];
+    const products = ['kineos360', 'omnidate', 'parksoft', 'bauvi-notify'];
     const interests = [...products, 'developer', 'custom', 'general'];
     const sources = ['inicio', 'portfolio', 'perfil', 'contacto'];
     const allowed = {
@@ -47,7 +47,7 @@
         const source = params.get('utm_source'), medium = params.get('utm_medium'), name = params.get('utm_campaign');
         if (['linkedin','facebook','instagram','whatsapp','google','email'].includes(source)
             && ['social','organic','referral','email','cpc'].includes(medium)
-            && ['clubes_deportivos','comercios_san_carlos','contratacion_dotnet','desarrollador_remoto','parksoft','bauvi_notify','saliya'].includes(name)) {
+            && ['clubes_deportivos','comercios_san_carlos','contratacion_dotnet','desarrollador_remoto','parksoft','bauvi_notify'].includes(name)) {
             return {campaign_source:source,campaign_medium:medium,campaign_name:name};
         }
         return {};

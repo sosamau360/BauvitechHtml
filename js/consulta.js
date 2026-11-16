@@ -3,7 +3,7 @@
     'use strict';
     const form = document.getElementById('quickInquiry');
     if (!form) return;
-    const products = ['kineos360', 'omnidate', 'parksoft', 'bauvi-notify', 'saliya'];
+    const products = ['kineos360', 'omnidate', 'parksoft', 'bauvi-notify'];
     const intents = ['developer', 'product', 'custom'];
     const sources = ['inicio', 'portfolio', 'perfil', 'contacto'];
     const params = new URLSearchParams(window.location?.search || '');

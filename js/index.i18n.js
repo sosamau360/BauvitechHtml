@@ -84,9 +84,6 @@ window.BauViTechTranslations = {
     "home.bauvi-notify.type": "Comunicaciones",
     "home.bauvi-notify.desc": "Integrá WhatsApp con tus sistemas mediante una API REST y centralizá el seguimiento de mensajes.",
     "home.bauvi-notify.cta": "Consultar integración",
-    "home.saliya.type": "En desarrollo",
-    "home.saliya.desc": "Marketplace de reservas gastronómicas con promociones. Lanzamiento y disponibilidad comercial pendientes.",
-    "home.saliya.cta": "Consultar por SaliYa",
     "nav.products": "Productos",
     "hero.products": "Explorar productos",
     "hero.talk": "Contratar mis servicios",
@@ -125,13 +122,11 @@ window.BauViTechTranslations = {
     "v2.more": "Más soluciones BauViTech",
     "v2.more.park": "Gestión de estacionamientos · Solicitar demo",
     "v2.more.notify": "API de comunicaciones · Consultar integración",
-    "v2.more.saliya": "Reservas gastronómicas · En desarrollo",
     "v2.problem": "Software para tu forma de trabajar",
     "v2.problem.desc": "Reemplazá tareas manuales, conectá sistemas y mejorá el control de tu operación.",
     "home.quick.contact": "Consultar",
     "home.quick.parksoft": "Solicitar demo",
-    "home.quick.bauvi-notify": "Consultar integración",
-    "home.quick.saliya": "Registrar interés"
+    "home.quick.bauvi-notify": "Consultar integración"
   },
   "en": {
     "nav.services": "Services",
@@ -218,9 +213,6 @@ window.BauViTechTranslations = {
     "home.bauvi-notify.type": "Communications",
     "home.bauvi-notify.desc": "Connect WhatsApp to your systems through a REST API and centralize message tracking.",
     "home.bauvi-notify.cta": "Ask about integration",
-    "home.saliya.type": "In development",
-    "home.saliya.desc": "Restaurant booking marketplace with dining offers. Launch and commercial availability pending.",
-    "home.saliya.cta": "Ask about SaliYa",
     "nav.products": "Products",
     "hero.products": "Explore products",
     "hero.talk": "Hire my services",
@@ -259,12 +251,10 @@ window.BauViTechTranslations = {
     "v2.more": "More BauViTech solutions",
     "v2.more.park": "Parking management · Request a demo",
     "v2.more.notify": "Communications API · Ask about integration",
-    "v2.more.saliya": "Restaurant reservations · In development",
     "v2.problem": "Software for the way you work",
     "v2.problem.desc": "Replace manual tasks, connect systems and improve operational control.",
     "home.quick.contact": "Ask about this product",
     "home.quick.parksoft": "Request a demo",
-    "home.quick.bauvi-notify": "Ask about integration",
-    "home.quick.saliya": "Express interest"
+    "home.quick.bauvi-notify": "Ask about integration"
   }
 };

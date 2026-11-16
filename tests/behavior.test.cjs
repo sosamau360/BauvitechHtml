@@ -140,7 +140,7 @@ function quickFixture(search='',lang='es'){
  return x;
 }
 test('BVT-11 all product links preselect product and generate bilingual contextual messages',()=>{
- for(const [id,name] of [['kineos360','Kineos360'],['omnidate','OmniDate'],['parksoft','ParkSoft'],['bauvi-notify','BauVi.Notify'],['saliya','SaliYa']]){
+ for(const [id,name] of [['kineos360','Kineos360'],['omnidate','OmniDate'],['parksoft','ParkSoft'],['bauvi-notify','BauVi.Notify']]){
   for(const lang of ['es','en']){
    const x=quickFixture('?interes='+id+'&origen=portfolio',lang);
    assert.equal(x.ids['quick-product'].value,id);

@@ -25,9 +25,9 @@ test('pages have unique IDs, shared scripts and valid local HTML/CSS/JS links', 
 });
 test('approved product catalogue and both languages', () => {
  const html=read('portfolio.html');
- for (const name of ['Kineos360','OmniDate','ParkSoft','BauVi.Notify','SaliYa','Laserwork','Mazur','Licenciamiento']) assert.ok(html.includes(name),name);
+ for (const name of ['Kineos360','OmniDate','ParkSoft','BauVi.Notify','Laserwork','Mazur','Licenciamiento']) assert.ok(html.includes(name),name);
  assert.ok(!/HydrateMe2|Tu Farmacólogo/.test(html));
- assert.equal((html.match(/class="project-card"/g)||[]).length,8);
+ assert.equal((html.match(/class="project-card"/g)||[]).length,7);
  for (const page of pages) {
   const w={}; new Function('window',read('js/'+page.replace('.html','')+'.i18n.js'))(w);
   const d=w.BauViTechTranslations;
@@ -104,17 +104,6 @@ test('BauVi.Notify uses the approved local banner without cropping', () => {
  assert.ok(css.includes('.project-card:hover .notify-banner-cover img { transform: none; }'));
 });
 
-test('SaliYa stays in development with provisional logo and bilingual capabilities', () => {
- const html=read('portfolio.html');
- const start=html.indexOf('data-i18n="saliya.title"');
- const card=html.slice(html.lastIndexOf('<article class="project-card">',start),html.indexOf('</article>',start));
- assert.ok(start>html.indexOf('id="en-desarrollo"') && start<html.indexOf('id="casos"'));
- assert.ok(card.includes('data-i18n="product.development"') && card.includes('data-i18n="saliya.availability"'));
- assert.ok(card.includes('src="img/saliya-logo.svg"'));
- assert.ok(card.includes('data-i18n="saliya.feature3"'));
- assert.ok(card.includes('href="contacto.html?interes=saliya&amp;origen=portfolio#consulta-rapida" data-i18n="saliya.interest"'));
- assert.ok(read('img/saliya-logo.svg').includes('logotipo provisional'));
-});
 
 test('commercial v2 prioritizes developer services and preserves catalog',()=>{
  const h=read('index.html'),p=read('portfolio.html');
@@ -123,11 +112,11 @@ test('commercial v2 prioritizes developer services and preserves catalog',()=>{
  assert.ok(h.includes('href="#productos" class="btn-outline" data-i18n="hero.products"'));
  const s=h.slice(h.indexOf('id="productos"'),h.indexOf('id="sobre"'));
  assert.equal((s.match(/class="product-card"/g)||[]).length,2);
- for(const id of ['kineos360','omnidate','parksoft','bauvi-notify','saliya']){assert.ok(s.includes('href="portfolio.html#'+id+'"'));assert.ok(p.includes('id="'+id+'"'));}
- for(const asset of ['img/logoParkSoft.png','img/bauvi-notify-banner.webp','img/saliya-logo.svg'])assert.ok(p.includes(asset));
+ for(const id of ['kineos360','omnidate','parksoft','bauvi-notify']){assert.ok(s.includes('href="portfolio.html#'+id+'"'));assert.ok(p.includes('id="'+id+'"'));}
+ for(const asset of ['img/logoParkSoft.png','img/bauvi-notify-banner.webp'])assert.ok(p.includes(asset));
  assert.ok(s.includes('img/omnidate-logo.svg')&&s.includes('data-logo-light='));
  assert.ok(s.includes('https://www.kineos360.uy/')&&s.includes('https://omnidate.com.uy/'));
- assert.ok(s.includes('En desarrollo'));
+ assert.ok(!s.includes('SaliYa') && !p.includes('id="en-desarrollo"'));
  for(const id of ['problema','servicios','sobre','proceso','contacto'])assert.ok(h.includes('id="'+id+'"'));
 });
 test('landing product grid and image rules retain mobile layout and theme fallback', () => {
@@ -226,7 +215,7 @@ test('BVT-11 contextual inquiry links, accessible quick form and preserved quote
  assert.ok(contact.includes('id="f-email" data-i18n="email.placeholder" required'));
  assert.ok(contact.includes('id="quick-name" maxlength="100"')&&contact.includes('id="quick-message" maxlength="1000"'));
  assert.ok(contact.includes('src="js/consulta.js"'));
- for(const p of ['kineos360','omnidate','parksoft','bauvi-notify','saliya']){
+ for(const p of ['kineos360','omnidate','parksoft','bauvi-notify']){
   assert.ok(contact.includes('value="'+p+'"'));
   assert.ok(home.includes('contacto.html?interes='+p+'&amp;origen=inicio#consulta-rapida'));
   assert.ok(portfolio.includes('contacto.html?interes='+p+'&amp;origen=portfolio#consulta-rapida'));
@@ -234,14 +223,14 @@ test('BVT-11 contextual inquiry links, accessible quick form and preserved quote
  assert.ok(home.includes('contacto.html?interes=custom&amp;origen=inicio#consulta-rapida'));
  for(const [file,lang] of [['desarrollador.html','es'],['developer.html','en']])assert.ok(read(file).includes('contacto.html?interes=developer&amp;origen=perfil&amp;lang='+lang+'#consulta-rapida'));
  const w={};new Function('window',read('js/contacto.i18n.js'))(w);
- for(const lang of ['es','en'])for(const k of ['developer','custom','kineos360','omnidate','parksoft','bauvi-notify','saliya'])assert.ok(w.BauViTechTranslations[lang]['quick.greeting.'+k]);
+ for(const lang of ['es','en'])for(const k of ['developer','custom','kineos360','omnidate','parksoft','bauvi-notify'])assert.ok(w.BauViTechTranslations[lang]['quick.greeting.'+k]);
  assert.ok(!read('js/consulta.js').includes('innerHTML'));
 });
 
 test('secondary product inquiry actions retain distinct labels and card styling',()=>{
  const h=read('index.html'),w={};new Function('window',read('js/index.i18n.js'))(w);
- assert.equal((h.match(/class="commercial-more-item"/g)||[]).length,3);
- for(const id of ['parksoft','bauvi-notify','saliya']){
+ assert.equal((h.match(/class="commercial-more-item"/g)||[]).length,2);
+ for(const id of ['parksoft','bauvi-notify']){
   assert.ok(h.includes('data-i18n="home.quick.'+id+'"'));
   for(const lang of ['es','en'])assert.ok(w.BauViTechTranslations[lang]['home.quick.'+id]);
  }
@@ -260,4 +249,15 @@ test('BVT-12 optional analytics is configured off and all pages use the shared c
  }
  assert.ok(read('js/consulta.js').includes("track('whatsapp_contact_click', currentInterest(), source, 'whatsapp')"));
  assert.ok(read('js/contacto.js').includes("track('quote_request_click', 'custom', 'contacto', 'quote')"));
+});
+
+test('paused product is absent from current marketing and commercial events',()=>{
+ for(const page of ['index.html','portfolio.html','contacto.html','desarrollador.html','developer.html']) assert.ok(!/saliya/i.test(read(page)),page);
+ for(const path of ['js/index.i18n.js','js/portfolio.i18n.js','js/contacto.i18n.js','js/consulta.js','js/analytics.js']) assert.ok(!/saliya/i.test(read(path)),path);
+ const home=read('index.html'),portfolio=read('portfolio.html'),contact=read('contacto.html');
+ assert.ok(!portfolio.includes('id="en-desarrollo"'));
+ assert.ok(!contact.includes('value="saliya"'));
+ assert.ok(home.includes('portfolio.html#parksoft')&&home.includes('portfolio.html#bauvi-notify'));
+ assert.ok(portfolio.includes('id="casos"')&&portfolio.includes('id="omnidate"'));
+ assert.ok(read('img/saliya-logo.svg').includes('logotipo provisional'),'reversible asset retained');
 });
