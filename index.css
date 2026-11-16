@@ -462,3 +462,9 @@ html.light .home-product-actions .product-link { color: var(--blue); }
 @media(max-width:900px){.commercial-hero-grid,.developer-hero-grid{grid-template-columns:minmax(0,1fr);gap:32px}.commercial-offers{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:640px){.commercial-more-grid,.commercial-proof-grid.developer-projects{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:480px){.commercial-hero{padding:104px 20px 48px}.commercial-proof{padding:18px}.commercial-proof-grid{grid-template-columns:minmax(0,1fr)}.commercial-offer{padding:22px}.developer-hero{padding-top:104px}}
+
+/* BVT-11: preserve secondary product cards while adding separate inquiry links. */
+.commercial-more-item { display: flex; flex-direction: column; gap: 12px; padding: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; min-width: 0; }
+.commercial-more-item > a:first-child { display: flex; flex-direction: column; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
+.commercial-more-item > .commercial-link { font-size: 14px; align-self: flex-start; }
+.commercial-more-item:hover { border-color: var(--link-readable); }

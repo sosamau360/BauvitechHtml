@@ -237,3 +237,13 @@ test('BVT-11 contextual inquiry links, accessible quick form and preserved quote
  for(const lang of ['es','en'])for(const k of ['developer','custom','kineos360','omnidate','parksoft','bauvi-notify','saliya'])assert.ok(w.BauViTechTranslations[lang]['quick.greeting.'+k]);
  assert.ok(!read('js/consulta.js').includes('innerHTML'));
 });
+
+test('secondary product inquiry actions retain distinct labels and card styling',()=>{
+ const h=read('index.html'),w={};new Function('window',read('js/index.i18n.js'))(w);
+ assert.equal((h.match(/class="commercial-more-item"/g)||[]).length,3);
+ for(const id of ['parksoft','bauvi-notify','saliya']){
+  assert.ok(h.includes('data-i18n="home.quick.'+id+'"'));
+  for(const lang of ['es','en'])assert.ok(w.BauViTechTranslations[lang]['home.quick.'+id]);
+ }
+ assert.ok(read('index.css').includes('.commercial-more-item { display: flex;'));
+});
